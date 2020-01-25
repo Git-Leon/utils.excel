@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,14 @@ public class ExcelSpreadSheetFile {
     private final Workbook workbook;
     private List<ExcelSpreadSheet> sheets;
 
-    public ExcelSpreadSheetFile(File csvFile) {
+    public ExcelSpreadSheetFile(String filePath) {
+        this(new File(filePath));
+    }
+
+    public ExcelSpreadSheetFile(File filePath) {
+        this.sheets = new ArrayList<>();
         try {
-            this.workbook = new XSSFWorkbook(new FileInputStream(csvFile));
+            this.workbook = new XSSFWorkbook(new FileInputStream(filePath));
             int counter = 0;
             ExcelSpreadSheet currentSheet = getExcelSpreadSheetAt(counter);
             do {
@@ -42,4 +48,7 @@ public class ExcelSpreadSheetFile {
         return new ExcelSpreadSheet(workbook.getSheet(name));
     }
 
+    public ExcelSpreadSheet getNewSpreadSheet() {
+        return new ExcelSpreadSheet(workbook.createSheet());
+    }
 }

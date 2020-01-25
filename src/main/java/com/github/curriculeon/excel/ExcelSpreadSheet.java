@@ -4,7 +4,11 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -45,7 +49,7 @@ public class ExcelSpreadSheet {
         StringBuilder res = new StringBuilder();
         while (columnNumber > 0) {
             int index = (columnNumber - 1) % 26;
-            res.append((char)(index + 'A'));
+            res.append((char) (index + 'A'));
             columnNumber = (columnNumber - 1) / 26;
         }
 
@@ -70,5 +74,18 @@ public class ExcelSpreadSheet {
 
     public List<ExcelSpreadSheetRow> getRows() {
         return null;
+    }
+
+    public List<ExcelSpreadSheetRow> getRowsWhere(Predicate<ExcelSpreadSheetRow> predicate) {
+        return new ArrayList<>(getRows()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList()));
+    }
+    public List<ExcelSpreadSheetColumn> getColumnsWhere(Predicate<ExcelSpreadSheetColumn> predicate) {
+        return new ArrayList<>(getColumns()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList()));
     }
 }
