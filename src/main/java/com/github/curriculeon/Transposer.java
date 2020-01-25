@@ -7,12 +7,26 @@ import java.util.List;
 /**
  * @author leonhunter
  * @created 01/25/2020 - 12:00 AM
+ * used to invert axes of a table
  */
-public class Transposer {
-    private List<List<String>> matrix;
+public class Transposer<SomeType> {
+    private List<List<SomeType>> table;
 
-    public Transposer(List<List<String>> matrix) {
-        this.matrix = matrix;
+    public Transposer(List<List<SomeType>> table) {
+        this.table = table;
+    }
+
+    public List<List<SomeType>> transpose() {
+        List<List<SomeType>> ret = new ArrayList<List<SomeType>>();
+        final int N = table.get(0).size();
+        for (int i = 0; i < N; i++) {
+            List<SomeType> col = new ArrayList<SomeType>();
+            for (List<SomeType> row : table) {
+                col.add(row.get(i));
+            }
+            ret.add(col);
+        }
+        return ret;
     }
 
     public static List<List<String>> normalize(List<String[]> rows) {
@@ -21,18 +35,5 @@ public class Transposer {
             result.add(Arrays.asList(row));
         }
         return result;
-    }
-
-    private <T> List<List<T>> transpose(List<List<T>> table) {
-        List<List<T>> ret = new ArrayList<List<T>>();
-        final int N = table.get(0).size();
-        for (int i = 0; i < N; i++) {
-            List<T> col = new ArrayList<T>();
-            for (List<T> row : table) {
-                col.add(row.get(i));
-            }
-            ret.add(col);
-        }
-        return ret;
     }
 }

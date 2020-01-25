@@ -134,7 +134,7 @@ public class ExcelSpreadSheetCellStyleBuilder {
         return this;
     }
 
-    public ExcelSpreadSheetCellStyle createExcelSpreadSheetCellStyleBuilder() {
+    public ExcelSpreadSheetCellStyle build() {
         cellStyle.setDataFormat(dataFormat);
         cellStyle.setFont(font);
         cellStyle.setHidden(isHidden);
