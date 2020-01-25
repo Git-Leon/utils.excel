@@ -29,6 +29,7 @@ public class ExcelSpreadSheet {
     }
 
     public Workbook getWorkBook() {
+
         return sheet.getWorkbook();
     }
 
@@ -45,7 +46,7 @@ public class ExcelSpreadSheet {
     }
 
     public Cell getCell(Integer row, String column) {
-        Row sheetRow = sheet.getRow(row);
+        ExcelSpreadSheetRow sheetRow = getRow(row);
         int columnNumber = getColumnNumber(column);
         Cell cell = sheetRow.getCell(columnNumber);
         return cell;

@@ -1,7 +1,6 @@
 package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.List;
 
@@ -12,5 +11,9 @@ import java.util.List;
 public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
     public ExcelSpreadSheetRow(List<Cell> data) {
         super(data);
+    }
+
+    public Cell getCell(int columnNumber) {
+        return find(cell -> cell.getColumnIndex() == columnNumber).get(0);
     }
 }

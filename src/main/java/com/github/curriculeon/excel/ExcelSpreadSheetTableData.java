@@ -1,12 +1,13 @@
 package com.github.curriculeon.excel;
 
-import org.apache.poi.ss.formula.FormulaParseException;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -15,37 +16,30 @@ import java.util.List;
 public interface ExcelSpreadSheetTableData {
     List<Cell> getData();
 
-    default public Cell get(Integer index) {
-        return getData().get(index);
+    default List<Cell> find(Predicate<Cell> filterClause) {
+        return new ArrayList<>(getData()
+                .stream()
+                .filter(filterClause)
+                .collect(Collectors.toList()));
     }
 
     default void setValue(double var1) {
-        for (Cell datum : getData()) {
-            datum.setCellValue(var1);
-        }
+        getData().forEach(cell -> cell.setCellValue(var1));
     }
 
     default void setValue(Date var1) {
-        for (Cell datum : getData()) {
-            datum.setCellValue(var1);
-        }
+        getData().forEach(cell -> cell.setCellValue(var1));
     }
 
     default void setValue(Calendar var1) {
-        for (Cell datum : getData()) {
-            datum.setCellValue(var1);
-        }
+        getData().forEach(cell -> cell.setCellValue(var1));
     }
 
     default void setValue(RichTextString var1) {
-        for (Cell datum : getData()) {
-            datum.setCellValue(var1);
-        }
+        getData().forEach(cell -> cell.setCellValue(var1));
     }
     default void setCellFormula(String toString) {
-        for(Cell datum : getData()) {
-            datum.setCellFormula(toString);
-        }
+        getData().forEach(cell -> cell.setCellFormula(toString));
     }
 
 }
