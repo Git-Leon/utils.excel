@@ -1,5 +1,6 @@
 package com.github.curriculeon;
 
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -12,7 +13,7 @@ import java.util.List;
  * @created 01/24/2020 - 10:35 PM
  */
 public class ExcelFile {
-    private final XSSFWorkbook workbook;
+    private final Workbook workbook;
     private List<ExcelSpreadSheet> sheets;
 
     public ExcelFile(File csvFile) {
