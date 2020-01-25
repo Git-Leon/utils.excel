@@ -1,35 +1,51 @@
 package com.github.curriculeon;
 
 import org.apache.poi.ss.formula.FormulaParseException;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Comment;
-import org.apache.poi.ss.usermodel.Hyperlink;
-import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author leonhunter
  * @created 01/25/2020 - 2:05 AM
  */
 public interface ExcelSpreadSheetTableData {
-    void setValue(double var1);
+    List<Cell> getData();
 
-    void setValue(Date var1);
+    default public Cell get(Integer index) {
+        return getData().get(index);
+    }
 
-    void setValue(Calendar var1);
+    default void setValue(double var1) {
+        for (Cell datum : getData()) {
+            datum.setCellValue(var1);
+        }
+    }
 
-    void setValue(RichTextString var1);
+    default void setValue(Date var1) {
+        for (Cell datum : getData()) {
+            datum.setCellValue(var1);
+        }
+    }
 
-    void setValue(String var1);
+    default void setValue(Calendar var1) {
+        for (Cell datum : getData()) {
+            datum.setCellValue(var1);
+        }
+    }
 
-    void setCellFormula(String var1) throws FormulaParseException;
+    default void setValue(RichTextString var1) {
+        for (Cell datum : getData()) {
+            datum.setCellValue(var1);
+        }
+    }
+    default void setCellFormula(String toString) {
+        for(Cell datum : getData()) {
+            datum.setCellFormula(toString);
+        }
+    }
 
-    void setStyle(CellStyle var1);
-
-    void setCellComment(Comment var1);
-
-    void setHyperlink(Hyperlink var1);
 }

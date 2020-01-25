@@ -17,7 +17,7 @@ public class ExcelSpreadSheet {
         this.sheet = sheet;
     }
 
-    public void setForumla(ExcelFormula forumla, Cell cell) {
+    public void setFormula(ExcelFormula formula, Cell cell) {
 
     }
 
@@ -29,8 +29,8 @@ public class ExcelSpreadSheet {
         return sheet;
     }
 
-    public void setForumla(ExcelFormula forumla, Integer columnNumber) {
-
+    public void setFormula(ExcelFormula formula, Integer columnNumber) {
+        getColumn(columnNumber).setCellFormula(formula.toString());
     }
 
     public Cell getCell(Integer row, Integer column) {
@@ -52,7 +52,7 @@ public class ExcelSpreadSheet {
         return res.reverse().toString();
     }
 
-    public ExcelSpreadSheetRow getRow(String columnName) {
+    public ExcelSpreadSheetRow getRow(Integer rowNumber) {
         return null;
     }
 

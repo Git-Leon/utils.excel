@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @author leonhunter
  * @created 01/25/2020 - 1:59 AM
  */
-public class ExcelSpreadSheetCellStyler implements ExcelSpreadSheetTableCollection {
+public class ExcelSpreadSheetCellStyler  {
     private ExcelSpreadSheet excelSpreadSheet;
 
     public ExcelSpreadSheetCellStyler(ExcelSpreadSheet excelSpreadSheet) {
@@ -58,11 +58,6 @@ public class ExcelSpreadSheetCellStyler implements ExcelSpreadSheetTableCollecti
 
     public void setHyperlink(Hyperlink var1) {
 
-    }
-
-    @Override
-    public List<String> getData() {
-        return null;
     }
 
 }

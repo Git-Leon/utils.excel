@@ -12,11 +12,11 @@ import java.util.List;
  * @author leonhunter
  * @created 01/24/2020 - 10:35 PM
  */
-public class ExcelFile {
+public class ExcelSpreadSheetFile {
     private final Workbook workbook;
     private List<ExcelSpreadSheet> sheets;
 
-    public ExcelFile(File csvFile) {
+    public ExcelSpreadSheetFile(File csvFile) {
         try {
             this.workbook = new XSSFWorkbook(new FileInputStream(csvFile));
             int counter = 0;
