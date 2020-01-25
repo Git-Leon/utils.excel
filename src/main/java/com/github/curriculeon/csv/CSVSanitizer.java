@@ -20,11 +20,11 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
-public class CSVParser {
+public class CSVSanitizer {
     private final CSVWriter writer;
     private List<List<String>> rows;
 
-    public CSVParser(File source, File destination) {
+    public CSVSanitizer(File source, File destination) {
         try {
             CSVReader reader = new CSVReader(new FileReader(source.getAbsolutePath()));
             this.writer = new CSVWriter(new FileWriter(destination.getAbsolutePath()));

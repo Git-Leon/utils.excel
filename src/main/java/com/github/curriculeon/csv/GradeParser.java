@@ -8,16 +8,16 @@ import java.util.List;
 
 public class GradeParser {
     private final ExcelSpreadSheetFile excelSpreadSheetFile;
-    private CSVParser csvParser;
+    private CSVSanitizer csvSanitizer;
 
-    public GradeParser(ExcelSpreadSheetFile excelSpreadSheetFile, CSVParser csvParser) {
+    public GradeParser(ExcelSpreadSheetFile excelSpreadSheetFile, CSVSanitizer csvSanitizer) {
         this.excelSpreadSheetFile = excelSpreadSheetFile;
-        this.csvParser = csvParser;
+        this.csvSanitizer = csvSanitizer;
     }
 
     public void parseToExcel() {
         ExcelSpreadSheet newSheet = excelSpreadSheetFile.getNewSpreadSheet("Grades Parsed From Canvas");
-        List<List<String>> rows = csvParser.getRows();
+        List<List<String>> rows = csvSanitizer.getRows();
         for (int i = 0; i < rows.size(); i++) {
             List<String> row = rows.get(i);
             for (int j = 0; j < row.size(); j++) {
