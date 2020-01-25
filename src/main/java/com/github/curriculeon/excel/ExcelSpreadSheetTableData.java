@@ -2,12 +2,8 @@ package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.*;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -16,11 +12,13 @@ import java.util.stream.Collectors;
 public interface ExcelSpreadSheetTableData {
     List<Cell> getData();
 
-    default List<Cell> find(Predicate<Cell> filterClause) {
-        return new ArrayList<>(getData()
+    Cell getCell(int columnNumber);
+
+    default Optional<Cell> find(Predicate<Cell> filterClause) {
+        return getData()
                 .stream()
                 .filter(filterClause)
-                .collect(Collectors.toList()));
+                .findFirst();
     }
 
     default void setValue(double var1) {
@@ -38,6 +36,7 @@ public interface ExcelSpreadSheetTableData {
     default void setValue(RichTextString var1) {
         getData().forEach(cell -> cell.setCellValue(var1));
     }
+
     default void setCellFormula(String toString) {
         getData().forEach(cell -> cell.setCellFormula(toString));
     }

@@ -59,7 +59,7 @@ public class ExcelSpreadSheet {
             sheetRow = sheet.createRow(rowNumber);
         }
         sheetRow.forEach(list::add);
-        return new ExcelSpreadSheetRow(list);
+        return new ExcelSpreadSheetRow(sheet, rowNumber, list);
     }
 
     public String getColumnName(Integer columnNumber) {

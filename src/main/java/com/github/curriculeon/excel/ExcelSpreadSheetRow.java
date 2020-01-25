@@ -1,6 +1,7 @@
 package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.List;
 
@@ -9,11 +10,13 @@ import java.util.List;
  * @created 01/25/2020 - 2:00 AM
  */
 public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
-    public ExcelSpreadSheetRow(List<Cell> data) {
-        super(data);
+    public ExcelSpreadSheetRow(Sheet sheet, Integer rowNumber, List<Cell> data) {
+        super(sheet, rowNumber, data);
     }
 
     public Cell getCell(int columnNumber) {
-        return find(cell -> cell.getColumnIndex() == columnNumber).get(0);
+        return find(cell -> cell.getRowIndex() == columnNumber).orElse(sheet
+                .getRow(rowNumber)
+                .createCell(columnNumber));
     }
 }
