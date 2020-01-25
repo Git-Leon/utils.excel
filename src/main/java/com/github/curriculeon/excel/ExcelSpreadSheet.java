@@ -1,10 +1,10 @@
 package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -19,6 +19,9 @@ public class ExcelSpreadSheet {
 
     public ExcelSpreadSheet(Sheet sheet) {
         this.sheet = sheet;
+        if(sheet == null) {
+            throw new Error("shit");
+        }
     }
 
     public void setFormula(ExcelFormula formula, Cell cell) {
@@ -42,7 +45,20 @@ public class ExcelSpreadSheet {
     }
 
     public Cell getCell(Integer row, String column) {
-        return null;
+        Row sheetRow = sheet.getRow(row);
+        int columnNumber = getColumnNumber(column);
+        Cell cell = sheetRow.getCell(columnNumber);
+        return cell;
+    }
+
+    public ExcelSpreadSheetRow getRow(Integer rowNumber) {
+        List<Cell> list = new ArrayList<>();
+        Row sheetRow = sheet.getRow(rowNumber);
+        if(sheetRow == null) {
+            sheetRow = sheet.createRow(rowNumber);
+        }
+        sheetRow.forEach(list::add);
+        return new ExcelSpreadSheetRow(list);
     }
 
     public String getColumnName(Integer columnNumber) {
@@ -56,8 +72,13 @@ public class ExcelSpreadSheet {
         return res.reverse().toString();
     }
 
-    public ExcelSpreadSheetRow getRow(Integer rowNumber) {
-        return null;
+    public int getColumnNumber(String column) {
+        int result = 0;
+        for (int i = 0; i < column.length(); i++) {
+            result *= 26;
+            result += column.charAt(i) - 'A' + 1;
+        }
+        return result;
     }
 
     public ExcelSpreadSheetColumn getColumn(String columnName) {

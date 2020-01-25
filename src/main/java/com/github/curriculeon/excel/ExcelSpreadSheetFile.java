@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel;
 
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -26,9 +27,16 @@ public class ExcelSpreadSheetFile {
         try {
             this.workbook = new XSSFWorkbook(new FileInputStream(filePath));
             int counter = 0;
-            ExcelSpreadSheet currentSheet = getExcelSpreadSheetAt(counter);
+            ExcelSpreadSheet currentSheet;
             do {
-                sheets.add(getExcelSpreadSheetAt(counter));
+                currentSheet = getExcelSpreadSheetAt(counter);
+                if(currentSheet!= null) {
+                    sheets.add(currentSheet);
+                    Sheet sheet = currentSheet.getSheet();
+                    String sheetName = currentSheet.getSheet().getSheetName();
+                    System.out.println(sheetName);
+                    counter++;
+                }
             } while (currentSheet != null);
         } catch (IOException e) {
             throw new Error(e);
@@ -40,7 +48,11 @@ public class ExcelSpreadSheetFile {
     }
 
     public ExcelSpreadSheet getExcelSpreadSheetAt(Integer index) {
-        return new ExcelSpreadSheet(workbook.getSheetAt(index));
+        try {
+            return new ExcelSpreadSheet(workbook.getSheetAt(index));
+        } catch(IllegalArgumentException e) {
+            return null;
+        }
     }
 
 
@@ -48,7 +60,7 @@ public class ExcelSpreadSheetFile {
         return new ExcelSpreadSheet(workbook.getSheet(name));
     }
 
-    public ExcelSpreadSheet getNewSpreadSheet() {
-        return new ExcelSpreadSheet(workbook.createSheet());
+    public ExcelSpreadSheet getNewSpreadSheet(String sheetName) {
+        return new ExcelSpreadSheet(workbook.createSheet(sheetName));
     }
 }

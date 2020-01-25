@@ -10,10 +10,10 @@ import java.io.File;
 
 public class MyObject implements Runnable {
     public void run() {
-        File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
         File source = ResourceUtils.getResourceFile("grades.csv");
         File destination = ResourceUtils.loadDuplicate(source.getName());
         CSVParser csvParser = new CSVParser(source, destination);
+        File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
         ExcelSpreadSheetFile excelSpreadSheetFile = new ExcelSpreadSheetFile(spreadSheetFile);
         GradeParser gradeParser = new GradeParser(excelSpreadSheetFile, csvParser);
         gradeParser.parseToExcel();

@@ -16,7 +16,7 @@ public class GradeParser {
     }
 
     public void parseToExcel() {
-        ExcelSpreadSheet newSheet = excelSpreadSheetFile.getNewSpreadSheet();
+        ExcelSpreadSheet newSheet = excelSpreadSheetFile.getNewSpreadSheet("Grades Parsed From Canvas");
         List<List<String>> rows = csvParser.getRows();
         for (int i = 0; i < rows.size(); i++) {
             List<String> row = rows.get(i);
