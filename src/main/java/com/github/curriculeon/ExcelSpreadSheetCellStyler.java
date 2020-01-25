@@ -1,13 +1,9 @@
 package com.github.curriculeon;
 
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Comment;
-import org.apache.poi.ss.usermodel.Hyperlink;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @author leonhunter
@@ -20,6 +16,32 @@ public class ExcelSpreadSheetCellStyler implements ExcelSpreadSheetTableCollecti
         this.excelSpreadSheet = excelSpreadSheet;
     }
 
+
+    public void setCondition(Predicate<Cell> conditionToStyleCell) {
+
+    }
+
+    public void setRange(Cell startingCell, Cell endingCell) {
+        Integer startingRow = startingCell.getRowIndex();
+        Integer startingColumn = startingCell.getColumnIndex();
+        Integer endingRow = endingCell.getRowIndex();
+        Integer endingColumn = endingCell.getColumnIndex();
+
+        setCondition(cell -> {
+            int cellRow = cell.getRowIndex();
+            int cellColumn = cell.getColumnIndex();
+
+            boolean isAfterStartingRow = cellRow >= startingRow;
+            boolean isBeforeEndingRow = cellRow <= endingRow;
+            boolean isAfterStartingColumn = cellColumn >= startingColumn;
+            boolean isAfterEndingColumn = cellColumn <= endingColumn;
+
+            return isAfterStartingRow &&
+                    isBeforeEndingRow &&
+                    isAfterStartingColumn &&
+                    isAfterEndingColumn;
+        });
+    }
 
     public void setStyle(CellStyle var1) {
 

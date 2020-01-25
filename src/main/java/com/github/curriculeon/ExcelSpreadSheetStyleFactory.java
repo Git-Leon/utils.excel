@@ -78,10 +78,13 @@ public enum ExcelSpreadSheetStyleFactory {
             .setRotation(null)
             .build());
 
+    private final Function<CellStyle, ExcelSpreadSheetCellStyle> cellStyleGenerator;
+
     ExcelSpreadSheetStyleFactory(Function<CellStyle, ExcelSpreadSheetCellStyle> cellStyleGenerator) {
+        this.cellStyleGenerator = cellStyleGenerator;
     }
 
-    public ExcelSpreadSheetCellStyler create() {
-        return null;
+    public ExcelSpreadSheetCellStyle create(CellStyle cellStyle) {
+        return cellStyleGenerator.apply(cellStyle);
     }
 }
