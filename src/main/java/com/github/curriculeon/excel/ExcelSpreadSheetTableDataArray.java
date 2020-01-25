@@ -1,4 +1,4 @@
-package com.github.curriculeon;
+package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.Cell;
 

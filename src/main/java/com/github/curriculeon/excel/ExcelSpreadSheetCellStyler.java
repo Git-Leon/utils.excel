@@ -1,8 +1,7 @@
-package com.github.curriculeon;
+package com.github.curriculeon.excel;
 
 import org.apache.poi.ss.usermodel.*;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 /**

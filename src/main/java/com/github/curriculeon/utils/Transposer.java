@@ -1,4 +1,4 @@
-package com.github.curriculeon;
+package com.github.curriculeon.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
