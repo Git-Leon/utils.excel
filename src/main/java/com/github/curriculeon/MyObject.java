@@ -10,7 +10,7 @@ import java.io.File;
 public class MyObject implements Runnable {
     public void run() {
         File source = ResourceUtils.getResourceFile("grades.csv");
-        File destination = ResourceUtils.loadDuplicate(source.getName());
+        File destination = ResourceUtils.getDuplicateFile(source.getName());
         CSVSanitizer csvSanitizer = new CSVSanitizer(source, destination);
         File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
         ExcelSpreadSheetFile excelSpreadSheetFile = new ExcelSpreadSheetFile(spreadSheetFile);

@@ -47,11 +47,7 @@ public class CSVSanitizer {
     }
 
     private List<List<String>> normalize(List<String[]> rows) {
-        List<List<String>> result = new ArrayList<>();
-        for (String[] row : rows) {
-            result.add(Arrays.asList(row));
-        }
-        return result;
+        return Transposer.normalize(rows);
     }
 
     private List<String[]> standardize() {

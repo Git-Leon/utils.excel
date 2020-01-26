@@ -30,7 +30,7 @@ public class GradeParser {
     }
 
     public void parseToExcel() {
-        ExcelSpreadSheet newSheet = excelSpreadSheetFileSource.getNewSpreadSheet("Grades Parsed From Canvas");
+        ExcelSpreadSheet newSheet = excelSpreadSheetFileDestination.getNewSpreadSheet("Grades Parsed From Canvas");
         List<List<String>> rows = csvSanitizer.getRows();
         for (int i = 0; i < rows.size(); i++) {
             List<String> row = rows.get(i);

@@ -11,7 +11,7 @@ import java.io.File;
 public class GetColumnTest {
     @Test
     public void test() {
-        File csv = ResourceUtils.duplicateFile("grades.csv");
+        File csv = ResourceUtils.copyFile("grades.csv");
         ExcelSpreadSheetFile spreadSheetFile = new ExcelSpreadSheetFile(csv);
         ExcelSpreadSheet spreadSheet = spreadSheetFile.getExcelSpreadSheetAt(0);
         ExcelSpreadSheetRow row = spreadSheet.getRow(0);
