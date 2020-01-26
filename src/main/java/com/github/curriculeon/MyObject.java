@@ -1,7 +1,7 @@
 package com.github.curriculeon;
 
-import com.github.curriculeon.csv.CSVSanitizer;
-import com.github.curriculeon.csv.GradeParser;
+import com.github.curriculeon.engine.CSVSanitizer;
+import com.github.curriculeon.engine.GradeParser;
 import com.github.curriculeon.excel.ExcelSpreadSheetFile;
 import com.github.curriculeon.utils.ResourceUtils;
 

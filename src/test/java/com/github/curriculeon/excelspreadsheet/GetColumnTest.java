@@ -2,7 +2,7 @@ package com.github.curriculeon.excelspreadsheet;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetFile;
-import com.github.curriculeon.excel.ExcelSpreadSheetRow;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.junit.Test;
 

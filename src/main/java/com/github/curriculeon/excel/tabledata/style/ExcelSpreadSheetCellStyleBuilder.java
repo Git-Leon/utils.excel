@@ -1,4 +1,4 @@
-package com.github.curriculeon.excel;
+package com.github.curriculeon.excel.tabledata.style;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;

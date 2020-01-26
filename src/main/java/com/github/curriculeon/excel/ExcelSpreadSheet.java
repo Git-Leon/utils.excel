@@ -1,5 +1,8 @@
 package com.github.curriculeon.excel;
 
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.excel.tabledata.metadata.ExcelFormula;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -29,7 +32,6 @@ public class ExcelSpreadSheet {
     }
 
     public Workbook getWorkBook() {
-
         return sheet.getWorkbook();
     }
 

@@ -1,4 +1,4 @@
-package com.github.curriculeon.excel;
+package com.github.curriculeon.excel.tabledata.metadata;
 
 /**
  * @author leonhunter
