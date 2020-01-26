@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author leonhunter
@@ -23,12 +24,11 @@ public class ExcelSpreadSheet {
     public ExcelSpreadSheet(Sheet sheet) {
         this.sheet = sheet;
         if(sheet == null) {
-            throw new Error("shit");
+            throw new NullPointerException();
         }
     }
 
     public void setFormula(ExcelFormula formula, Cell cell) {
-
     }
 
     public Workbook getWorkBook() {
@@ -52,6 +52,13 @@ public class ExcelSpreadSheet {
         int columnNumber = getColumnNumber(column);
         Cell cell = sheetRow.getCell(columnNumber);
         return cell;
+    }
+
+    public ExcelSpreadSheetColumn getColumn(String columnName) {
+        List<Cell> columnData = new ArrayList<>();
+        getRows().stream().forEach(row -> columnData.add(row.getCell(getColumnNumber(columnName))));
+        int columnNumber = getColumnNumber(columnName);
+        return new ExcelSpreadSheetColumn(sheet, columnNumber, columnData);
     }
 
     public ExcelSpreadSheetRow getRow(Integer rowNumber) {
@@ -84,11 +91,7 @@ public class ExcelSpreadSheet {
         return result;
     }
 
-    public ExcelSpreadSheetColumn getColumn(String columnName) {
-        return null;
-    }
-
-    private ExcelSpreadSheetColumn getColumn(Integer columnNumber) {
+    public ExcelSpreadSheetColumn getColumn(Integer columnNumber) {
         return getColumn(getColumnName(columnNumber));
     }
 
@@ -97,7 +100,11 @@ public class ExcelSpreadSheet {
     }
 
     public List<ExcelSpreadSheetRow> getRows() {
-        return null;
+        List<ExcelSpreadSheetRow> list = new ArrayList<>();
+        IntStream
+                .range(0,sheet.getLastRowNum())
+                .forEach(i-> list.add(getRow(i)));
+        return list;
     }
 
     public List<ExcelSpreadSheetRow> getRowsWhere(Predicate<ExcelSpreadSheetRow> predicate) {

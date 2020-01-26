@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @author leonhunter
  * @created 01/25/2020 - 2:05 AM
  */
-public interface ExcelSpreadSheetTableData {
+public interface ExcelSpreadSheetTableData extends Iterable<Cell> {
     List<Cell> getData();
 
     Cell getCell(int columnNumber);
@@ -39,6 +39,11 @@ public interface ExcelSpreadSheetTableData {
 
     default void setCellFormula(String toString) {
         getData().forEach(cell -> cell.setCellFormula(toString));
+    }
+
+    @Override
+    default Iterator<Cell> iterator() {
+        return getData().iterator();
     }
 
 }

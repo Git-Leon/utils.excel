@@ -10,13 +10,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author leonhunter
  * @created 01/24/2020 - 10:35 PM
  */
-public class ExcelSpreadSheetFile {
+public class ExcelSpreadSheetFile implements Iterable<ExcelSpreadSheet>{
     private final Workbook workbook;
     private final File file;
     private List<ExcelSpreadSheet> sheets;
@@ -33,12 +35,9 @@ public class ExcelSpreadSheetFile {
             int counter = 0;
             ExcelSpreadSheet currentSheet;
             do {
-                currentSheet = getExcelSpreadSheetAt(counter);
+                currentSheet = getExcelSpreadSheetAt(counter).orElse(null);
                 if(currentSheet!= null) {
                     sheets.add(currentSheet);
-                    Sheet sheet = currentSheet.getSheet();
-                    String sheetName = sheet.getSheetName();
-                    System.out.println(sheetName);
                     counter++;
                 }
             } while (currentSheet != null);
@@ -60,14 +59,19 @@ public class ExcelSpreadSheetFile {
 
     }
 
-    public ExcelSpreadSheet getExcelSpreadSheetAt(Integer index) {
+    public Optional<ExcelSpreadSheet> getExcelSpreadSheetAt(Integer index) {
         try {
-            return new ExcelSpreadSheet(workbook.getSheetAt(index));
+            return Optional.of(new ExcelSpreadSheet(workbook.getSheetAt(index)));
         } catch(IllegalArgumentException e) {
-            return null;
+            return Optional.empty();
         }
     }
 
+    public ExcelSpreadSheet getOrCreateSpreadSheetAt(Integer index) {
+        Sheet potentialNewSheet = workbook.createSheet("New Sheet" + System.nanoTime());
+        ExcelSpreadSheet excelSpreadSheet = new ExcelSpreadSheet(potentialNewSheet);
+        return getExcelSpreadSheetAt(index).orElse(excelSpreadSheet);
+    }
 
     public ExcelSpreadSheet getExcelSpreadSheet(String name) {
         return new ExcelSpreadSheet(workbook.getSheet(name));
@@ -75,5 +79,10 @@ public class ExcelSpreadSheetFile {
 
     public ExcelSpreadSheet getNewSpreadSheet(String sheetName) {
         return new ExcelSpreadSheet(workbook.createSheet(sheetName));
+    }
+
+    @Override
+    public Iterator<ExcelSpreadSheet> iterator() {
+        return this.sheets.iterator();
     }
 }

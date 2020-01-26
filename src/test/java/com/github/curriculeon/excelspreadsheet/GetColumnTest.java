@@ -2,20 +2,28 @@ package com.github.curriculeon.excelspreadsheet;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetFile;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
+import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Iterator;
 
 public class GetColumnTest {
     @Test
     public void test() {
-        File csv = ResourceUtils.copyFile("grades.csv");
-        ExcelSpreadSheetFile spreadSheetFile = new ExcelSpreadSheetFile(csv);
-        ExcelSpreadSheet spreadSheet = spreadSheetFile.getExcelSpreadSheetAt(0);
-        ExcelSpreadSheetRow row = spreadSheet.getRow(0);
-        String output = row.toString();
-        System.out.println(output);
+        File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
+        ExcelSpreadSheetFile excelSpreadSheetFile = new ExcelSpreadSheetFile(spreadSheetFile);
+        for(ExcelSpreadSheet spreadSheet : excelSpreadSheetFile) {
+            ExcelSpreadSheetColumn column = spreadSheet.getColumn(0);
+            System.out.println(column);
+            Iterator<Cell> iterator = column.iterator();
+            for (int i = 0; iterator.hasNext(); i++) {
+                 Cell cell = iterator.next();
+                System.out.println(cell.getStringCellValue());
+            }
+        }
     }
 }

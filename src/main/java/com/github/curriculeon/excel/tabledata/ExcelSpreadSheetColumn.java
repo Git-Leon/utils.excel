@@ -16,7 +16,7 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
 
     public Cell getCell(int columnNumber) {
         return find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
-                .getRow(rowNumber)
+                .getRow(dimensionIndex)
                 .createCell(columnNumber));
     }
 }
