@@ -29,9 +29,9 @@ public class Transposer<SomeType> {
         return ret;
     }
 
-    public static List<List<String>> normalize(List<String[]> rows) {
-        List<List<String>> result = new ArrayList<>();
-        for (String[] row : rows) {
+    public static <T> List<List<T>> normalize(List<T[]> rows) {
+        List<List<T>> result = new ArrayList<>();
+        for (T[] row : rows) {
             result.add(Arrays.asList(row));
         }
         return result;
