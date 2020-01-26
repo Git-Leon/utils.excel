@@ -1,9 +1,8 @@
-package com.github.curriculeon.excelspreadsheet;
+package com.github.curriculeon.excel.excelspreadsheet;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetFile;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
@@ -15,8 +14,8 @@ public class GetColumnTest {
     @Test
     public void test() {
         File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
-        ExcelSpreadSheetFile excelSpreadSheetFile = new ExcelSpreadSheetFile(spreadSheetFile);
-        for(ExcelSpreadSheet spreadSheet : excelSpreadSheetFile) {
+        ExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBook(spreadSheetFile);
+        for(ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
             ExcelSpreadSheetColumn column = spreadSheet.getColumn(0);
             System.out.println(column);
             Iterator<Cell> iterator = column.iterator();

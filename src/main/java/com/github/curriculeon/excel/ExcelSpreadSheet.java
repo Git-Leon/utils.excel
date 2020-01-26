@@ -23,9 +23,10 @@ public class ExcelSpreadSheet {
 
     public ExcelSpreadSheet(Sheet sheet) {
         this.sheet = sheet;
-        if(sheet == null) {
-            throw new NullPointerException();
-        }
+    }
+
+    public String getName() {
+        return sheet.getSheetName();
     }
 
     public void setFormula(ExcelFormula formula, Cell cell) {
@@ -64,7 +65,7 @@ public class ExcelSpreadSheet {
     public ExcelSpreadSheetRow getRow(Integer rowNumber) {
         List<Cell> list = new ArrayList<>();
         Row sheetRow = sheet.getRow(rowNumber);
-        if(sheetRow == null) {
+        if (sheetRow == null) {
             sheetRow = sheet.createRow(rowNumber);
         }
         sheetRow.forEach(list::add);
@@ -102,8 +103,8 @@ public class ExcelSpreadSheet {
     public List<ExcelSpreadSheetRow> getRows() {
         List<ExcelSpreadSheetRow> list = new ArrayList<>();
         IntStream
-                .range(0,sheet.getLastRowNum())
-                .forEach(i-> list.add(getRow(i)));
+                .range(0, sheet.getLastRowNum())
+                .forEach(i -> list.add(getRow(i)));
         return list;
     }
 
@@ -113,6 +114,7 @@ public class ExcelSpreadSheet {
                 .filter(predicate)
                 .collect(Collectors.toList()));
     }
+
     public List<ExcelSpreadSheetColumn> getColumnsWhere(Predicate<ExcelSpreadSheetColumn> predicate) {
         return new ArrayList<>(getColumns()
                 .stream()

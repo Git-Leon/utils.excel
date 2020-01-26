@@ -1,7 +1,7 @@
 package com.github.curriculeon.engine;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetFile;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 
@@ -13,14 +13,14 @@ import java.util.List;
  * @created 01/24/2020 - 9:58 PM
  */
 public class GradeParser {
-    private final ExcelSpreadSheetFile excelSpreadSheetFileSource;
-    private final ExcelSpreadSheetFile excelSpreadSheetFileDestination;
+    private final ExcelSpreadSheetWorkBook excelSpreadSheetWorkBookSource;
+    private final ExcelSpreadSheetWorkBook excelSpreadSheetWorkBookDestination;
     private CSVSanitizer csvSanitizer;
 
-    public GradeParser(ExcelSpreadSheetFile excelSource, CSVSanitizer csvSanitizer) {
+    public GradeParser(ExcelSpreadSheetWorkBook excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;
-        this.excelSpreadSheetFileSource = excelSource;
-        this.excelSpreadSheetFileDestination = excelSource.copyTo(new File(new StringBuilder()
+        this.excelSpreadSheetWorkBookSource = excelSource;
+        this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(new File(new StringBuilder()
                 .append(ResourceUtils.getResourceDirectoryPath())
                 .append("/")
                 .append("java-developer-philly-rubric-template_")
@@ -30,7 +30,10 @@ public class GradeParser {
     }
 
     public void parseToExcel() {
-        ExcelSpreadSheet newSheet = excelSpreadSheetFileDestination.getNewSpreadSheet("Grades Parsed From Canvas");
+        String newSheetName = "Grades Parsed From Canvas";
+        excelSpreadSheetWorkBookDestination.addSheets(excelSpreadSheetWorkBookSource.getSheetsFromWorkBook());
+        ExcelSpreadSheet newSheet = excelSpreadSheetWorkBookDestination.getExcelSpreadSheetByName(newSheetName).get();
+
         List<List<String>> rows = csvSanitizer.getRows();
         for (int i = 0; i < rows.size(); i++) {
             List<String> row = rows.get(i);
