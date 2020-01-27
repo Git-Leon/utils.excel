@@ -2,10 +2,7 @@ package com.github.curriculeon.excel;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormat;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -124,22 +121,22 @@ public class ExcelConverter {
         }
         cellNew.setCellStyle(this.styleMap.get(hash));
 
-        switch (cellOld.getCellType()) {
-            case Cell.CELL_TYPE_BLANK:
+        switch (cellOld.getCellTypeEnum()) {
+            case BLANK:
                 break;
-            case Cell.CELL_TYPE_BOOLEAN:
+            case BOOLEAN:
                 cellNew.setCellValue(cellOld.getBooleanCellValue());
                 break;
-            case Cell.CELL_TYPE_ERROR:
+            case ERROR:
                 cellNew.setCellValue(cellOld.getErrorCellValue());
                 break;
-            case Cell.CELL_TYPE_FORMULA:
+            case FORMULA:
                 cellNew.setCellValue(cellOld.getCellFormula());
                 break;
-            case Cell.CELL_TYPE_NUMERIC:
+            case NUMERIC:
                 cellNew.setCellValue(cellOld.getNumericCellValue());
                 break;
-            case Cell.CELL_TYPE_STRING:
+            case STRING:
                 cellNew.setCellValue(cellOld.getStringCellValue());
                 break;
             default:
@@ -175,7 +172,7 @@ public class ExcelConverter {
 
     private XSSFFont transform(HSSFFont fontOld) {
         XSSFFont fontNew = this.workbookNew.createFont();
-        fontNew.setBoldweight(fontOld.getBoldweight());
+        fontNew.setBold(fontOld.getBold());
         fontNew.setCharSet(fontOld.getCharSet());
         fontNew.setColor(fontOld.getColor());
         fontNew.setFontName(fontOld.getFontName());
