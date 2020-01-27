@@ -32,11 +32,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.15</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.aspose/aspose-cells -->
         <dependency>
             <groupId>com.aspose</groupId>
@@ -60,6 +55,11 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.1</version>
         </dependency>
     </dependencies>
 

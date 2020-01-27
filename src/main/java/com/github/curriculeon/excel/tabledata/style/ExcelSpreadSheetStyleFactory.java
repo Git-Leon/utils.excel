@@ -11,7 +11,7 @@ import java.util.function.Function;
 public enum ExcelSpreadSheetStyleFactory {
     // TODO - Declare style literals
     STYLE1((cellStyle -> new ExcelSpreadSheetCellStyleBuilder(cellStyle)
-            .setAlignment(null)
+            .setHorizontalAlignment(null)
             .setBorderColorBottom(null)
             .setBorderColorLeft(null)
             .setBorderColorRight(null)
@@ -34,7 +34,7 @@ public enum ExcelSpreadSheetStyleFactory {
 
     // TODO - Declare style literals
     STYLE2(cellStyle -> new ExcelSpreadSheetCellStyleBuilder(cellStyle)
-            .setAlignment(null)
+            .setHorizontalAlignment(null)
             .setBorderColorBottom(null)
             .setBorderColorLeft(null)
             .setBorderColorRight(null)
@@ -57,7 +57,7 @@ public enum ExcelSpreadSheetStyleFactory {
 
     // TODO - Declare style literals
     STYLE3(cellStyle -> new ExcelSpreadSheetCellStyleBuilder(cellStyle)
-            .setAlignment(null)
+            .setHorizontalAlignment(null)
             .setBorderColorBottom(null)
             .setBorderColorLeft(null)
             .setBorderColorRight(null)
