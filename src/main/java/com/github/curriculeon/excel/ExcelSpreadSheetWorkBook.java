@@ -135,6 +135,10 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
         this.flush();
     }
 
+    public void setSheetOrder(String sheetName, Integer newSheetIndex) {
+        workbook.setSheetOrder(sheetName, newSheetIndex);
+    }
+
     public void setActive(Sheet newSheet) {
         workbook.setActiveSheet(workbook.getSheetIndex(newSheet.getSheetName()));
     }

@@ -32,6 +32,7 @@ public class GradeParser {
         Sheet newSheet = newExcelSpreadSheet.getSheet();
         csvSanitizer.parseToSheet(newSheet);
         excelSpreadSheetWorkBookDestination.addSheet(newSheet);
+        excelSpreadSheetWorkBookDestination.setSheetOrder(newSheetName, 0);
         excelSpreadSheetWorkBookDestination.setActive(newSheet);
         excelSpreadSheetWorkBookDestination.flush();
     }
