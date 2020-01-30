@@ -14,9 +14,13 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
         super(sheet, columnNumber, data);
     }
 
-    public Cell getCell(int columnNumber) {
-        return find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
-                .getRow(dimensionIndex)
-                .createCell(columnNumber));
+    /**
+     * @param rowNumber - the row of this column that you would like to fetch data from
+     * @return the cell at this position, otherwise create a new cell at this position
+     */
+    public Cell getCell(int rowNumber) {
+        return find(cell -> cell.getColumnIndex() == rowNumber).orElse(sheet
+                .getRow(getDimensionIndex())
+                .createCell(rowNumber));
     }
 }

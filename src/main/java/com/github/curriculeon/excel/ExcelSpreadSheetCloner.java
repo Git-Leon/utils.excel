@@ -7,15 +7,15 @@ import java.util.UUID;
 public class ExcelSpreadSheetCloner {
     private Sheet sheet;
 
-    public ExcelSpreadSheetCloner(Sheet sheet) {
-        this.sheet = sheet;
+    public ExcelSpreadSheetCloner(Sheet sheetClonee) {
+        this.sheet = sheetClonee;
     }
 
-    public void clone(Workbook newWorkbook) {
-        clone(newWorkbook, UUID.randomUUID().toString());
+    public void clone(Workbook newWorkbook, String bookName) {
+        clone(newWorkbook, bookName, UUID.randomUUID().toString());
     }
 
-    public void clone(Workbook newWorkbook, String sheetName) {
+    public void clone(Workbook newWorkbook, String bookName, String sheetName) {
         CellStyle newStyle = newWorkbook.createCellStyle();
         Row row;
         Cell cell;
@@ -28,7 +28,7 @@ public class ExcelSpreadSheetCloner {
                 //And Blank cell will be returned as Blank cells. That will not change.
                 Cell c = sheet.getRow(rowIndex).getCell(colIndex, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
 
-                if (c.getCellType() == CellType.BLANK) {
+                if (c.getCellTypeEnum() == CellType.BLANK) {
                     //System.out.println("This is BLANK " +  ((XSSFCell) c).getReference());
                 } else {
                     //Below is where all the copying is happening.
@@ -37,7 +37,7 @@ public class ExcelSpreadSheetCloner {
                     newStyle.cloneStyleFrom(origStyle);
                     cell.setCellStyle(newStyle);
 
-                    switch (c.getCellType()) {
+                    switch (c.getCellTypeEnum()) {
                         case STRING:
                             cell.setCellValue(c.getRichStringCellValue().getString());
                             break;
@@ -58,7 +58,7 @@ public class ExcelSpreadSheetCloner {
                             cell.setCellValue("");
                             break;
                         default:
-                            System.out.println("blahhh");
+                            System.out.println();
                     }
                 }
             }

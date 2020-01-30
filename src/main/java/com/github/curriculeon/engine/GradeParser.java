@@ -2,10 +2,12 @@ package com.github.curriculeon.engine;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,17 +36,22 @@ public class GradeParser {
         excelSpreadSheetWorkBookDestination.addSheets(excelSpreadSheetWorkBookSource.getSheetsFromWorkBook());
         ExcelSpreadSheet newSheet = excelSpreadSheetWorkBookDestination.getExcelSpreadSheetByName(newSheetName).get();
 
-        List<List<String>> rows = csvSanitizer.getRows();
-        for (int i = 0; i < rows.size(); i++) {
-            List<String> row = rows.get(i);
-            for (int j = 0; j < row.size(); j++) {
-                int rowNumber = i+1;
-                int columnNumber = j+1;
-                String cellValue = row.get(j);
+        List<List<String>> rows = csvSanitizer.parseRows();
+        List<List<Cell>> cellList = new ArrayList<>();
+        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
+            List<String> stringListData = rows.get(rowNumber);
+            List<Cell> cellListData = new ArrayList<>();
+            for (int columnNumber = 0; columnNumber < stringListData.size(); columnNumber++) {
+                String cellValue = stringListData.get(columnNumber);
                 Cell cell = newSheet.getCell(rowNumber, columnNumber);
                 cell.setCellValue(cellValue);
+                cellListData.add(cell);
             }
+            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet.getSheet(), rowNumber, cellListData);
+            newSheet.addRow(row, row.getDimensionIndex());
+            excelSpreadSheetWorkBookDestination.addSheet(newSheet.getSheet(), newSheetName);
         }
+
     }
 
 }

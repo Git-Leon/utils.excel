@@ -8,13 +8,18 @@ import java.util.List;
 
 abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheetTableData {
     protected final Sheet sheet;
-    protected final Integer dimensionIndex;
+    private final Integer dimensionIndex;
     private final List<Cell> data;
 
     public ExcelSpreadSheetTableDataArray(Sheet sheet, Integer dimensionIndex, List<Cell> data) {
         this.sheet = sheet;
         this.dimensionIndex = dimensionIndex;
         this.data = data;
+    }
+
+
+    public Integer getDimensionIndex() {
+        return dimensionIndex;
     }
 
     public List<Cell> getData() {

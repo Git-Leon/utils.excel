@@ -3,6 +3,7 @@ package com.github.curriculeon.engine;
 import com.github.curriculeon.utils.Transposer;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import org.apache.poi.ss.usermodel.Cell;
 
 import java.io.File;
 import java.io.FileReader;
@@ -32,6 +33,11 @@ public class CSVSanitizer {
         } catch (IOException e) {
             throw new Error(e);
         }
+    }
+
+    // TODO
+    public List<List<String>> parseRows() {
+        return rows;
     }
 
     public List<String> getRow(Integer columnNumber) {

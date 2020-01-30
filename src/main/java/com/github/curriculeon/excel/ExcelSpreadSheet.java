@@ -121,4 +121,16 @@ public class ExcelSpreadSheet {
                 .filter(predicate)
                 .collect(Collectors.toList()));
     }
+
+    public void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
+        for(Cell cell : row) {
+        }
+    }
+
+    public void addCell(Cell cellToClone, int row, int column) {
+        ExcelSpreadSheetRow excelSpreadSheetRow = getRow(row);
+        String dataToClone = cellToClone.getStringCellValue();
+        Cell cellToPopulate = excelSpreadSheetRow.getCell(column);
+        cellToPopulate.setCellValue(dataToClone);
+    }
 }
