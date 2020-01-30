@@ -3,12 +3,14 @@ package com.github.curriculeon.excel;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.excel.tabledata.metadata.ExcelFormula;
+import com.github.curriculeon.utils.Transposer;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -55,11 +57,29 @@ public class ExcelSpreadSheet {
         return cell;
     }
 
+    public ExcelSpreadSheetColumn getColumn(Predicate<ExcelSpreadSheetColumn> filterClause) {
+        return getColumns()
+                .stream()
+                .filter(filterClause)
+                .findFirst()
+                .get();
+    }
+
+
+    public ExcelSpreadSheetRow getRow(Predicate<ExcelSpreadSheetRow> filterClause) {
+        return getRows()
+                .stream()
+                .filter(filterClause)
+                .findFirst()
+                .get();
+    }
+
     public ExcelSpreadSheetColumn getColumn(String columnName) {
-        List<Cell> columnData = new ArrayList<>();
-        getRows().stream().forEach(row -> columnData.add(row.getCell(getColumnNumber(columnName))));
-        int columnNumber = getColumnNumber(columnName);
-        return new ExcelSpreadSheetColumn(sheet, columnNumber, columnData);
+        return getColumns()
+                .stream()
+                .filter(col -> col.getHeader().equals(columnName))
+                .findFirst()
+                .get();
     }
 
     public ExcelSpreadSheetRow getRow(Integer rowNumber) {
@@ -97,7 +117,18 @@ public class ExcelSpreadSheet {
     }
 
     public List<ExcelSpreadSheetColumn> getColumns() {
-        return null;
+        List<ExcelSpreadSheetColumn> result = new ArrayList<>();
+        List<ExcelSpreadSheetRow> rows = getRows();
+        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
+            ExcelSpreadSheetRow row =  rows.get(rowNumber);
+            List<Cell> cells = row.getData();
+            Transposer<Cell> transposer = new Transposer<>(Arrays.asList(cells));
+            List<Cell> columnData = transposer.transpose().get(0);
+            Integer columnIndex = columnData.get(0).getColumnIndex();
+            ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnIndex, columnData);
+            result.add(excelSpreadSheetColumn);
+        }
+        return result;
     }
 
     public List<ExcelSpreadSheetRow> getRows() {

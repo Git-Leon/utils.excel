@@ -35,6 +35,10 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
         }
     }
 
+    public File getFile() {
+        return file;
+    }
+
     public List<ExcelSpreadSheet> getExcelSpreadSheets() {
         return getSheetsFromWorkBook()
                 .stream()
@@ -133,5 +137,15 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
 
     public void setActive(Sheet newSheet) {
         workbook.setActiveSheet(workbook.getSheetIndex(newSheet.getSheetName()));
+    }
+
+    public Boolean containsSheet(Sheet sheet) {
+        return getSheetsFromWorkBook().contains(sheet);
+    }
+
+    public Boolean containsSheet(String name) {
+        return getSheetsFromWorkBook()
+                .stream()
+                .anyMatch(excelSheet -> excelSheet.getSheetName().equals(name));
     }
 }

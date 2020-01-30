@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel.tabledata;
 
+import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -12,6 +13,13 @@ import java.util.List;
 public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
     public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
         super(sheet, columnNumber, data);
+    }
+
+    /**
+     * @return header-name of this column
+     */
+    public String getHeader() {
+        return CellTypeAdapter.toString(super.getData().get(0));
     }
 
     /**
