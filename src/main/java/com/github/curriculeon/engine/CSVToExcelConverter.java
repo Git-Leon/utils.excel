@@ -20,9 +20,9 @@ public class CSVToExcelConverter {
         this.destination = csvDestination;
     }
 
-    public ExcelSpreadSheetWorkBook parseToExcel(File spreadSheetFile) {
+    public ExcelSpreadSheetWorkBook parseToExcel(File excelSpreadSheetFileToParse) {
         CSVSanitizer csvSanitizer = new CSVSanitizer(source, destination);
-        ExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBook(spreadSheetFile);
+        ExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBook(excelSpreadSheetFileToParse);
         GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvSanitizer);
         gradeParser.parseToExcel();
         return gradeParser.getExcelSpreadSheetWorkBookDestination();
