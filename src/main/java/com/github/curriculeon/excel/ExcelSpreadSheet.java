@@ -123,10 +123,15 @@ public class ExcelSpreadSheet {
             ExcelSpreadSheetRow row =  rows.get(rowNumber);
             List<Cell> cells = row.getData();
             Transposer<Cell> transposer = new Transposer<>(Arrays.asList(cells));
-            List<Cell> columnData = transposer.transpose().get(0);
-            Integer columnIndex = columnData.get(0).getColumnIndex();
-            ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnIndex, columnData);
-            result.add(excelSpreadSheetColumn);
+            List<List<Cell>> transposedList = transposer.transpose();
+            try {
+                List<Cell> columnData = transposedList.get(0);
+                Integer columnIndex = columnData.get(0).getColumnIndex();
+                ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnIndex, columnData);
+                result.add(excelSpreadSheetColumn);
+            } catch(IndexOutOfBoundsException ioobe) {
+                continue;
+            }
         }
         return result;
     }
