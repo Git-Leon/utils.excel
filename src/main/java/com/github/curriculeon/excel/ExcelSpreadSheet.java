@@ -124,6 +124,7 @@ public class ExcelSpreadSheet {
 
     public void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
         for(Cell cell : row) {
+            addCell(cell, row.getDimensionIndex(), cell.getColumnIndex());
         }
     }
 

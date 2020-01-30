@@ -5,6 +5,7 @@ import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,25 +34,12 @@ public class GradeParser {
 
     public void parseToExcel() {
         String newSheetName = "Grades Parsed From Canvas";
-        excelSpreadSheetWorkBookDestination.addSheets(excelSpreadSheetWorkBookSource.getSheetsFromWorkBook());
-        ExcelSpreadSheet newSheet = excelSpreadSheetWorkBookDestination.getExcelSpreadSheetByName(newSheetName).get();
-
-        List<List<String>> rows = csvSanitizer.parseRows();
-        List<List<Cell>> cellList = new ArrayList<>();
-        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
-            List<String> stringListData = rows.get(rowNumber);
-            List<Cell> cellListData = new ArrayList<>();
-            for (int columnNumber = 0; columnNumber < stringListData.size(); columnNumber++) {
-                String cellValue = stringListData.get(columnNumber);
-                Cell cell = newSheet.getCell(rowNumber, columnNumber);
-                cell.setCellValue(cellValue);
-                cellListData.add(cell);
-            }
-            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet.getSheet(), rowNumber, cellListData);
-            newSheet.addRow(row, row.getDimensionIndex());
-            excelSpreadSheetWorkBookDestination.addSheet(newSheet.getSheet(), newSheetName);
-        }
-
+        ExcelSpreadSheet newExcelSpreadSheet = excelSpreadSheetWorkBookDestination.getExcelSpreadSheetByName(newSheetName);
+        Sheet newSheet = newExcelSpreadSheet.getSheet();
+        csvSanitizer.parseToSheet(newSheet);
+        excelSpreadSheetWorkBookDestination.addSheet(newSheet);
+        excelSpreadSheetWorkBookDestination.setActive(newSheet);
+        excelSpreadSheetWorkBookDestination.flush();
     }
 
 }

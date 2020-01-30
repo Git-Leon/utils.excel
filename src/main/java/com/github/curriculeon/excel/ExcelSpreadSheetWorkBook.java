@@ -78,12 +78,15 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
         sheets.forEach(this::addSheet);
     }
 
-    public Optional<ExcelSpreadSheet> getExcelSpreadSheetByName(String sheetName) {
+    public ExcelSpreadSheet getExcelSpreadSheetByName(String sheetName) {
         return getSheetsFromWorkBook()
                 .stream()
                 .filter(sheet -> sheet.getSheetName().equals(sheetName))
                 .findFirst()
-                .map(ExcelSpreadSheet::new);
+                .or(() -> Optional.of(workbook.createSheet(sheetName)))
+                .map(ExcelSpreadSheet::new)
+                .get();
+
     }
 
     public Optional<ExcelSpreadSheet> getExcelSpreadSheetByIndex(Integer index) {
@@ -126,5 +129,9 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
     @Override
     public void finalize() {
         this.flush();
+    }
+
+    public void setActive(Sheet newSheet) {
+        workbook.setActiveSheet(workbook.getSheetIndex(newSheet.getSheetName()));
     }
 }

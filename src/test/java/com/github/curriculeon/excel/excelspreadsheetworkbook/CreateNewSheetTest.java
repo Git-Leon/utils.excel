@@ -9,13 +9,13 @@ public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
         ExcelSpreadSheetWorkBook workBook = ExcelSpreadSheetFileFactory.getMockData();
-        Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
+        Assert.assertTrue(workBook.getExcelSpreadSheetByName(sheetName) == null);
 
         // when
         workBook.addSheet(workBook.getExcelSpreadSheetByIndex(0).get().getSheet(), sheetName);
 
         // then
-        Assert.assertTrue(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
+        Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName) == null);
     }
 
 

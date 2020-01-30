@@ -1,16 +1,18 @@
 package com.github.curriculeon.engine;
 
+import com.github.curriculeon.excel.ExcelSpreadSheet;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.Transposer;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,8 +39,11 @@ public class CSVSanitizer {
 
     // TODO
     public List<List<String>> parseRows() {
+        write();
         return rows;
     }
+
+
 
     public List<String> getRow(Integer columnNumber) {
         return rows.get(columnNumber);
@@ -71,6 +76,25 @@ public class CSVSanitizer {
 
     public List<List<String>> getRows() {
         return rows;
+    }
+
+    public List<List<Cell>> parseToSheet(Sheet newSheet) {
+        ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(newSheet);
+        List<List<String>> rows = this.parseRows();
+        List<List<Cell>> cellList = new ArrayList<>();
+        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
+            List<String> stringListData = rows.get(rowNumber);
+            List<Cell> cellListData = new ArrayList<>();
+            for (int columnNumber = 0; columnNumber < stringListData.size(); columnNumber++) {
+                String cellValue = stringListData.get(columnNumber);
+                Cell cell = newExcelSpreadSheet.getCell(rowNumber, columnNumber);
+                cell.setCellValue(cellValue);
+                cellListData.add(cell);
+            }
+            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber, cellListData);
+            newExcelSpreadSheet.addRow(row, row.getDimensionIndex());
+        }
+        return cellList;
     }
 }
 
