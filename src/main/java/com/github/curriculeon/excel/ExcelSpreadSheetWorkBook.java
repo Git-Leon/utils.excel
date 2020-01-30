@@ -73,6 +73,9 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
         new ExcelSpreadSheetCloner(sheet).clone(workbook, file.getName());
     }
 
+    public int size() {
+        return workbook.getNumberOfSheets();
+    }
 
     public void addSheet(Sheet sheet, String newName) {
         new ExcelSpreadSheetCloner(sheet).clone(workbook, file.getName(), newName);
@@ -95,8 +98,12 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
 
     public Optional<ExcelSpreadSheet> getExcelSpreadSheetByIndex(Integer index) {
         try {
-            return Optional.of(new ExcelSpreadSheet(workbook.getSheetAt(index)));
-        } catch (IllegalArgumentException e) {
+            return getSheetsFromWorkBook()
+                    .stream()
+                    .filter(sheet -> sheet.equals(workbook.getSheetAt(index)))
+                    .map(ExcelSpreadSheet::new)
+                    .findFirst();
+        } catch (IllegalArgumentException iae) {
             return Optional.empty();
         }
     }
@@ -151,5 +158,26 @@ public class ExcelSpreadSheetWorkBook implements Iterable<ExcelSpreadSheet> {
         return getSheetsFromWorkBook()
                 .stream()
                 .anyMatch(excelSheet -> excelSheet.getSheetName().equals(name));
+    }
+
+    public void deleteSheet(int i) {
+        workbook.removeSheetAt(i);
+    }
+
+    public void deleteSheet(String sheetName) {
+        ExcelSpreadSheet sheet = null;
+        for(ExcelSpreadSheet spreadSheet : this) {
+            if(spreadSheet.getName().equals(sheetName)) {
+                workbook.removeSheetAt(spreadSheet.getSheetIndex());
+            }
+        }
+    }
+
+    public void deleteSheetsAfter(int finalIndex) {
+        for(ExcelSpreadSheet sheet : this) {
+            if(sheet.getSheetIndex() > finalIndex) {
+                workbook.removeSheetAt(finalIndex);
+            }
+        }
     }
 }

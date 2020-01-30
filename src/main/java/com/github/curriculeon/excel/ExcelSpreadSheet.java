@@ -170,4 +170,13 @@ public class ExcelSpreadSheet {
         Cell cellToPopulate = excelSpreadSheetRow.getCell(column);
         cellToPopulate.setCellValue(dataToClone);
     }
+
+    public Integer getSheetIndex() {
+        for (int rowNumber = 0; rowNumber < getWorkBook().getNumberOfSheets(); rowNumber++) {
+            if(sheet.equals(getWorkBook().getSheetAt(rowNumber))) {
+                return rowNumber;
+            }
+        }
+        throw new NullPointerException("Unable to find sheet in workbook");
+    }
 }
