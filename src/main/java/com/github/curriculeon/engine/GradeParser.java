@@ -36,4 +36,8 @@ public class GradeParser {
         excelSpreadSheetWorkBookDestination.setActive(newSheet);
         excelSpreadSheetWorkBookDestination.flush();
     }
+
+    public ExcelSpreadSheetWorkBook getExcelSpreadSheetWorkBookDestination() {
+        return excelSpreadSheetWorkBookDestination;
+    }
 }
