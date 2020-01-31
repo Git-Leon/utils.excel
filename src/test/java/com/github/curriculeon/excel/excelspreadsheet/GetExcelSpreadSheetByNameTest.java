@@ -2,9 +2,8 @@ package com.github.curriculeon.excel.excelspreadsheet;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetFileFactory;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
+import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class GetExcelSpreadSheetByNameTest {
     public void test() {
         // given
         String sheetName = "_";
-        ExcelSpreadSheetWorkBook workBook = ExcelSpreadSheetFileFactory.getMockData();
+        DeprecatedExcelSpreadSheetWorkBook workBook = ExcelSpreadSheetFileFactory.getMockData();
         int preAddNumberOfSpreadSheets = workBook.getExcelSpreadSheets().size();
         int expectedPostAddNumberOfSpreadSheets = preAddNumberOfSpreadSheets + 1;
         Assert.assertFalse(workBook.containsSheet(sheetName));

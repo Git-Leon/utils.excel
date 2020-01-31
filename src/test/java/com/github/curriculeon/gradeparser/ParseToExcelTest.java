@@ -2,7 +2,7 @@ package com.github.curriculeon.gradeparser;
 
 import com.github.curriculeon.engine.CSVSanitizer;
 import com.github.curriculeon.engine.GradeParser;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
+import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class ParseToExcelTest {
         File destination = ResourceUtils.getDuplicateFile(source.getName());
         CSVSanitizer csvSanitizer = new CSVSanitizer(source, destination);
         File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
-        ExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBook(spreadSheetFile);
+        DeprecatedExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new DeprecatedExcelSpreadSheetWorkBook(spreadSheetFile);
         GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvSanitizer);
         gradeParser.parseToExcel();
     }
