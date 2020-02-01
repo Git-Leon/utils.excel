@@ -1,14 +1,14 @@
 package com.github.curriculeon.excel.excelspreadsheetworkbook;
 
-import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.ExcelSpreadSheetFileFactory;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
-        DeprecatedExcelSpreadSheetWorkBook workBook = ExcelSpreadSheetFileFactory.getMockData();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
         Assert.assertTrue(workBook.getExcelSpreadSheetByName(sheetName) == null);
 
         // when

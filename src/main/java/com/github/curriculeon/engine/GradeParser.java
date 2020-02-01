@@ -1,9 +1,7 @@
 package com.github.curriculeon.engine;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookInterface;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 

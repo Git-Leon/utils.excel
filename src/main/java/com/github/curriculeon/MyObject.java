@@ -2,7 +2,6 @@ package com.github.curriculeon;
 
 import com.github.curriculeon.engine.CSVToExcelConverter;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.ResourceUtils;
 
