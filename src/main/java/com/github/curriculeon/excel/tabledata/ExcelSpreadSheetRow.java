@@ -1,5 +1,7 @@
 package com.github.curriculeon.excel.tabledata;
 
+import com.github.curriculeon.excel.ExcelSpreadSheet;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -22,5 +24,12 @@ public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
         return find(cell -> cell.getRowIndex() == columnNumber).orElse(sheet
                 .getRow(getDimensionIndex())
                 .createCell(columnNumber));
+    }
+
+    public Cell getCellByColumnHeader(String columnHeader) {
+        return new ExcelSpreadSheet(this.sheet)
+                .getRow(0)
+                .getData()
+                .get(getDimensionIndex());
     }
 }

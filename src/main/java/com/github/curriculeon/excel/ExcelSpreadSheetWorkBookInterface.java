@@ -11,17 +11,26 @@ import java.util.stream.Collectors;
 
 public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadSheet> {
 
+    Workbook getWorkBook();
+
+    default int size() {
+        return getWorkBook().getNumberOfSheets();
+    }
+
     default ExcelSpreadSheet createNewExcelSpreadSheet(String name) {
         return new ExcelSpreadSheet(getWorkBook().createSheet(name));
     }
 
-    Workbook getWorkBook();
+    default void setSheetOrder(String sheetName, Integer newSheetIndex) {
+        getWorkBook().setSheetOrder(sheetName, newSheetIndex);
+    }
 
-    default List<ExcelSpreadSheet> getExcelSpreadSheets() {
-        return getSheetsFromWorkBook()
-                .stream()
-                .map(ExcelSpreadSheet::new)
-                .collect(Collectors.toList());
+    default void setActive(Sheet newSheet) {
+        getWorkBook().setActiveSheet(getWorkBook().getSheetIndex(newSheet.getSheetName()));
+    }
+
+    default Iterator<ExcelSpreadSheet> iterator() {
+        return this.getExcelSpreadSheets().iterator();
     }
 
     default List<Sheet> getSheetsFromWorkBook() {
@@ -34,11 +43,22 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
         return list;
     }
 
-
-    default int size() {
-        return getWorkBook().getNumberOfSheets();
+    default Boolean containsSheet(Sheet sheet) {
+        return getSheetsFromWorkBook().contains(sheet);
     }
 
+    default Boolean containsSheet(String name) {
+        return getSheetsFromWorkBook()
+                .stream()
+                .anyMatch(excelSheet -> excelSheet.getSheetName().equals(name));
+    }
+
+    default List<ExcelSpreadSheet> getExcelSpreadSheets() {
+        return getSheetsFromWorkBook()
+                .stream()
+                .map(ExcelSpreadSheet::new)
+                .collect(Collectors.toList());
+    }
 
     default ExcelSpreadSheet getExcelSpreadSheetByName(String sheetName) {
         return getSheetsFromWorkBook()
@@ -61,27 +81,5 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
         } catch (IllegalArgumentException iae) {
             return Optional.empty();
         }
-    }
-
-    default Iterator<ExcelSpreadSheet> iterator() {
-        return this.getExcelSpreadSheets().iterator();
-    }
-
-    default void setSheetOrder(String sheetName, Integer newSheetIndex) {
-        getWorkBook().setSheetOrder(sheetName, newSheetIndex);
-    }
-
-    default void setActive(Sheet newSheet) {
-        getWorkBook().setActiveSheet(getWorkBook().getSheetIndex(newSheet.getSheetName()));
-    }
-
-    default Boolean containsSheet(Sheet sheet) {
-        return getSheetsFromWorkBook().contains(sheet);
-    }
-
-    default Boolean containsSheet(String name) {
-        return getSheetsFromWorkBook()
-                .stream()
-                .anyMatch(excelSheet -> excelSheet.getSheetName().equals(name));
     }
 }
