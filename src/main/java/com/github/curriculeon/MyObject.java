@@ -15,11 +15,12 @@ public class MyObject implements Runnable {
         File excelFileToClone = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
 
         CSVToExcelConverter csvToExcelConverter = new CSVToExcelConverter(source, destination);
-        ExcelSpreadSheetWorkBookFile workbook = csvToExcelConverter.parseToExcel(excelFileToClone);
-        ExcelSpreadSheetWorkBookFile sourceWorkBook = new ExcelSpreadSheetWorkBookFile(excelFileToClone);
+        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelConverter.parseToExcel(excelFileToClone);
+        ExcelSpreadSheetWorkBookFile sourceWorkbook = new ExcelSpreadSheetWorkBookFile(excelFileToClone);
 
-        Optional<ExcelSpreadSheet> sheet = workbook.getExcelSpreadSheetByIndex(0);
-        workbook.deleteSheetsAfter(sourceWorkBook.size());
-        workbook.flush();
+        Optional<ExcelSpreadSheet> sheet = destinationWorkbook.getExcelSpreadSheetByIndex(0);
+        System.out.println(sheet.get().toString());
+        destinationWorkbook.deleteSheetsAfter(sourceWorkbook.size());
+        destinationWorkbook.flush();
     }
 }

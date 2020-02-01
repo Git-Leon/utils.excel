@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel.tabledata;
 
+import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.*;
 
 import java.util.*;
@@ -19,6 +20,10 @@ public interface ExcelSpreadSheetTableData extends Iterable<Cell> {
                 .stream()
                 .filter(filterClause)
                 .findFirst();
+    }
+
+    default String getHeader() {
+        return CellTypeAdapter.getCellValue(getData().get(0));
     }
 
     default void setValue(double var1) {

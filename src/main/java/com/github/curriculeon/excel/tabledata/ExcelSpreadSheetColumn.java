@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel.tabledata;
 
+import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,13 +17,6 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
     }
 
     /**
-     * @return header-name of this column
-     */
-    public String getHeader() {
-        return CellTypeAdapter.toString(super.getData().get(0));
-    }
-
-    /**
      * @param rowNumber - the row of this column that you would like to fetch data from
      * @return the cell at this position, otherwise create a new cell at this position
      */
@@ -30,5 +24,20 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
         return find(cell -> cell.getColumnIndex() == rowNumber).orElse(sheet
                 .getRow(getDimensionIndex())
                 .createCell(rowNumber));
+    }
+
+
+    /**
+     * @param rowHeader - name of the row-header that this cell belongs to
+     * @return cell to be found at respective row-header
+     */
+    public Cell getCellByRowHeader(String rowHeader) {
+        return new ExcelSpreadSheet(this.sheet)
+                .getRowHeaders()
+                .getData()
+                .stream()
+                .filter(cell -> CellTypeAdapter.getCellValue(cell).equals(rowHeader))
+                .findFirst()
+                .get();
     }
 }

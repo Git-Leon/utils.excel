@@ -28,7 +28,7 @@ public class GradeParser {
 
     public void parseToExcel() {
         String newSheetName = "Grades Parsed From Canvas";
-        ExcelSpreadSheet newExcelSpreadSheet = excelSpreadSheetWorkBookDestination.getExcelSpreadSheetByName(newSheetName);
+        ExcelSpreadSheet newExcelSpreadSheet = excelSpreadSheetWorkBookDestination.createExcelSpreadSheetByName(newSheetName);
         Sheet newSheet = newExcelSpreadSheet.getSheet();
         csvSanitizer.parseToSheet(newSheet);
         excelSpreadSheetWorkBookDestination.addSheet(newSheet);

@@ -57,6 +57,14 @@ public class ExcelSpreadSheet {
         return cell;
     }
 
+    public ExcelSpreadSheetRow getColumnHeaders() {
+        return getRow(0);
+    }
+
+    public ExcelSpreadSheetColumn getRowHeaders() {
+        return getColumn(0);
+    }
+
     public ExcelSpreadSheetColumn getColumn(Predicate<ExcelSpreadSheetColumn> filterClause) {
         return getColumns()
                 .stream()
@@ -119,17 +127,15 @@ public class ExcelSpreadSheet {
     public List<ExcelSpreadSheetColumn> getColumns() {
         List<ExcelSpreadSheetColumn> result = new ArrayList<>();
         List<ExcelSpreadSheetRow> rows = getRows();
-        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
-            ExcelSpreadSheetRow row =  rows.get(rowNumber);
-            List<Cell> cells = row.getData();
-            Transposer<Cell> transposer = new Transposer<>(Arrays.asList(cells));
+        for (ExcelSpreadSheetRow row : rows) {
+            Transposer<Cell> transposer = new Transposer<>(Arrays.asList(row.getData()));
             List<List<Cell>> transposedList = transposer.transpose();
+            List<Cell> columnData = transposedList.get(0);
             try {
-                List<Cell> columnData = transposedList.get(0);
                 Integer columnIndex = columnData.get(0).getColumnIndex();
                 ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnIndex, columnData);
                 result.add(excelSpreadSheetColumn);
-            } catch(IndexOutOfBoundsException ioobe) {
+            } catch (IndexOutOfBoundsException ioobe) {
                 continue;
             }
         }
@@ -140,7 +146,7 @@ public class ExcelSpreadSheet {
         List<ExcelSpreadSheetRow> list = new ArrayList<>();
         IntStream
                 .range(0, sheet.getLastRowNum())
-                .forEach(i -> list.add(getRow(i)));
+                .forEach(rowIndex -> list.add(getRow(rowIndex)));
         return list;
     }
 
@@ -159,7 +165,7 @@ public class ExcelSpreadSheet {
     }
 
     public void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
-        for(Cell cell : row) {
+        for (Cell cell : row) {
             addCell(cell, row.getDimensionIndex(), cell.getColumnIndex());
         }
     }
@@ -173,10 +179,17 @@ public class ExcelSpreadSheet {
 
     public Integer getSheetIndex() {
         for (int rowNumber = 0; rowNumber < getWorkBook().getNumberOfSheets(); rowNumber++) {
-            if(sheet.equals(getWorkBook().getSheetAt(rowNumber))) {
+            if (sheet.equals(getWorkBook().getSheetAt(rowNumber))) {
                 return rowNumber;
             }
         }
         throw new NullPointerException("Unable to find sheet in workbook");
+    }
+
+    @Override
+    public String toString() {
+        return "ExcelSpreadSheet{" +
+                "sheet=" + sheet +
+                '}';
     }
 }

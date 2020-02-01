@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel.excelspreadsheetworkbook;
 
+import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetFileFactory;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import org.junit.Assert;
@@ -9,13 +10,15 @@ public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
         ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
-        Assert.assertTrue(workBook.getExcelSpreadSheetByName(sheetName) == null);
+        Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
 
         // when
-        workBook.addSheet(workBook.getExcelSpreadSheetByIndex(0).get().getSheet(), sheetName);
+        ExcelSpreadSheet newSheet = workBook.createNewExcelSpreadSheet(sheetName);
+        workBook.setSheetOrder(newSheet.getName(), 0);
+        workBook.flush();
 
         // then
-        Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName) == null);
+        Assert.assertNotNull(newSheet);
     }
 
 

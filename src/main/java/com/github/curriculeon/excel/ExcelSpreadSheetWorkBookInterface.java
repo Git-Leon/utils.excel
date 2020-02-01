@@ -60,15 +60,19 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
                 .collect(Collectors.toList());
     }
 
-    default ExcelSpreadSheet getExcelSpreadSheetByName(String sheetName) {
-        return getSheetsFromWorkBook()
-                .stream()
-                .filter(sheet -> sheet.getSheetName().equals(sheetName))
-                .findFirst()
+    default ExcelSpreadSheet createExcelSpreadSheetByName(String sheetName) {
+        return getExcelSpreadSheetByName(sheetName)
                 .or(() -> Optional.of(getWorkBook().createSheet(sheetName)))
                 .map(ExcelSpreadSheet::new)
                 .get();
 
+    }
+
+    default Optional<Sheet> getExcelSpreadSheetByName(String sheetName) {
+        return getSheetsFromWorkBook()
+                .stream()
+                .filter(sheet -> sheet.getSheetName().equals(sheetName))
+                .findFirst();
     }
 
     default Optional<ExcelSpreadSheet> getExcelSpreadSheetByIndex(Integer index) {

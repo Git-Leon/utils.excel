@@ -21,7 +21,7 @@ public class GetExcelSpreadSheetByNameTest {
         Assert.assertFalse(workBook.containsSheet(sheetName));
 
         // when
-        ExcelSpreadSheet sheet = workBook.getExcelSpreadSheetByName(sheetName);
+        ExcelSpreadSheet sheet = workBook.createExcelSpreadSheetByName(sheetName);
         workBook.setActive(sheet.getSheet());
         workBook.flush();
         int actualPostAddNumberOfSpreadSheets = workBook.getExcelSpreadSheets().size();

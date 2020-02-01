@@ -28,7 +28,7 @@ public enum CellTypeAdapter {
         this.cellTypeParser = (cell) -> CellType.valueOf(cell.getCellTypeEnum().name());
     }
 
-    public static String toString(Cell cell) {
+    public static String getCellValue(Cell cell) {
         try {
             // String values
             return cell.getStringCellValue();
