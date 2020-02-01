@@ -2,6 +2,8 @@ package com.github.curriculeon.engine;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookInterface;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -12,10 +14,10 @@ import java.io.File;
  * @created 01/24/2020 - 9:58 PM
  */
 public class GradeParser {
-    private final DeprecatedExcelSpreadSheetWorkBook excelSpreadSheetWorkBookDestination;
+    private final ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
     private CSVSanitizer csvSanitizer;
 
-    public GradeParser(DeprecatedExcelSpreadSheetWorkBook excelSource, CSVSanitizer csvSanitizer) {
+    public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(new File(new StringBuilder()
                 .append(ResourceUtils.getResourceDirectoryPath())
@@ -37,7 +39,7 @@ public class GradeParser {
         excelSpreadSheetWorkBookDestination.flush();
     }
 
-    public DeprecatedExcelSpreadSheetWorkBook getExcelSpreadSheetWorkBookDestination() {
+    public ExcelSpreadSheetWorkBookFile getExcelSpreadSheetWorkBookDestination() {
         return excelSpreadSheetWorkBookDestination;
     }
 }

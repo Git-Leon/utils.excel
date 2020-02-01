@@ -19,7 +19,7 @@ public class ExcelSpreadSheetCloner {
         CellStyle newStyle = newWorkbook.createCellStyle();
         Row row;
         Cell cell;
-        Sheet sheetForNewWorkbook = newWorkbook.createSheet(sheetName);
+        Sheet sheetForNewWorkbook = newWorkbook.createSheet(bookName + sheetName);
         for (int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows(); rowIndex++) {
             row = sheetForNewWorkbook.createRow(rowIndex); //create row in this new sheet
             for (int colIndex = 0; colIndex < sheet.getRow(rowIndex).getPhysicalNumberOfCells(); colIndex++) {

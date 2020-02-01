@@ -1,6 +1,6 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.excel.DeprecatedExcelSpreadSheetWorkBook;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 
 import java.io.File;
 
@@ -13,9 +13,9 @@ public class CSVToExcelConverter {
         this.destination = csvDestination;
     }
 
-    public DeprecatedExcelSpreadSheetWorkBook parseToExcel(File excelSpreadSheetFileToParse) {
+    public ExcelSpreadSheetWorkBookFile parseToExcel(File excelSpreadSheetFileToParse) {
         CSVSanitizer csvSanitizer = new CSVSanitizer(source, destination);
-        DeprecatedExcelSpreadSheetWorkBook excelSpreadSheetWorkBook = new DeprecatedExcelSpreadSheetWorkBook(excelSpreadSheetFileToParse);
+        ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(excelSpreadSheetFileToParse);
         GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvSanitizer);
         gradeParser.parseToExcel();
         return gradeParser.getExcelSpreadSheetWorkBookDestination();
