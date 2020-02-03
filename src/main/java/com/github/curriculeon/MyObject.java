@@ -3,15 +3,11 @@ package com.github.curriculeon;
 import com.github.curriculeon.engine.CSVToExcelConverter;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.ResourceUtils;
-import com.github.curriculeon.utils.string.StringEvaluator;
 import com.github.git_leon.collectionutils.maps.DescriptiveMap;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

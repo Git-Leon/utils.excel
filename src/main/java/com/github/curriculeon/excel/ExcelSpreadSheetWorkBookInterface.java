@@ -1,6 +1,6 @@
 package com.github.curriculeon.excel;
 
-import com.github.curriculeon.utils.string.StringEvaluator;
+import com.github.curriculeon.utils.StringEvaluator;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 

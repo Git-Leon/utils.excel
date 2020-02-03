@@ -1,4 +1,6 @@
-package com.github.curriculeon.utils.string;
+package com.github.curriculeon.utils;
+
+import org.apache.commons.text.similarity.JaroWinklerDistance;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -8,14 +10,14 @@ import java.util.stream.Collectors;
  * @created 02/02/2020 - 7:40 PM
  */
 public class StringEvaluator {
-    private final SimilarityCalculator stringCalculator;
+    private String baseString;
 
     public StringEvaluator(String baseString) {
-        this.stringCalculator = new SimilarityCalculator(baseString);
+        this.baseString = baseString;
     }
 
     public Double getSimilarity(String stringToCompareAgainst) {
-        return stringCalculator.getSimilarity(stringToCompareAgainst);
+        return new JaroWinklerDistance().apply(baseString, stringToCompareAgainst);
     }
 
     public Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
@@ -33,9 +35,9 @@ public class StringEvaluator {
         Collections.reverse(ascendingValues);
         List<Double> descendingValues = ascendingValues;
         Double highestSimilarity = ascendingValues.get(0);
-        for(String key : similarityMap.keySet()) {
+        for (String key : similarityMap.keySet()) {
             Double value = similarityMap.get(key);
-            if(value.equals(highestSimilarity)) {
+            if (value.equals(highestSimilarity)) {
                 return key;
             }
         }

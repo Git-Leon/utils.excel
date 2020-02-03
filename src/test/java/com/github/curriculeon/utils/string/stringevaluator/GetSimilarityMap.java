@@ -1,6 +1,6 @@
 package com.github.curriculeon.utils.string.stringevaluator;
 
-import com.github.curriculeon.utils.string.StringEvaluator;
+import com.github.curriculeon.utils.StringEvaluator;
 import org.junit.Assert;
 
 import java.util.List;
