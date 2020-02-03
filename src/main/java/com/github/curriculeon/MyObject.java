@@ -23,8 +23,6 @@ public class MyObject implements Runnable {
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         List<String> headers = gradesCSV.getColumnHeaders().getStringData();
-        String ele = list.get(10);
-        System.out.println(ele);
-        System.out.println(destinationWorkbook.getMostSimilarSheet(ele).getSheetName());
+
     }
 }
