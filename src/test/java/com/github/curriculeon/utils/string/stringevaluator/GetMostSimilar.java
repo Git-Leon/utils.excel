@@ -147,4 +147,54 @@ public class GetMostSimilar {
                 "Programming (Java)",
                 "Case Study"), "Participate", "In-class Participation");
     }
+
+
+
+
+    @Test
+    public void test9() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Project Management Methodologies Current Score", "Project Management Methodologie");
+    }
+
+
+    @Test
+    public void test10() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "AD - KBA - JDBC/ORM/Unit Testing (4069)", "JDBC, ORM, and Unit Testing Fun");
+    }
+
+
+    @Test
+    public void test11() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "AD - KBA - Relational Databases and SQL Final Score", "Relational Database Skills (Mar");
+    }
 }

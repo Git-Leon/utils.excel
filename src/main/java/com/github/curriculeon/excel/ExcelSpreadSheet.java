@@ -189,7 +189,8 @@ public class ExcelSpreadSheet {
     @Override
     public String toString() {
         return "ExcelSpreadSheet{" +
-                "sheet=" + sheet +
+                "\nsheetName = " + sheet.getSheetName() +
+                "\nsheet=" + sheet +
                 '}';
     }
 }
