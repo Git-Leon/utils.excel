@@ -57,6 +57,14 @@ public class ExcelSpreadSheet {
         return cell;
     }
 
+    public Integer getNumberOfRows() {
+        return getRows().size();
+    }
+
+    public Integer getNumberOfColumns() {
+        return getColumns().size();
+    }
+
     public ExcelSpreadSheetRow getColumnHeaders() {
         return getRow(0);
     }

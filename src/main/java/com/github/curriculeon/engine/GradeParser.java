@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class GradeParser {
     private final ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
-    private CSVSanitizer csvSanitizer;
+    private final CSVSanitizer csvSanitizer;
 
     public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;

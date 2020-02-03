@@ -20,7 +20,6 @@ public class MyObject implements Runnable {
 
         CSVToExcelConverter csvToExcelConverter = new CSVToExcelConverter(source, destination);
         ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelConverter.parseToExcel(excelFileToClone);
-        ExcelSpreadSheetWorkBookFile sourceWorkbook = new ExcelSpreadSheetWorkBookFile(excelFileToClone);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         List<String> csvHeaders = gradesCSV.getColumnHeaders().getStringData();
