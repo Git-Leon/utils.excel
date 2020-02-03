@@ -28,7 +28,8 @@ public class MyObject implements Runnable {
         for(String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
             StringEvaluator evaluator = new StringEvaluator(sheetName);
             String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeaders);
-            System.out.println(sheetName + " = " + mostSimilarCsvHeader);
+            System.out.println("\nCurrent Sheet name\t\t\t= " + sheetName);
+            System.out.println("CSV Column Header Name\t\t= " + mostSimilarCsvHeader);
         }
 
         System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
