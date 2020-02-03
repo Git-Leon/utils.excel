@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel.tabledata;
 
+import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -34,10 +35,11 @@ abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheet
 
     @Override
     public String toString() {
-        return "ExcelSpreadSheetTableDataArray{" +
-                "sheet=" + sheet +
+        return getClass() + "{" +
+                "name=" + CellTypeAdapter.getCellValue(data.get(0)) +
                 ", dimensionIndex=" + dimensionIndex +
                 ", data=" + data +
+                ", sheet=" + sheet +
                 '}';
     }
 }

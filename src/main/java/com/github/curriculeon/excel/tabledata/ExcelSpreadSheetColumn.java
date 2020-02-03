@@ -12,14 +12,18 @@ import java.util.List;
  * @created 01/25/2020 - 2:03 AM
  */
 public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
+    private String name;
+
     public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
         super(sheet, columnNumber, data);
+        this.name = CellTypeAdapter.getCellValue(getCell(0));
     }
 
     /**
      * @param rowNumber - the row of this column that you would like to fetch data from
      * @return the cell at this position, otherwise create a new cell at this position
      */
+    @Override
     public Cell getCell(int rowNumber) {
         return find(cell -> cell.getColumnIndex() == rowNumber).orElse(sheet
                 .getRow(getDimensionIndex())

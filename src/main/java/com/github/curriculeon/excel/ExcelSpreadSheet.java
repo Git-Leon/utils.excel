@@ -9,9 +9,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -62,7 +60,11 @@ public class ExcelSpreadSheet {
     }
 
     public Integer getNumberOfColumns() {
-        return getColumns().size();
+        int count = 0;
+        for(Row row : sheet) {
+            count++;
+        }
+        return count;
     }
 
     public ExcelSpreadSheetRow getColumnHeaders() {
@@ -134,17 +136,13 @@ public class ExcelSpreadSheet {
 
     public List<ExcelSpreadSheetColumn> getColumns() {
         List<ExcelSpreadSheetColumn> result = new ArrayList<>();
-        List<ExcelSpreadSheetRow> rows = getRows();
-        for (ExcelSpreadSheetRow row : rows) {
-            Transposer<Cell> transposer = new Transposer<>(Arrays.asList(row.getData()));
-            List<List<Cell>> transposedList = transposer.transpose();
-            List<Cell> columnData = transposedList.get(0);
-            try {
-                Integer columnIndex = columnData.get(0).getColumnIndex();
-                ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnIndex, columnData);
-                result.add(excelSpreadSheetColumn);
-            } catch (IndexOutOfBoundsException ioobe) {
-                continue;
+        for (int rowIndex = 0; rowIndex < getNumberOfRows(); rowIndex++) {
+            Row row = sheet.getRow(rowIndex);
+            List<Cell> columnData = new ArrayList<>();
+            for(int colIndex = 0; colIndex < getNumberOfColumns(); colIndex++) {
+                Cell cell = row.getCell(colIndex);
+                columnData.add(cell);
+                result.add(new ExcelSpreadSheetColumn(sheet, colIndex,columnData));
             }
         }
         return result;

@@ -34,6 +34,9 @@ public class MyObject implements Runnable {
             ExcelSpreadSheetColumn mostLikelyColumn = gradesCSV.getColumn(mostSimilarCsvHeader);
             Sheet mostLikelySheet = destinationWorkbook.getMostSimilarSheet(mostSimilarCsvHeader);
             ExcelSpreadSheet mostLikelyExcelSpreadSheet = new ExcelSpreadSheet(mostLikelySheet);
+            int lastColumnIndex = mostLikelyExcelSpreadSheet.getNumberOfColumns();
+            mostLikelyExcelSpreadSheet.addColumn(mostLikelyColumn, lastColumnIndex);
+            destinationWorkbook.flush();
         }
 
         System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
