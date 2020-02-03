@@ -22,7 +22,7 @@ public class GetSimilarity {
 
     @Test
     public void test0() {
-        test("", "", 1.0);
+        test("", "", 0.0);
     }
 
     @Test
@@ -32,32 +32,32 @@ public class GetSimilarity {
 
     @Test
     public void test2() {
-        test("1234567890", "1", .1);
+        test("1234567890", "1", .7300000000000001);
     }
 
     @Test
     public void test3() {
-        test("1234567890", "123", .3);
+        test("1234567890", "123", .8366666666666667);
     }
 
     @Test
     public void test4() {
-        test("1234567890", "1234567", .7);
+        test("1234567890", "1234567", .97);
     }
 
     @Test
     public void test5() {
-        test("1234567890", "1234567980", .8);
+        test("1234567890", "1234567980", .99);
     }
 
     @Test
     public void test6() {
-        test("47/2010", "472010", .857);
+        test("47/2010", "472010", .9619047619047619);
     }
 
     @Test
     public void test7() {
-        test("47/2010", "472011", .714);
+        test("47/2010", "472011", .8793650793650793);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class GetSimilarity {
 
     @Test
     public void test9() {
-        test("47/2010", "4B.CDEFG", .125);
+        test("47/2010", "4B.CDEFG", .4226190476190476);
     }
 
     @Test
@@ -77,16 +77,16 @@ public class GetSimilarity {
 
     @Test
     public void test11() {
-        test("The quick fox jumped", "The fox jumped", .7);
+        test("The quick fox jumped", "The fox jumped", .8628571428571429);
     }
 
     @Test
     public void test12() {
-        test("The quick fox jumped", "The fox", .35);
+        test("The quick fox jumped", "The fox", .8266666666666667);
     }
 
     @Test
     public void test13() {
-        test("kitten", "sitting", .571);
+        test("kitten", "sitting", .746031746031746);
     }
 }
