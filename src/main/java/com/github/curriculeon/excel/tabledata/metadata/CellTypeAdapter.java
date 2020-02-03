@@ -28,6 +28,10 @@ public enum CellTypeAdapter {
         this.cellTypeParser = (cell) -> CellType.valueOf(cell.getCellTypeEnum().name());
     }
 
+    public CellType getCellTypeEnum(Cell cell) {
+        return cellTypeParser.apply(cell);
+    }
+
     public static String getCellValue(Cell cell) {
         try {
             // String values
@@ -48,11 +52,6 @@ public enum CellTypeAdapter {
             }
         }
     }
-
-    public CellType getCellTypeEnum(Cell cell) {
-        return cellTypeParser.apply(cell);
-    }
-
 
     public static void setValue(Cell cellToBeMutated, String valueToBeSet) {
         try {

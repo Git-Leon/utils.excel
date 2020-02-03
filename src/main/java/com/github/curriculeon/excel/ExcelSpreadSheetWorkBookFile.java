@@ -15,7 +15,6 @@ import java.io.IOException;
  * @created 01/31/2020 - 5:32 PM
  */
 public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInterface {
-
     private Workbook workbook;
     private File file;
 
@@ -23,7 +22,6 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
         this.workbook = workbook;
         this.file = file;
     }
-
 
     public ExcelSpreadSheetWorkBookFile(File file) {
         try {
@@ -73,7 +71,7 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
     }
 
     public void deleteSheet(String sheetName) {
-        for (ExcelSpreadSheet spreadSheet : new ExcelSpreadSheetWorkBook(workbook)) {
+        for (ExcelSpreadSheet spreadSheet : this) {
             if (spreadSheet.getName().equals(sheetName)) {
                 workbook.removeSheetAt(spreadSheet.getSheetIndex());
             }
@@ -81,7 +79,7 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
     }
 
     public void deleteSheetsAfter(int finalIndex) {
-        for (ExcelSpreadSheet sheet : new ExcelSpreadSheetWorkBook(workbook)) {
+        for (ExcelSpreadSheet sheet : this) {
             if (sheet.getSheetIndex() > finalIndex) {
                 workbook.removeSheetAt(finalIndex);
             }

@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author leonhunter
+ * @created 01/31/2020 - 5:28 PM
+ */
 public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadSheet> {
 
     Workbook getWorkBook();
