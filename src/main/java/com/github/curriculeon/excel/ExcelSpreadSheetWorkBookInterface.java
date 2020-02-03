@@ -1,5 +1,6 @@
 package com.github.curriculeon.excel;
 
+import com.github.curriculeon.utils.string.StringEvaluator;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -45,6 +46,23 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
             list.add(sheet);
         }
         return list;
+    }
+
+    default List<String> getSheetNamesFromWorkBook() {
+        return getSheetsFromWorkBook()
+                .stream()
+                .map(Sheet::getSheetName)
+                .collect(Collectors.toList());
+    }
+
+    default Sheet getMostSimilarSheet(String name) {
+        StringEvaluator stringEvaluator = new StringEvaluator(name);
+        String mostSimilarSheetName = stringEvaluator.getMostSimilar(getSheetNamesFromWorkBook());
+        return getSheetsFromWorkBook()
+                .stream()
+                .filter(sheet -> sheet.getSheetName().equals(mostSimilarSheetName))
+                .findFirst()
+                .get();
     }
 
     default Boolean containsSheet(Sheet sheet) {

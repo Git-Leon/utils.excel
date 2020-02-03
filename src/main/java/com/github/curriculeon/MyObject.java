@@ -19,7 +19,6 @@ public class MyObject implements Runnable {
         ExcelSpreadSheetWorkBookFile sourceWorkbook = new ExcelSpreadSheetWorkBookFile(excelFileToClone);
 
         Optional<ExcelSpreadSheet> sheet = destinationWorkbook.getExcelSpreadSheetByIndex(0);
-        System.out.println(sheet.get().toString());
         destinationWorkbook.deleteSheetsAfter(sourceWorkbook.size());
         destinationWorkbook.flush();
     }
