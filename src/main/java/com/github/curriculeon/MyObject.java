@@ -22,12 +22,7 @@ public class MyObject implements Runnable {
         ExcelSpreadSheetWorkBookFile sourceWorkbook = new ExcelSpreadSheetWorkBookFile(excelFileToClone);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
-        ExcelSpreadSheetRow headers = gradesCSV.getColumnHeaders();
-        List<String> list = new ArrayList<>();
-        headers
-                .getData()
-                .stream()
-                .forEach(cell -> list.add(CellTypeAdapter.getCellValue(cell)));
+        List<String> headers = gradesCSV.getColumnHeaders().getStringData();
         String ele = list.get(10);
         System.out.println(ele);
         System.out.println(destinationWorkbook.getMostSimilarSheet(ele).getSheetName());

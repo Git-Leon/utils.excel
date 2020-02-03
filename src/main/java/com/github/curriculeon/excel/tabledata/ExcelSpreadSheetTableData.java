@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.*;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -20,6 +21,13 @@ public interface ExcelSpreadSheetTableData extends Iterable<Cell> {
                 .stream()
                 .filter(filterClause)
                 .findFirst();
+    }
+
+    default List<String> getStringData() {
+        return getData()
+                .stream()
+                .map(CellTypeAdapter::getCellValue)
+                .collect(Collectors.toList());
     }
 
     default String getHeader() {
