@@ -49,4 +49,102 @@ public class GetMostSimilar {
                 "1234567",
                 "123456"), "1234567890", "123456789");
     }
+
+
+    @Test
+    public void test3() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Relational", "Relational Database Skills (Mar");
+    }
+
+
+    @Test
+    public void test4() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Front end", "Front-end Development");
+    }
+
+
+
+    @Test
+    public void test5() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Grades extracted from Canvas", "Grades Parsed From Canvas");
+    }
+
+
+    @Test
+    public void test6() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "JDBC", "JDBC, ORM, and Unit Testing Fun");
+    }
+
+
+
+    @Test
+    public void test7() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Programming", "Programming (Java)");
+    }
+
+
+    @Test
+    public void test8() {
+        test(Arrays.asList("Relational Database Skills (Mar",
+                "Front-end Development",
+                "Grades Parsed From Canvas",
+                "java-developer-philly-rubric-te",
+                "Server Pages Fundamentals - Ser",
+                "Project Management Methodologie",
+                "Main",
+                "JDBC, ORM, and Unit Testing Fun",
+                "In-class Participation",
+                "Programming (Java)",
+                "Case Study"), "Participate", "In-class Participation");
+    }
 }
