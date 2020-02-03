@@ -3,6 +3,8 @@ package com.github.curriculeon;
 import com.github.curriculeon.engine.CSVToExcelConverter;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import com.github.curriculeon.utils.StringEvaluator;
 import com.github.git_leon.collectionutils.maps.DescriptiveMap;
@@ -23,13 +25,15 @@ public class MyObject implements Runnable {
         ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelConverter.parseToExcel(excelFileToClone);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
-        List<String> csvHeaders = gradesCSV.getColumnHeaders().getStringData();
+        ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();
+        List<String> csvHeadersStrings = csvHeaders.getStringData();
         Map<String, ExcelSpreadSheet> csvHeaderToExcelSpreadSheetMap = new HashMap<>();
         for(String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
             StringEvaluator evaluator = new StringEvaluator(sheetName);
-            String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeaders);
-            System.out.println("\nCurrent Sheet name\t\t\t= " + sheetName);
-            System.out.println("CSV Column Header Name\t\t= " + mostSimilarCsvHeader);
+            String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeadersStrings);
+            ExcelSpreadSheetColumn mostLikelyColumn = gradesCSV.getColumn(mostSimilarCsvHeader);
+            Sheet mostLikelySheet = destinationWorkbook.getMostSimilarSheet(mostSimilarCsvHeader);
+            ExcelSpreadSheet mostLikelyExcelSpreadSheet = new ExcelSpreadSheet(mostLikelySheet);
         }
 
         System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));

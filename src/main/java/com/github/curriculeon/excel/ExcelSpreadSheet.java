@@ -174,7 +174,14 @@ public class ExcelSpreadSheet {
 
     public void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
         for (Cell cell : row) {
-            addCell(cell, row.getDimensionIndex(), cell.getColumnIndex());
+            addCell(cell, destinationRowNum, cell.getColumnIndex());
+        }
+    }
+
+
+    public void addColumn(ExcelSpreadSheetColumn column, int destinationColumnNumber) {
+        for (Cell cell : column) {
+            addCell(cell, cell.getRowIndex(), destinationColumnNumber);
         }
     }
 
