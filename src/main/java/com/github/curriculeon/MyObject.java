@@ -4,6 +4,7 @@ import com.github.curriculeon.engine.CSVToExcelConverter;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.ResourceUtils;
+import com.github.curriculeon.utils.StringEvaluator;
 import com.github.git_leon.collectionutils.maps.DescriptiveMap;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -24,9 +25,10 @@ public class MyObject implements Runnable {
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         List<String> csvHeaders = gradesCSV.getColumnHeaders().getStringData();
         Map<String, ExcelSpreadSheet> csvHeaderToExcelSpreadSheetMap = new HashMap<>();
-        for(String csvHeader: csvHeaders) {
-            Sheet sheet = destinationWorkbook.getMostSimilarSheet(csvHeader);
-            csvHeaderToExcelSpreadSheetMap.put(csvHeader, new ExcelSpreadSheet(sheet));
+        for(String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
+            StringEvaluator evaluator = new StringEvaluator(sheetName);
+            String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeaders);
+            System.out.println(sheetName + " = " + mostSimilarCsvHeader);
         }
 
         System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
