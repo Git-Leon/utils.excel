@@ -30,8 +30,12 @@ public interface ExcelSpreadSheetTableData extends Iterable<Cell> {
                 .collect(Collectors.toList());
     }
 
+    default String getCellData(Integer index) {
+        return CellTypeAdapter.getCellValue(getData().get(index));
+    }
+
     default String getHeader() {
-        return CellTypeAdapter.getCellValue(getData().get(0));
+        return getCellData(0);
     }
 
     default void setValue(double var1) {

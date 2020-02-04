@@ -12,11 +12,9 @@ import java.util.List;
  * @created 01/25/2020 - 2:03 AM
  */
 public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
-    private String name;
 
     public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
         super(sheet, columnNumber, data);
-        this.name = CellTypeAdapter.getCellValue(getCell(0));
     }
 
     /**
@@ -25,7 +23,7 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
      */
     @Override
     public Cell getCell(int rowNumber) {
-        return find(cell -> cell.getColumnIndex() == rowNumber).orElse(sheet
+        return find(cell -> cell.getRowIndex() == rowNumber).orElse(sheet
                 .getRow(getDimensionIndex())
                 .createCell(rowNumber));
     }

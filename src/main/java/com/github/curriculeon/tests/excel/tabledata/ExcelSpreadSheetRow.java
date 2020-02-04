@@ -3,6 +3,7 @@ package com.github.curriculeon.excel.tabledata;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.List;
@@ -34,5 +35,9 @@ public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
                 .filter(cell -> CellTypeAdapter.getCellValue(cell).equals(columnHeader))
                 .findFirst()
                 .get();
+    }
+
+    public Integer getNumberOfColumns() {
+        return sheet.getRow(getDimensionIndex()).getPhysicalNumberOfCells();
     }
 }
