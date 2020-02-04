@@ -3,7 +3,8 @@ package com.github.curriculeon.tests.excel.excelspreadsheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.utils.ResourceUtils;
+import com.github.curriculeon.utils.file.BuildUtils;
+import com.github.curriculeon.utils.file.directory.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import java.util.Iterator;
 public class GetRowTest {
     @Test
     public void test() {
-        File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
+        File spreadSheetFile = BuildUtils.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
         for (ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
             ExcelSpreadSheetRow row = spreadSheet.getRow(0);

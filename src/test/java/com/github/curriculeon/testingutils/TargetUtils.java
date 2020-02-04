@@ -1,6 +1,6 @@
 package com.github.curriculeon.testingutils;
 
-import com.github.curriculeon.utils.FileUtility;
+import com.github.curriculeon.utils.file.FileWrapper;
 
 import java.io.File;
 
@@ -10,14 +10,13 @@ import java.io.File;
  */
 public class TargetUtils {
     public static File getTargetDirectoryFile() {
-        return new FileUtility(getTargetDirectoryPath()).getFile();
+        return new FileWrapper(getTargetDirectoryPath()).getFile();
     }
 
-    private static String getTargetDirectoryPath() {
+    public static String getTargetDirectoryPath() {
         return new StringBuilder()
                 .append(System.getProperty("user.dir"))
                 .append("/target")
                 .toString();
     }
-
 }

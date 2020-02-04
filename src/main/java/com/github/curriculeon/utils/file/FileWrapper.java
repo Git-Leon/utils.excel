@@ -1,4 +1,4 @@
-package com.github.curriculeon.utils;
+package com.github.curriculeon.utils.file;
 
 import org.apache.commons.io.FileUtils;
 
@@ -9,14 +9,14 @@ import java.io.IOException;
  * @author leonhunter
  * @created 02/03/2020 - 7:09 PM
  */
-public class FileUtility {
+public class FileWrapper {
     private File file;
 
-    public FileUtility(File file) {
+    public FileWrapper(File file) {
         this.file = file;
     }
 
-    public FileUtility(String filePath) {
+    public FileWrapper(String filePath) {
         this(new File(filePath));
     }
 
@@ -29,6 +29,13 @@ public class FileUtility {
             }
         }
         return file;
+    }
+
+    public String getFileExtension() {
+        String fileName = file.getName();
+        Integer lastPeriod = fileName.lastIndexOf('.');
+        String fileExtension =fileName.substring(lastPeriod);
+        return fileExtension;
     }
 
     public Boolean isDirectory() {

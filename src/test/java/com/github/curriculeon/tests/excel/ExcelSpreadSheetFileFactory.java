@@ -1,7 +1,8 @@
 package com.github.curriculeon.tests.excel;
 
 import com.github.curriculeon.testingutils.TargetUtils;
-import com.github.curriculeon.utils.ResourceUtils;
+import com.github.curriculeon.utils.file.BuildUtils;
+import com.github.curriculeon.utils.file.directory.ResourceUtils;
 
 import java.io.File;
 
@@ -10,7 +11,7 @@ public class ExcelSpreadSheetFileFactory {
         String fileName = "java-developer-philly-rubric-template";
         String fileExtension = ".xlsx";
         String sourceFilePath = fileName + fileExtension;
-        File spreadSheetFile = ResourceUtils.getResourceFile(sourceFilePath);
+        File spreadSheetFile = BuildUtils.RESOURCEDIRECTORY.getFileFromDirectory(sourceFilePath);
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
         return excelSpreadSheetWorkBook.copyTo(new File(new StringBuilder()
                 .append(TargetUtils.getTargetDirectoryFile())
