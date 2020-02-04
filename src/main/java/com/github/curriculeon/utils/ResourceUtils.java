@@ -20,18 +20,20 @@ public class ResourceUtils {
         return new File(getResourceDirectoryPath() + fileName);
     }
 
+    public static File getDuplicateFile(String fileName, String newFileName) {
+        File source = ResourceUtils.getResourceFile(fileName);
+        String parentDirectory = source.getParentFile().getAbsolutePath() + "/";
+        return new File(parentDirectory + newFileName);
+    }
+
     public static File getDuplicateFile(String fileName) {
         File source = ResourceUtils.getResourceFile(fileName);
-        File destination;
         String id = "_" + System.nanoTime();
-        String parentDirectory = source.getParentFile().getAbsolutePath() + "/";
         String newFileName = source.getName();
         Integer lastPeriod = newFileName.lastIndexOf('.');
         String fileExtension = newFileName.substring(lastPeriod);
         newFileName = newFileName.substring(0, lastPeriod) + id + fileExtension;
-        destination = new File(parentDirectory + newFileName);
-
-        return destination;
+        return getDuplicateFile(fileName, newFileName);
     }
 
     public static File copyFile(String fileName) {

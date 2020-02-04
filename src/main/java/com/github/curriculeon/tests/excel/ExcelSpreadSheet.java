@@ -1,10 +1,8 @@
-package com.github.curriculeon.excel;
+package com.github.curriculeon.tests.excel;
 
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.excel.tabledata.metadata.ExcelFormula;
-import com.github.curriculeon.utils.Transposer;
-import org.apache.poi.hssf.record.aggregates.ValueRecordsAggregate;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.tabledata.metadata.ExcelFormula;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -138,10 +136,12 @@ public class ExcelSpreadSheet {
 
     public List<ExcelSpreadSheetColumn> getColumns() {
         List<ExcelSpreadSheetColumn> result = new ArrayList<>();
-        for (int rowIndex = 0; rowIndex < getNumberOfRows(); rowIndex++) {
+        int numberOfColumns = getNumberOfColumns();
+        int numberOfRows =  getNumberOfRows();
+        for (int rowIndex = 0; rowIndex <numberOfRows; rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             List<Cell> columnData = new ArrayList<>();
-            for (int colIndex = 0; colIndex < getNumberOfColumns(); colIndex++) {
+            for (int colIndex = 0; colIndex < numberOfColumns; colIndex++) {
                 Cell cell = row.getCell(colIndex);
                 columnData.add(cell);
                 result.add(new ExcelSpreadSheetColumn(sheet, colIndex, columnData));

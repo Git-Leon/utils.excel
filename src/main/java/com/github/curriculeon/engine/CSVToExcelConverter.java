@@ -1,6 +1,6 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 
 import java.io.File;
 

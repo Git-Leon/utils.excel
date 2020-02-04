@@ -1,8 +1,9 @@
-package com.github.curriculeon.excel.excelspreadsheet;
+package com.github.curriculeon.tests.excel.excelspreadsheet;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
@@ -15,13 +16,13 @@ public class GetColumnTest {
     public void test() {
         File spreadSheetFile = ResourceUtils.getResourceFile("java-developer-philly-rubric-template.xlsx");
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
-        for(ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
-            ExcelSpreadSheetColumn column = spreadSheet.getColumn(0);
-            System.out.println(column);
-            Iterator<Cell> iterator = column.iterator();
-            for (int i = 0; iterator.hasNext(); i++) {
-                 Cell cell = iterator.next();
-                System.out.println(cell.getStringCellValue());
+        for (ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
+            for (ExcelSpreadSheetColumn column : spreadSheet.getColumns()) {
+                for (Cell cell : column) {
+                    System.out.println("\n\n-----------------");
+                    System.out.println("\t" + cell );
+                    System.out.println("-----------------");
+                }
             }
         }
     }

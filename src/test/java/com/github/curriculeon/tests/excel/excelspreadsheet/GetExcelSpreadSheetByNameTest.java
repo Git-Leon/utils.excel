@@ -1,9 +1,9 @@
-package com.github.curriculeon.excel.excelspreadsheet;
+package com.github.curriculeon.tests.excel.excelspreadsheet;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetFileFactory;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetFileFactory;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
 import org.junit.Assert;
 import org.junit.Test;
 

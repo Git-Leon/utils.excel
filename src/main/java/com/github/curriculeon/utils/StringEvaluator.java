@@ -3,7 +3,6 @@ package com.github.curriculeon.utils;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author leonhunter

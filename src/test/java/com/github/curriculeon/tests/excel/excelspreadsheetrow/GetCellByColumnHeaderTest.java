@@ -1,4 +1,4 @@
-package com.github.curriculeon.excel.excelspreadsheetrow;
+package com.github.curriculeon.tests.excel.excelspreadsheetrow;
 
 import org.junit.Test;
 

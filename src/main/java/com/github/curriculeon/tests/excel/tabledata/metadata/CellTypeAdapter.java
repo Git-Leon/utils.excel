@@ -1,15 +1,10 @@
-package com.github.curriculeon.excel.tabledata.metadata;
+package com.github.curriculeon.tests.excel.tabledata.metadata;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.ss.formula.atp.DateParser;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**

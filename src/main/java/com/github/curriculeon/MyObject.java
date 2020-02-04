@@ -1,10 +1,10 @@
 package com.github.curriculeon;
 
 import com.github.curriculeon.engine.CSVToExcelConverter;
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import com.github.curriculeon.utils.StringEvaluator;
 import com.github.git_leon.collectionutils.maps.DescriptiveMap;

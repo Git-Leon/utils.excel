@@ -1,4 +1,4 @@
-package com.github.curriculeon.utils.string.stringevaluator;
+package com.github.curriculeon.tests.stringevaluator;
 
 import com.github.curriculeon.utils.StringEvaluator;
 import org.junit.Assert;

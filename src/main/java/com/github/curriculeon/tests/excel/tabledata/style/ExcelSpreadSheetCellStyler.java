@@ -1,6 +1,6 @@
-package com.github.curriculeon.excel.tabledata.style;
+package com.github.curriculeon.tests.excel.tabledata.style;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import org.apache.poi.ss.usermodel.*;
 
 import java.util.function.Predicate;

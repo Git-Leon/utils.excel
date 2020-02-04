@@ -1,4 +1,4 @@
-package com.github.curriculeon.excel;
+package com.github.curriculeon.tests.excel;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Sheet;

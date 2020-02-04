@@ -1,7 +1,7 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.Transposer;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;

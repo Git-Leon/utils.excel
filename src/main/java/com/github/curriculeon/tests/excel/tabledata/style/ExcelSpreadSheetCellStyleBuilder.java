@@ -1,6 +1,5 @@
-package com.github.curriculeon.excel.tabledata.style;
+package com.github.curriculeon.tests.excel.tabledata.style;
 
-import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
 import org.apache.poi.ss.usermodel.*;
 
 /**

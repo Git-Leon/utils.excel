@@ -1,8 +1,10 @@
-package com.github.curriculeon.excel.tabledata;
+package com.github.curriculeon.tests.excel.tabledata;
 
-import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.util.Iterator;
 import java.util.List;
@@ -36,10 +38,10 @@ abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheet
     @Override
     public String toString() {
         return getClass() + "{" +
-                "name=" + CellTypeAdapter.getCellValue(data.get(0)) +
-                ", dimensionIndex=" + dimensionIndex +
-                ", data=" + data +
-                ", sheet=" + sheet +
-                '}';
+                "\ndimensionIndex=" + dimensionIndex +
+                "\nsheetType=" + sheet.getClass() +
+                "\nsheet=" + sheet.toString() +
+                "\ndata=" + data +
+                "\n}";
     }
 }

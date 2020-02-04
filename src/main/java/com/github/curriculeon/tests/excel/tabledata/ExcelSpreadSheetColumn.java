@@ -1,7 +1,7 @@
-package com.github.curriculeon.excel.tabledata;
+package com.github.curriculeon.tests.excel.tabledata;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.tabledata.metadata.CellTypeAdapter;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 

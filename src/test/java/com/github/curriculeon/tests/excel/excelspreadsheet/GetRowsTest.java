@@ -1,8 +1,8 @@
-package com.github.curriculeon.excel.excelspreadsheet;
+package com.github.curriculeon.tests.excel.excelspreadsheet;
 
-import com.github.curriculeon.excel.ExcelSpreadSheet;
-import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.ResourceUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
