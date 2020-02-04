@@ -17,7 +17,7 @@ public class ParseToExcelTest {
         String fileName = "grades";
         String fileExtension = ".csv";
         String fileNameAndExtension = fileName + fileExtension;
-        File source = ResourceUtils.getResourceFile(fileNameAndExtension);
+        File source = BuildUtils.RESOURCEDIRECTORY.getFileFromDirectory(fileNameAndExtension);
         File destination = new FileWrapper(new File(new StringBuilder()
                 .append(TargetUtils.getTargetDirectoryPath())
                 .append("/testoutput/")
