@@ -1,32 +1,37 @@
 package com.github.curriculeon.tests.excel;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @author leonhunter
  * @created 01/31/2020 - 5:32 PM
  */
 public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInterface {
-    private Workbook workbook;
-    private File file;
+    private final FileInputStream inputStream;
+    private final Workbook workbook;
+    private final File file;
 
     public ExcelSpreadSheetWorkBookFile(Workbook workbook, File file) {
         this.workbook = workbook;
         this.file = file;
+        try {
+            this.inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new Error(e);
+        }
     }
 
     public ExcelSpreadSheetWorkBookFile(File file) {
         try {
             this.file = file;
-            this.workbook = new XSSFWorkbook(new FileInputStream(file));
+            this.inputStream = new FileInputStream(file);
+            this.workbook = new XSSFWorkbook();
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -96,8 +101,14 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
         }
     }
 
+    /**
+     *  without closing the input stream, we leave ourselves vulnerable to `EmptyFileException`
+     *  read more about the issue by visiting the link below
+     *  https://stackoverflow.com/questions/34264120/java-apache-poi-read-write-xlsx-file-file-getting-corrupted-and-becomes-e/34264649
+     */
     @Override
     public void finalize() {
+        IOUtils.closeQuietly(inputStream);
         this.flush();
     }
 

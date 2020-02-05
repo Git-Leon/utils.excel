@@ -51,6 +51,18 @@ public interface DirectoryReferenceInterface {
     }
 
 
+    default File copyFileTo(String fileName, String newFilePath) {
+        File source = getFileFromDirectory(fileName);
+        File destination = new File(newFilePath);
+        try {
+            FileUtils.copyFile(source, destination);
+        } catch (IOException e) {
+            throw new Error(e);
+        }
+        return destination;
+    }
+
+
     default File getDuplicateFile(String fileName, String newFileName) {
         File source = getFileFromDirectory(fileName);
         String parentDirectory = source.getParentFile().getAbsolutePath() + "/";
