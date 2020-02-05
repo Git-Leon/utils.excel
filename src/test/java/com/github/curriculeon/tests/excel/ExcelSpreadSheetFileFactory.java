@@ -1,7 +1,7 @@
 package com.github.curriculeon.tests.excel;
 
 import com.github.curriculeon.testingutils.TargetUtils;
-import com.github.curriculeon.utils.file.DirectoryReference;
+import com.github.curriculeon.utils.io.DirectoryReference;
 
 import java.io.File;
 

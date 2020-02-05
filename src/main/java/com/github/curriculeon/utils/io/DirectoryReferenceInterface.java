@@ -1,4 +1,4 @@
-package com.github.curriculeon.utils.file;
+package com.github.curriculeon.utils.io;
 
 import org.apache.commons.io.FileUtils;
 

@@ -3,7 +3,7 @@ package com.github.curriculeon.tests.excel.excelspreadsheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.utils.file.DirectoryReference;
+import com.github.curriculeon.utils.io.DirectoryReference;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
 

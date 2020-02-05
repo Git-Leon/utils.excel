@@ -5,7 +5,7 @@ import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.utils.file.DirectoryReference;
+import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
 import com.github.git_leon.collectionutils.maps.DescriptiveMap;
 import org.apache.poi.ss.usermodel.Sheet;

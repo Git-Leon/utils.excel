@@ -2,10 +2,8 @@ package com.github.curriculeon.tests.gradeparser;
 
 import com.github.curriculeon.engine.CSVSanitizer;
 import com.github.curriculeon.engine.GradeParser;
-import com.github.curriculeon.testingutils.TargetUtils;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.utils.file.DirectoryReference;
-import com.github.curriculeon.utils.file.FileWrapper;
+import com.github.curriculeon.utils.io.DirectoryReference;
 import org.junit.Test;
 
 import java.io.File;
