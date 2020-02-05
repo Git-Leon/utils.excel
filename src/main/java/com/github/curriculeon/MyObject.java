@@ -17,6 +17,10 @@ import java.util.Map;
 
 public class MyObject implements Runnable {
     public void run() {
+        //tryLater();
+    }
+
+    private void tryLater() {
         File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("grades.csv");
         File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
         File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
@@ -28,7 +32,7 @@ public class MyObject implements Runnable {
         ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();
         List<String> csvHeadersStrings = csvHeaders.getStringData();
         Map<String, ExcelSpreadSheet> csvHeaderToExcelSpreadSheetMap = new HashMap<>();
-        for(String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
+        for (String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
             StringEvaluator evaluator = new StringEvaluator(sheetName);
             String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeadersStrings);
             ExcelSpreadSheetColumn mostLikelyColumn = gradesCSV.getColumn(mostSimilarCsvHeader);
