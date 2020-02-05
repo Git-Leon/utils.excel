@@ -1,6 +1,6 @@
 package com.github.curriculeon.utils.file.directory;
 
-import com.github.curriculeon.utils.file.BuildUtils;
+import com.github.curriculeon.utils.file.DirectoryReference;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -22,7 +22,7 @@ public class ResourceUtils {
     }
 
     public static File getDuplicateFile(String fileName, String newFileName) {
-        File source = BuildUtils.RESOURCEDIRECTORY.getFileFromDirectory(fileName);
+        File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory(fileName);
         String parentDirectory = source.getParentFile().getAbsolutePath() + "/";
         return new File(parentDirectory + newFileName);
     }

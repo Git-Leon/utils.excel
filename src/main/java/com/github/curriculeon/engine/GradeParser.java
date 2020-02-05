@@ -2,8 +2,7 @@ package com.github.curriculeon.engine;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.utils.file.BuildUtils;
-import com.github.curriculeon.utils.file.directory.ResourceUtils;
+import com.github.curriculeon.utils.file.DirectoryReference;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
@@ -19,7 +18,7 @@ public class GradeParser {
     public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(new File(new StringBuilder()
-                .append(BuildUtils.TARGETDIRECTORY.getDirectoryPath()) // TODO - Defer input to client
+                .append(DirectoryReference.TARGETDIRECTORY.getDirectoryPath()) // TODO - Defer input to client
                 .append("/")
                 .append("java-developer-philly-rubric-template_")
                 .append(System.nanoTime())
