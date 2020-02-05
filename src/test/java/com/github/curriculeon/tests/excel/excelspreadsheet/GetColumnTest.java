@@ -21,7 +21,7 @@ public class GetColumnTest {
                     output
                             .append("\n\n-----------------")
                             .append("\t" + cell )
-                            .append("-----------------");
+                            .append("\n-----------------");
                 }
             }
         }
