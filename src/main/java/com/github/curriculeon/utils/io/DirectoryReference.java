@@ -1,5 +1,7 @@
 package com.github.curriculeon.utils.io;
 
+import java.io.File;
+
 /**
  * @author leonhunter
  * @created 02/03/2020 - 7:01 PM
@@ -21,5 +23,10 @@ public enum DirectoryReference implements DirectoryReferenceInterface {
 
     public String getDirectoryPath() {
         return path;
+    }
+
+    @Override
+    public synchronized File getFileFromDirectory(String fileName) {
+        return DirectoryReferenceInterface.super.getFileFromDirectory(fileName);
     }
 }
