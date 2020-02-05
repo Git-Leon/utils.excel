@@ -7,7 +7,7 @@ package com.github.curriculeon.utils.io;
 public enum DirectoryReference implements DirectoryReferenceInterface {
     TARGETDIRECTORY(DirectoryReferenceInterface
             .getLocalDirectoryBuilder()
-            .append("/target")),
+            .append("/target/")),
 
     RESOURCEDIRECTORY(DirectoryReferenceInterface
             .getLocalDirectoryBuilder()

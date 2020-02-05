@@ -18,12 +18,18 @@ public interface DirectoryReferenceInterface {
     String getDirectoryPath();
 
     default File getDirectoryFile() {
-        File file = new File(getDirectoryPath());
+        return createFile(new File(getDirectoryPath()));
+    }
+
+    default File createFile(File file) {
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                throw new Error(e);
+                throw new Error(String.format( new StringBuilder()
+                        .append(e.getMessage())
+                        .append("\nFailed to create file [ %s].")
+                        .toString(), file.getAbsolutePath()));
             }
         }
         return file;

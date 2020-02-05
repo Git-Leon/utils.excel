@@ -17,13 +17,14 @@ public class GradeParser {
 
     public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;
-        this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(new File(new StringBuilder()
-                .append(DirectoryReference.TARGETDIRECTORY.getDirectoryPath()) // TODO - Defer input to client
-                .append("/")
-                .append("java-developer-philly-rubric-template_")
-                .append(System.nanoTime())
-                .append(".xlsx")
-                .toString()));
+        this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(DirectoryReference.TARGETDIRECTORY
+                .getFileFromDirectory(new StringBuilder()
+                        .append("targetoutput/")
+                        .append("PARSED-")
+                        .append("java-developer-philly-rubric-template_")
+                        .append(System.nanoTime())
+                        .append(".xlsx")
+                        .toString()));
     }
 
     public void parseToExcel() {
