@@ -28,13 +28,7 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
     }
 
     public ExcelSpreadSheetWorkBookFile(File file) {
-        try {
-            this.file = file;
-            this.inputStream = new FileInputStream(file);
-            this.workbook = new XSSFWorkbook();
-        } catch (IOException e) {
-            throw new Error(e);
-        }
+        this(new XSSFWorkbook(), file);
     }
 
     public ExcelSpreadSheetWorkBookFile(String filePath) {
