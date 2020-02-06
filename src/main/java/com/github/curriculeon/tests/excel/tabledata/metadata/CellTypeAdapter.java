@@ -1,10 +1,11 @@
 package com.github.curriculeon.tests.excel.tabledata.metadata;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DateUtil;
+import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import org.apache.poi.ss.usermodel.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -74,5 +75,29 @@ public enum CellTypeAdapter {
                 }
             }
         }
+    }
+
+    public static List<List<Cell>> toListOfCellLists(Sheet sheet, List<List<String>> cellDataArrays) {
+        List<List<Cell>> tableDataArrays = new ArrayList<>();
+        for(List<String> tableDataArray : cellDataArrays) {
+            tableDataArrays.add(toCellList(sheet, tableDataArray));
+        }
+        return tableDataArrays;
+    }
+
+    public static List<Cell> toCellList(Sheet sheet, List<String> cellData) {
+        List<Cell> result = new ArrayList<>();
+        ExcelSpreadSheet spreadSheet = new ExcelSpreadSheet(sheet);
+        int rowIndex = 0;
+        int numberOfColumns = spreadSheet.getColumns().size();
+        Row row = sheet.getRow(rowIndex);
+        for(int i=0 ;i<cellData.size(); i++) {
+            String data = cellData.get(i);
+            int columnIndex = numberOfColumns+i;
+            Cell cell = row.createCell(columnIndex);
+            CellTypeAdapter.setValue(cell, data);
+            result.add(cell);
+        }
+        return result;
     }
 }

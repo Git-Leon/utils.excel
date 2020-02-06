@@ -1,6 +1,10 @@
 package com.github.curriculeon.tests.excel;
 
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetTableDataArray;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.StringEvaluator;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 

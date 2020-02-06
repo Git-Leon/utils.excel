@@ -1,11 +1,11 @@
 package com.github.curriculeon.tests.excel.tabledata;
 
 import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 

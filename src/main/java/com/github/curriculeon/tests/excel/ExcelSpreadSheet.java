@@ -2,6 +2,7 @@ package com.github.curriculeon.tests.excel;
 
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.tests.excel.tabledata.metadata.ExcelFormula;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -68,6 +69,19 @@ public class ExcelSpreadSheet {
             }
         }
         return count;
+    }
+
+    public List<ExcelSpreadSheetColumn> toListOfExcelSpreadSheetColumns(List<List<String>> columnData) {
+        List<ExcelSpreadSheetColumn> result = new ArrayList<>();
+        List<List<Cell>> columns = CellTypeAdapter.toListOfCellLists(getSheet(), columnData);
+        int numberOfColumns = getNumberOfColumns();
+        for (int i = 0; i < columns.size(); i++) {
+            int columnIndex = numberOfColumns + i;
+            List<Cell> column = columns.get(i);
+            ExcelSpreadSheetColumn spreadSheetColumn = new ExcelSpreadSheetColumn(getSheet(), columnIndex, column);
+            result.add(spreadSheetColumn);
+        }
+        return result;
     }
 
     public ExcelSpreadSheetRow getColumnHeaders() {
@@ -173,12 +187,27 @@ public class ExcelSpreadSheet {
                 .collect(Collectors.toList()));
     }
 
+    public void addRows(List<ExcelSpreadSheetRow> rows, int startingIndex) {
+        for (int i = 0; i < rows.size(); i++) {
+            int currentIndex = startingIndex + i;
+            ExcelSpreadSheetRow row = rows.get(i);
+            addRow(row, currentIndex);
+        }
+
+    }
+
     public void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
         for (Cell cell : row) {
             addCell(cell, destinationRowNum, cell.getColumnIndex());
         }
     }
-
+    public void addColumns(List<ExcelSpreadSheetColumn> columns, int startingIndex) {
+        for (int i = 0; i < columns.size(); i++) {
+            int currentIndex = startingIndex + i;
+            ExcelSpreadSheetColumn column = columns.get(i);
+            addColumn(column, currentIndex);
+        }
+    }
 
     public void addColumn(ExcelSpreadSheetColumn column, int destinationColumnNumber) {
         for (Cell cell : column) {

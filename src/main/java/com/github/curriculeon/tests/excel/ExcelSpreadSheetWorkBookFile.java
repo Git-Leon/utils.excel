@@ -35,65 +35,18 @@ public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheet
         this(new File(filePath));
     }
 
-
-    public Workbook getWorkbook() {
-        return workbook;
-    }
-
     public File getFile() {
         return file;
     }
 
-
-    public ExcelSpreadSheetWorkBookFile copyTo(File destination) {
-        try {
-            FileUtils.copyFile(file, destination);
-            return new ExcelSpreadSheetWorkBookFile(destination);
-        } catch (IOException e) {
-            throw new Error(e);
-        }
+    @Override
+    public Workbook getWorkBook() {
+        return workbook;
     }
 
-    public void addSheets(Iterable<Sheet> sheets) {
-        sheets.forEach(this::addSheet);
-    }
-
-    public void addSheet(Sheet sheet, String newName) {
-        new ExcelSpreadSheetCloner(sheet).clone(workbook, file.getName(), newName);
-    }
-
-    public void addSheet(Sheet sheet) {
-        addSheet(sheet, file.getName());
-    }
-
-    public void deleteSheet(int i) {
-        workbook.removeSheetAt(i);
-    }
-
-    public void deleteSheet(String sheetName) {
-        for (ExcelSpreadSheet spreadSheet : this) {
-            if (spreadSheet.getName().equals(sheetName)) {
-                workbook.removeSheetAt(spreadSheet.getSheetIndex());
-            }
-        }
-    }
-
-    public void deleteSheetsAfter(int finalIndex) {
-        for (ExcelSpreadSheet sheet : this) {
-            if (sheet.getSheetIndex() > finalIndex) {
-                workbook.removeSheetAt(finalIndex);
-            }
-        }
-    }
-
-    public void flush() {
-        try {
-            FileOutputStream out = new FileOutputStream(file.getAbsolutePath());
-            workbook.write(out);
-            out.close();
-        } catch (IOException e) {
-            throw new Error(e);
-        }
+    @Override
+    public void finalize() {
+        close();
     }
 
     /**
@@ -106,13 +59,56 @@ public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheet
         IOUtils.closeQuietly(inputStream);
     }
 
-    @Override
-    public void finalize() {
-        close();
+
+    public void addSheets(Iterable<Sheet> sheets) {
+        sheets.forEach(this::addSheet);
     }
 
-    @Override
-    public Workbook getWorkBook() {
-        return workbook;
+    public void addSheet(Sheet sheet, String newName) {
+        new ExcelSpreadSheetCloner(sheet).clone(getWorkBook(), getFile().getName(), newName);
     }
+
+    public void addSheet(Sheet sheet) {
+        addSheet(sheet, getFile().getName());
+    }
+
+    public void deleteSheet(int i) {
+        getWorkBook().removeSheetAt(i);
+    }
+
+    public ExcelSpreadSheetWorkBookFile copyTo(File destination) {
+        try {
+            FileUtils.copyFile(getFile(), destination);
+            return new ExcelSpreadSheetWorkBookFile(destination);
+        } catch (IOException e) {
+            throw new Error(e);
+        }
+    }
+
+    public void deleteSheet(String sheetName) {
+        for (ExcelSpreadSheet spreadSheet : this) {
+            if (spreadSheet.getName().equals(sheetName)) {
+                getWorkBook().removeSheetAt(spreadSheet.getSheetIndex());
+            }
+        }
+    }
+
+    public void deleteSheetsAfter(int finalIndex) {
+        for (ExcelSpreadSheet sheet : this) {
+            if (sheet.getSheetIndex() > finalIndex) {
+                getWorkBook().removeSheetAt(finalIndex);
+            }
+        }
+    }
+
+    public void flush() {
+        try {
+            FileOutputStream out = new FileOutputStream(getFile().getAbsolutePath());
+            getWorkBook().write(out);
+            out.close();
+        } catch (IOException e) {
+            throw new Error(e);
+        }
+    }
+
 }
