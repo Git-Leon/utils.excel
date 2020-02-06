@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class MyObject implements Runnable {
     public void run() {
-        //tryLater();
+        tryLater();
     }
 
     private void tryLater() {
@@ -38,11 +38,13 @@ public class MyObject implements Runnable {
             ExcelSpreadSheetColumn mostLikelyColumn = gradesCSV.getColumn(mostSimilarCsvHeader);
             Sheet mostLikelySheet = destinationWorkbook.getMostSimilarSheet(mostSimilarCsvHeader);
             ExcelSpreadSheet mostLikelyExcelSpreadSheet = new ExcelSpreadSheet(mostLikelySheet);
+            csvHeaderToExcelSpreadSheetMap.put(mostSimilarCsvHeader, mostLikelyExcelSpreadSheet);
             int lastColumnIndex = mostLikelyExcelSpreadSheet.getNumberOfColumns();
             mostLikelyExcelSpreadSheet.addColumn(mostLikelyColumn, lastColumnIndex);
             destinationWorkbook.flush();
         }
-
-        System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
+        String output = new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap).toString();
+        System.out.println("Hello world");
+        System.out.println(output);
     }
 }

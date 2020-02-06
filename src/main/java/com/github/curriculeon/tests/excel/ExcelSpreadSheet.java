@@ -137,18 +137,19 @@ public class ExcelSpreadSheet {
     public List<ExcelSpreadSheetColumn> getColumns() {
         List<ExcelSpreadSheetColumn> result = new ArrayList<>();
         int numberOfColumns = getNumberOfColumns();
-        int numberOfRows =  getNumberOfRows();
-        for (int rowIndex = 0; rowIndex <numberOfRows; rowIndex++) {
-            Row row = sheet.getRow(rowIndex);
+        int numberOfRows = getNumberOfRows();
+        for (int colIndex = 0; colIndex < numberOfColumns; colIndex++) {
             List<Cell> columnData = new ArrayList<>();
-            for (int colIndex = 0; colIndex < numberOfColumns; colIndex++) {
+            for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+                Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(colIndex);
                 columnData.add(cell);
-                result.add(new ExcelSpreadSheetColumn(sheet, colIndex, columnData));
             }
+            result.add(new ExcelSpreadSheetColumn(sheet, colIndex, columnData));
         }
         return result;
     }
+
 
     public List<ExcelSpreadSheetRow> getRows() {
         List<ExcelSpreadSheetRow> list = new ArrayList<>();
