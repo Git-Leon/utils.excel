@@ -16,6 +16,7 @@ public class CreateNewSheetTest {
         ExcelSpreadSheet newSheet = workBook.createNewExcelSpreadSheet(sheetName);
         workBook.setSheetOrder(newSheet.getName(), 0);
         workBook.flush();
+        workBook.close();
 
         // then
         Assert.assertNotNull(newSheet);

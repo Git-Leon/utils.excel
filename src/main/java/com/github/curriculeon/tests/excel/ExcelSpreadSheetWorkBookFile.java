@@ -12,7 +12,7 @@ import java.io.*;
  * @author leonhunter
  * @created 01/31/2020 - 5:32 PM
  */
-public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInterface {
+public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheetWorkBookInterface {
     private final FileInputStream inputStream;
     private final Workbook workbook;
     private final File file;
@@ -53,6 +53,7 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
             throw new Error(e);
         }
     }
+
     public void addSheets(Iterable<Sheet> sheets) {
         sheets.forEach(this::addSheet);
     }
@@ -96,14 +97,18 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookInt
     }
 
     /**
-     *  without closing the input stream, we leave ourselves vulnerable to `EmptyFileException`
-     *  read more about the issue by visiting the link below
-     *  https://stackoverflow.com/questions/34264120/java-apache-poi-read-write-xlsx-file-file-getting-corrupted-and-becomes-e/34264649
+     * without closing the input stream, we leave ourselves vulnerable to `EmptyFileException`
+     * read more about the issue by visiting the link below
+     * https://stackoverflow.com/questions/34264120/java-apache-poi-read-write-xlsx-file-file-getting-corrupted-and-becomes-e/34264649
      */
     @Override
-    public void finalize() {
+    public void close() {
         IOUtils.closeQuietly(inputStream);
-        this.flush();
+    }
+
+    @Override
+    public void finalize() {
+        close();
     }
 
     @Override

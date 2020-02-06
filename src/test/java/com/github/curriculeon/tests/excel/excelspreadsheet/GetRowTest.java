@@ -23,5 +23,6 @@ public class GetRowTest {
                 System.out.println(cell.getStringCellValue());
             }
         }
+        excelSpreadSheetWorkBook.close();
     }
 }

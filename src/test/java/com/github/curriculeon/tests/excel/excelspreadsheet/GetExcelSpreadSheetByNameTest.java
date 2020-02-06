@@ -34,5 +34,6 @@ public class GetExcelSpreadSheetByNameTest {
         Assert.assertTrue(workBook.containsSheet(sheet.getSheet()));
         Assert.assertTrue(workBook.containsSheet(sheetName));
         Assert.assertEquals(expectedPostAddNumberOfSpreadSheets, actualPostAddNumberOfSpreadSheets);
+        workBook.close();
     }
 }

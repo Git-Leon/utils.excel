@@ -35,6 +35,7 @@ public class GradeParser {
         excelSpreadSheetWorkBookDestination.setSheetOrder(newSheetName, 0);
         excelSpreadSheetWorkBookDestination.setActive(newSheet);
         excelSpreadSheetWorkBookDestination.flush();
+        excelSpreadSheetWorkBookDestination.close();
     }
 
     public ExcelSpreadSheetWorkBookFile getExcelSpreadSheetWorkBookDestination() {
