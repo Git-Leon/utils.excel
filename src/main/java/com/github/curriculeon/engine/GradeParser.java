@@ -19,7 +19,6 @@ public class GradeParser {
         this.csvSanitizer = csvSanitizer;
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(DirectoryReference.TARGETDIRECTORY
                 .getFileFromDirectory(new StringBuilder()
-                        .append("targetoutput/")
                         .append("PARSED-")
                         .append("java-developer-philly-rubric-template_")
                         .append(System.nanoTime())

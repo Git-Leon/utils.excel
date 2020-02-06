@@ -32,7 +32,8 @@ public class MyObject implements Runnable {
         ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();
         List<String> csvHeadersStrings = csvHeaders.getStringData();
         Map<String, ExcelSpreadSheet> csvHeaderToExcelSpreadSheetMap = new HashMap<>();
-        for (String sheetName : destinationWorkbook.getSheetNamesFromWorkBook()) {
+        List<String> sheetNames = destinationWorkbook.getSheetNamesFromWorkBook();
+        for (String sheetName : sheetNames) {
             StringEvaluator evaluator = new StringEvaluator(sheetName);
             String mostSimilarCsvHeader = evaluator.getMostSimilar(csvHeadersStrings);
             ExcelSpreadSheetColumn mostLikelyColumn = gradesCSV.getColumn(mostSimilarCsvHeader);
@@ -41,10 +42,8 @@ public class MyObject implements Runnable {
             csvHeaderToExcelSpreadSheetMap.put(mostSimilarCsvHeader, mostLikelyExcelSpreadSheet);
             int lastColumnIndex = mostLikelyExcelSpreadSheet.getNumberOfColumns();
             mostLikelyExcelSpreadSheet.addColumn(mostLikelyColumn, lastColumnIndex);
-            destinationWorkbook.flush();
         }
-        String output = new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap).toString();
-        System.out.println("Hello world");
-        System.out.println(output);
+        destinationWorkbook.flush();
+        System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
     }
 }
