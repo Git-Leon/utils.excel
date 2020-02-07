@@ -1,6 +1,7 @@
 package com.github.curriculeon.tests.excel;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -18,8 +19,7 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookFil
     public ExcelSpreadSheetWorkBookFile(File file) {
         try {
             this.file = file;
-            FileInputStream inputStream = new FileInputStream(file);
-            this.workbook = new XSSFWorkbook(inputStream);
+            this.workbook = WorkbookFactory.create(file);;
         } catch (IOException e) {
             throw new Error(e);
         }
