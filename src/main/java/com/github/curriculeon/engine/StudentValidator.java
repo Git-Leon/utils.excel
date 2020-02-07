@@ -14,6 +14,11 @@ public class StudentValidator {
         this.student = student;
     }
 
+    public boolean validate() {
+        return validateId() &&
+                validateName();
+    }
+
     private Boolean validateId() {
         try {
             Integer.parseInt(student.getId());
@@ -24,17 +29,12 @@ public class StudentValidator {
     }
 
     private Boolean validateName() {
-        List<String> invalidChars = Arrays.asList("!@#$%^&*()_\t\n\r".split(""));
+        List<String> invalidChars = Arrays.asList("-=`\\/!@#$%^&*()_\t\n\r".split(""));
         for(String invalidChar : invalidChars) {
             if(student.getName().contains(invalidChar)) {
                 return false;
             }
         }
         return true;
-    }
-
-    public boolean validate() {
-        return validateId() &&
-                validateName();
     }
 }
