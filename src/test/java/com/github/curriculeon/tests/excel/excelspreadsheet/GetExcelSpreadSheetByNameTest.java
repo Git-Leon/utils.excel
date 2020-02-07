@@ -4,6 +4,7 @@ import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetFileFactory;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,24 +17,12 @@ public class GetExcelSpreadSheetByNameTest {
         // given
         String sheetName = "_";
         ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
-        int preAddNumberOfSpreadSheets = workBook.getExcelSpreadSheets().size();
-        int expectedPostAddNumberOfSpreadSheets = preAddNumberOfSpreadSheets + 1;
-        Assert.assertFalse(workBook.containsSheet(sheetName));
+        Sheet expected = workBook.createExcelSpreadSheetByName(sheetName).getSheet();
 
         // when
-        ExcelSpreadSheet sheet = workBook.createExcelSpreadSheetByName(sheetName);
-        workBook.setActive(sheet.getSheet());
-        workBook.flush();
-        int actualPostAddNumberOfSpreadSheets = workBook.getExcelSpreadSheets().size();
-        for(ExcelSpreadSheet spreadSheet : workBook) {
-            for(ExcelSpreadSheetColumn column : spreadSheet.getColumns()) {
-                System.out.println(column.getHeader());
-            }
-        }
-        // then
-        Assert.assertTrue(workBook.containsSheet(sheet.getSheet()));
-        Assert.assertTrue(workBook.containsSheet(sheetName));
-        Assert.assertEquals(expectedPostAddNumberOfSpreadSheets, actualPostAddNumberOfSpreadSheets);
+        Sheet actual = workBook.getExcelSpreadSheetByName(sheetName).get();
+
+        Assert.assertEquals(expected, actual);
         workBook.close();
     }
 }
