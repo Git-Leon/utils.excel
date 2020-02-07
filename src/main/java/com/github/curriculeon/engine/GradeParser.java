@@ -12,11 +12,19 @@ import java.io.File;
  * @created 01/24/2020 - 9:58 PM
  */
 public class GradeParser {
-    private final ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
+    private ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
     private final CSVSanitizer csvSanitizer;
+    private final ExcelSpreadSheetWorkBookFile excelSource;
 
     public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
         this.csvSanitizer = csvSanitizer;
+        this.excelSource = excelSource;
+    }
+
+    /**
+     * Decouples construction from file-creation
+     */
+    private void init() {
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(DirectoryReference.TARGETDIRECTORY
                 .getFileFromDirectory(new StringBuilder()
                         .append("PARSED-")
@@ -27,6 +35,7 @@ public class GradeParser {
     }
 
     public void parseToExcel() {
+        init();
         String newSheetName = "Grades Parsed From Canvas";
         ExcelSpreadSheet newExcelSpreadSheet = excelSpreadSheetWorkBookDestination.createExcelSpreadSheetByName(newSheetName);
         Sheet newSheet = newExcelSpreadSheet.getSheet();
