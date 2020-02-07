@@ -1,14 +1,12 @@
 package com.github.curriculeon.tests.excel.tabledata;
 
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheetTableData {
     protected final Sheet sheet;
@@ -21,22 +19,22 @@ abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheet
         this.data = data;
     }
 
-
     public Integer getDimensionIndex() {
         return dimensionIndex;
     }
 
+    @Override
     public List<Cell> getData() {
-        return data;
+        return data
+                .stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
 
     @Override
     public Iterator<Cell> iterator() {
-        return getData()
-                .stream()
-                .filter(Objects::nonNull)
-                .iterator();
+        return getData().iterator();
     }
 
     @Override

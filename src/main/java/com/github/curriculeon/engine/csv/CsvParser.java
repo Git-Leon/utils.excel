@@ -1,6 +1,7 @@
 package com.github.curriculeon.engine.csv;
 
 import com.github.curriculeon.engine.csv.student.Student;
+import com.github.curriculeon.engine.csv.student.StudentParser;
 import com.github.curriculeon.engine.csv.student.StudentValidator;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
@@ -52,18 +53,7 @@ public class CsvParser {
 
 
     public List<Student> getStudents() {
-        List<Student> result = new ArrayList<>();
-        List<List<String>> rows = csvReader.getRows();
-        for (List<String> row : rows) {
-            String studentName = row.get(0);
-            String studentId = row.get(1);
-            Student student = new Student(studentId, studentName);
-            StudentValidator validator = new StudentValidator(student);
-            if (validator.validate()) {
-                result.add(student);
-            }
-        }
-        return result;
+        return new StudentParser(csvReader.getRows()).getStudents();
     }
 
 
@@ -79,10 +69,9 @@ public class CsvParser {
         return result;
     }
 
-    public List<List<Cell>> parseToSheet(Sheet newSheet) {
+    public void parseToSheet(Sheet newSheet) {
         ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(newSheet);
         List<List<String>> rows = this.parseRows();
-        List<List<Cell>> cellList = new ArrayList<>();
         for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
             List<String> stringListData = rows.get(rowNumber);
             List<Cell> cellListData = new ArrayList<>();
@@ -95,7 +84,6 @@ public class CsvParser {
             ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber, cellListData);
             newExcelSpreadSheet.addRow(row, row.getDimensionIndex());
         }
-        return cellList;
     }
 }
 
