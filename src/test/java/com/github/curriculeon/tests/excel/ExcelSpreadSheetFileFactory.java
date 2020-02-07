@@ -10,6 +10,15 @@ public class ExcelSpreadSheetFileFactory {
         String fileExtension = ".xlsx";
         String sourceFilePath = fileName + fileExtension;
         File spreadSheetFile = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory(sourceFilePath);
-        return new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
+        ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
+        return excelSpreadSheetWorkBook.copyTo(DirectoryReference.TARGETDIRECTORY
+                .getFileFromDirectory(new StringBuilder()
+                        .append("input-copy")
+                        .append("COPYOF-")
+                        .append(fileName)
+                        .append("_")
+                        .append(Long.toHexString(System.nanoTime()))
+                        .append(fileExtension)
+                        .toString()));
     }
 }
