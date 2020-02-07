@@ -13,7 +13,7 @@ public class ExcelSpreadSheetFileFactory {
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
         return excelSpreadSheetWorkBook.copyTo(DirectoryReference.TARGETDIRECTORY
                 .getFileFromDirectory(new StringBuilder()
-                        .append("input-copy")
+                        .append("mockinput/")
                         .append("COPYOF-")
                         .append(fileName)
                         .append("_")

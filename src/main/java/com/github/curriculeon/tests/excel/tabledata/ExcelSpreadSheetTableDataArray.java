@@ -31,12 +31,6 @@ abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheet
                 .collect(Collectors.toList());
     }
 
-
-    @Override
-    public Iterator<Cell> iterator() {
-        return getData().iterator();
-    }
-
     @Override
     public String toString() {
         return getClass() + "{" +
