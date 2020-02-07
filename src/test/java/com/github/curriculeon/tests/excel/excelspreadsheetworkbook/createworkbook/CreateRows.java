@@ -1,12 +1,8 @@
-package com.github.curriculeon.tests.excel.excelspreadsheetworkbook;
+package com.github.curriculeon.tests.excel.excelspreadsheetworkbook.createworkbook;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.io.DirectoryReference;
-import org.apache.commons.lang3.builder.ToStringExclude;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Test;
 
 import java.io.File;
@@ -17,7 +13,7 @@ import java.util.Arrays;
  * @author leonhunter
  * @created 02/07/2020 - 5:13 PM
  */
-public class CreateWorkBook {
+public class CreateRows {
     @Test
     public void test() {
         // given
@@ -35,10 +31,12 @@ public class CreateWorkBook {
         }
         ExcelSpreadSheetWorkBookFile workBookFile = new ExcelSpreadSheetWorkBookFile(file);
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
-//        sheet.addColumns(
-//                Arrays.asList("Hello", "World"),
-//                Arrays.asList("Hey", "There"));
-        sheet.addColumns(Arrays.asList(new ExcelSpreadSheetColumn(sheet.getSheet(), 0, CellTypeAdapter.toCellList(sheet.getSheet(), Arrays.asList("Hello world")))), 0);
+        sheet.addRows(
+                Arrays.asList("ID", "Age"),
+                Arrays.asList("0", "4"),
+                Arrays.asList("1", "5"),
+                Arrays.asList("2", "6"),
+                Arrays.asList("3", "7"));
         workBookFile.flush();
     }
 }
