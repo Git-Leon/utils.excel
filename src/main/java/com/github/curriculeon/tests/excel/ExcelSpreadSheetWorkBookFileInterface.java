@@ -16,9 +16,6 @@ public interface ExcelSpreadSheetWorkBookFileInterface extends Closeable, ExcelS
 
     Workbook getWorkBook();
 
-
-    void finalize();
-
     /**
      * without closing the input stream, we leave ourselves vulnerable to `EmptyFileException`
      * read more about the issue by visiting the link below
