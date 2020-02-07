@@ -1,10 +1,6 @@
 package com.github.curriculeon.tests.excel;
 
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetTableDataArray;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.StringEvaluator;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -19,7 +15,6 @@ import java.util.stream.Collectors;
  * @created 01/31/2020 - 5:28 PM
  */
 public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadSheet> {
-
     Workbook getWorkBook();
 
     default int size() {
@@ -38,6 +33,7 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
         getWorkBook().setActiveSheet(getWorkBook().getSheetIndex(newSheet.getSheetName()));
     }
 
+    @Override
     default Iterator<ExcelSpreadSheet> iterator() {
         return this.getExcelSpreadSheets().iterator();
     }
@@ -111,5 +107,23 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
         } catch (IllegalArgumentException iae) {
             return Optional.empty();
         }
+    }
+
+    default void deleteSheet(int sheetIndex) {
+        getWorkBook().removeSheetAt(sheetIndex);
+    }
+
+    default void deleteSheet(String sheetName) {
+        getExcelSpreadSheets()
+                .stream()
+                .filter(sheet -> sheet.getName().equals(sheetName))
+                .forEach(sheet -> getWorkBook().removeSheetAt(sheet.getSheetIndex()));
+    }
+
+    default void deleteSheetsAfter(int finalIndex) {
+        getExcelSpreadSheets()
+                .stream()
+                .filter(sheet -> sheet.getSheetIndex() > finalIndex)
+                .forEach(sheet -> getWorkBook().removeSheetAt(sheet.getSheetIndex()));
     }
 }
