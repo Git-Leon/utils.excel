@@ -3,17 +3,16 @@ package com.github.curriculeon.tests.excel.tabledata;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheetTableData {
+abstract public class AbstractExcelSpreadSheetTableDataArray implements InterfaceExcelSpreadSheetTableData {
     protected final Sheet sheet;
     private final Integer dimensionIndex;
     private final List<Cell> data;
 
-    public ExcelSpreadSheetTableDataArray(Sheet sheet, Integer dimensionIndex, List<Cell> data) {
+    public AbstractExcelSpreadSheetTableDataArray(Sheet sheet, Integer dimensionIndex, List<Cell> data) {
         this.sheet = sheet;
         this.dimensionIndex = dimensionIndex;
         this.data = data;

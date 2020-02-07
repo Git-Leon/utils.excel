@@ -11,7 +11,7 @@ import java.util.List;
  * @author leonhunter
  * @created 01/25/2020 - 2:03 AM
  */
-public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
+public class ExcelSpreadSheetColumn extends AbstractExcelSpreadSheetTableDataArray {
 
     public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
         super(sheet, columnNumber, data);
