@@ -1,5 +1,6 @@
 package com.github.curriculeon.tests.excel;
 
+import org.apache.poi.EmptyFileException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,13 +14,15 @@ import java.io.IOException;
  * @created 01/31/2020 - 5:32 PM
  */
 public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookFileInterface {
-    private final Workbook workbook;
+    private Workbook workbook;
     private final File file;
 
     public ExcelSpreadSheetWorkBookFile(File file) {
+        this.file = file;
         try {
-            this.file = file;
-            this.workbook = WorkbookFactory.create(file);;
+            this.workbook = WorkbookFactory.create(file);
+        } catch(EmptyFileException efe) {
+            this.workbook = new XSSFWorkbook();
         } catch (IOException e) {
             throw new Error(e);
         }

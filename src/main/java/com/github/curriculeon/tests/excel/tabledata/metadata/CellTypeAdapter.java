@@ -90,7 +90,7 @@ public enum CellTypeAdapter {
         ExcelSpreadSheet spreadSheet = new ExcelSpreadSheet(sheet);
         int rowIndex = 0;
         int numberOfColumns = spreadSheet.getColumns().size();
-        Row row = sheet.getRow(rowIndex);
+        Row row = spreadSheet.getRow(rowIndex).getRow();
         for(int i=0 ;i<cellData.size(); i++) {
             String data = cellData.get(i);
             int columnIndex = numberOfColumns+i;

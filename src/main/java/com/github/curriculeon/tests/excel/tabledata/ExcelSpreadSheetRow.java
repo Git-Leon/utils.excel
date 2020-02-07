@@ -3,6 +3,7 @@ package com.github.curriculeon.tests.excel.tabledata;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.List;
@@ -14,6 +15,14 @@ import java.util.List;
 public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray {
     public ExcelSpreadSheetRow(Sheet sheet, Integer rowNumber, List<Cell> data) {
         super(sheet, rowNumber, data);
+    }
+
+    public Row getRow() {
+        Row row =  sheet.getRow(getDimensionIndex());
+        if(row == null) {
+            row = sheet.createRow(getDimensionIndex());
+        }
+        return row;
     }
 
     /**

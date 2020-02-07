@@ -2,12 +2,14 @@ package com.github.curriculeon.tests.excel;
 
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -72,7 +74,6 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-
     default ExcelSpreadSheetColumn getColumn(Predicate<ExcelSpreadSheetColumn> filterClause) {
         return getColumns()
                 .stream()
@@ -80,7 +81,6 @@ public interface ExcelSpreadSheetInterface {
                 .findFirst()
                 .get();
     }
-
 
 
     default ExcelSpreadSheetRow getRow(Predicate<ExcelSpreadSheetRow> filterClause) {
@@ -147,7 +147,6 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-
     default List<ExcelSpreadSheetRow> getRows() {
         List<ExcelSpreadSheetRow> list = new ArrayList<>();
         IntStream
@@ -182,10 +181,29 @@ public interface ExcelSpreadSheetInterface {
 
     }
 
-
     default void addRow(ExcelSpreadSheetRow row, int destinationRowNum) {
         for (Cell cell : row) {
             addCell(cell, destinationRowNum, cell.getColumnIndex());
+        }
+    }
+
+
+    default void addRows(List<String>... rows) {
+        addRows(Arrays.asList(rows));
+    }
+
+    default void addRows(List<List<String>> rows) {
+        // TODO
+    }
+
+    default void addColumns(List<String>... columns) {
+        addColumns(Arrays.asList(columns));
+    }
+
+    default void addColumns(List<List<String>> columns) {
+        for (int i = 0; i < columns.size(); i++) {
+            List<String> column = columns.get(i);
+            addColumn(new ExcelSpreadSheetColumn(getSheet(), i, CellTypeAdapter.toCellList(getSheet(), column)), i);
         }
     }
 
