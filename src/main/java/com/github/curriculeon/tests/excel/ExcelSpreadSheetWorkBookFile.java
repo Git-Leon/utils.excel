@@ -17,18 +17,14 @@ public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheet
     private final Workbook workbook;
     private final File file;
 
-    public ExcelSpreadSheetWorkBookFile(Workbook workbook, File file) {
-        this.workbook = workbook;
-        this.file = file;
+    public ExcelSpreadSheetWorkBookFile(File file) {
         try {
+            this.file = file;
             this.inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
+            this.workbook = new XSSFWorkbook(inputStream);
+        } catch (IOException e) {
             throw new Error(e);
         }
-    }
-
-    public ExcelSpreadSheetWorkBookFile(File file) {
-        this(new XSSFWorkbook(), file);
     }
 
     public ExcelSpreadSheetWorkBookFile(String filePath) {
@@ -103,7 +99,7 @@ public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheet
 
     public void flush() {
         try {
-            FileOutputStream out = new FileOutputStream(getFile().getAbsolutePath());
+            FileOutputStream out = new FileOutputStream(getFile());
             getWorkBook().write(out);
             out.close();
         } catch (IOException e) {
