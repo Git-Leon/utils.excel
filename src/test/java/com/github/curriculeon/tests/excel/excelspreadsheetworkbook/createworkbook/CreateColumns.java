@@ -23,7 +23,7 @@ public class CreateColumns {
         // given
         File file = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(new StringBuilder()
                 .append("test")
-                .append(Long.toHexString(System.nanoTime()))
+                .append(System.nanoTime())
                 .append(".xlsx")
                 .toString());
         if (!file.exists()) {
