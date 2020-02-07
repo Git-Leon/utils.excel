@@ -7,6 +7,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.*;
 
+/**
+ * @author leonhunter
+ * @created 02/07/2020 - 3:09 PM
+ */
 public interface ExcelSpreadSheetWorkBookFileInterface extends Closeable, ExcelSpreadSheetWorkBookInterface {
     File getFile();
 
