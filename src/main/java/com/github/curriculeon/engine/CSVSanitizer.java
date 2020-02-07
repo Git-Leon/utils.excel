@@ -2,14 +2,11 @@ package com.github.curriculeon.engine;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.utils.Transposer;
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +36,16 @@ public class CSVSanitizer {
     }
 
     // TODO
+    // (Column1: `Student`).delete()
+    // (Column2: `ID`).shiftToColumn(1)
+    // (Column3: `SIS User ID`).delete()
+    // (Column4: `SIS Login ID`).shiftToColumn(2)
+    // (Column5: `Section`).delete()
+    // (Column6:
     public List<List<String>> parseRows() {
+        List<List<String>> columns = csvInterpreter.getColumns();
+//        int s = new ExcelSpreadSheetColumn(null, null, columns);
+
         write();
         return rows;
     }

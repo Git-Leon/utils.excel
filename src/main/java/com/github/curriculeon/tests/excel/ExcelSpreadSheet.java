@@ -233,9 +233,8 @@ public class ExcelSpreadSheet {
 
     @Override
     public String toString() {
-        return "ExcelSpreadSheet{" +
-                "\nsheetName = " + sheet.getSheetName() +
-                "\nsheet=" + sheet +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        getRows().forEach(r -> sb.append(r.toString()));
+        return sb.toString();
     }
 }

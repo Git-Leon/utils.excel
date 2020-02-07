@@ -44,6 +44,6 @@ public class MyObject implements Runnable {
             mostLikelyExcelSpreadSheet.addColumn(mostLikelyColumn, lastColumnIndex);
         }
         destinationWorkbook.flush();
-        System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
+        System.out.println(csvHeaderToExcelSpreadSheetMap);
     }
 }

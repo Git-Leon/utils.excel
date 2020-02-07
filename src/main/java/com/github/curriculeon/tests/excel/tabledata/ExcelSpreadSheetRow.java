@@ -44,7 +44,7 @@ public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Cell cell : this) {
-            sb.append(String.format("[ %s ]", CellTypeAdapter.getCellValue(cell)));
+            sb.append("[ " + CellTypeAdapter.getCellValue(cell) + " ]");
         }
         return sb
                 .toString()
