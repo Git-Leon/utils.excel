@@ -1,6 +1,6 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.engine.csv.CSVSanitizer;
+import com.github.curriculeon.engine.csv.CSVParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.io.DirectoryReference;
@@ -12,11 +12,11 @@ import org.apache.poi.ss.usermodel.Sheet;
  */
 public class GradeParser {
     private ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
-    private final CSVSanitizer csvSanitizer;
+    private final CSVParser csvParser;
     private final ExcelSpreadSheetWorkBookFile excelSource;
 
-    public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVSanitizer csvSanitizer) {
-        this.csvSanitizer = csvSanitizer;
+    public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVParser csvParser) {
+        this.csvParser = csvParser;
         this.excelSource = excelSource;
     }
 
@@ -38,7 +38,7 @@ public class GradeParser {
         String newSheetName = "Grades Parsed From Canvas";
         ExcelSpreadSheet newExcelSpreadSheet = excelSpreadSheetWorkBookDestination.createExcelSpreadSheetByName(newSheetName);
         Sheet newSheet = newExcelSpreadSheet.getSheet();
-        csvSanitizer.parseToSheet(newSheet);
+        csvParser.parseToSheet(newSheet);
         excelSpreadSheetWorkBookDestination.addSheet(newSheet);
         excelSpreadSheetWorkBookDestination.setSheetOrder(newSheetName, 0);
         excelSpreadSheetWorkBookDestination.setActive(newSheet);

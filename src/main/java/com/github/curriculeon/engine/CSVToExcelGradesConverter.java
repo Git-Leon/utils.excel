@@ -1,6 +1,6 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.engine.csv.CSVSanitizer;
+import com.github.curriculeon.engine.csv.CSVParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 
 import java.io.File;
@@ -16,9 +16,9 @@ public class CSVToExcelGradesConverter {
     }
 
     public ExcelSpreadSheetWorkBookFile parseToExcel(File excelSpreadSheetFileToParse) {
-        CSVSanitizer csvSanitizer = new CSVSanitizer(source, destination);
+        CSVParser csvParser = new CSVParser(source, destination);
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(excelSpreadSheetFileToParse);
-        GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvSanitizer);
+        GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvParser);
         gradeParser.parseToExcel();
         return gradeParser.getExcelSpreadSheetWorkBookDestination();
     }

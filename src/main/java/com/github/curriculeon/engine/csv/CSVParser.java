@@ -22,12 +22,12 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
-public class CSVSanitizer {
+public class CSVParser {
     private final CSVWriter writer;
     private final CSVInterpreter csvInterpreter;
     private List<List<String>> rows;
 
-    public CSVSanitizer(File source, File destination) {
+    public CSVParser(File source, File destination) {
         try {
             this.csvInterpreter = new CSVInterpreter(source);
             this.rows = csvInterpreter.getRows();
