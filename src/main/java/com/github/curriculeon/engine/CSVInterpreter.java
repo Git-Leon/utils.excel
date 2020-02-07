@@ -40,11 +40,19 @@ public class CSVInterpreter {
 
     public List<List<String>> getColumns() {
         List<List<String>> result = new ArrayList<>();
-        for(List<String> row : getRows()) {
+        for (List<String> row : getRows()) {
             List<String> column = new Transposer<>(Arrays.asList(row)).transpose().get(0);
             result.add(column);
         }
         return result;
+    }
+
+    public List<String> getFirstColumnContaining(String valueToSeek) {
+        return getColumns()
+                .stream()
+                .filter(column -> column.contains(valueToSeek))
+                .findFirst()
+                .get();
     }
 
     public List<String[]> standardize() {
