@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-abstract public class AbstractExcelSpreadSheetTableDataArray implements InterfaceExcelSpreadSheetTableDataArray {
+abstract public class AbstractExcelSpreadSheetTableDataArray implements ExcelSpreadSheetTableDataArrayInterface {
     protected final Sheet sheet;
     private final Integer dimensionIndex;
     private final List<Cell> data;

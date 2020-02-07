@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * @author leonhunter
  * @created 01/25/2020 - 2:05 AM
  */
-public interface InterfaceExcelSpreadSheetTableDataArray extends Iterable<Cell> {
+public interface ExcelSpreadSheetTableDataArrayInterface extends Iterable<Cell> {
     List<Cell> getData();
 
     Cell getCell(int columnNumber);
