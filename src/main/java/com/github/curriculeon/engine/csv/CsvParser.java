@@ -22,15 +22,15 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
-public class CSVParser {
+public class CsvParser {
     private final CSVWriter writer;
-    private final CSVInterpreter csvInterpreter;
+    private final CsvReader csvReader;
     private List<List<String>> rows;
 
-    public CSVParser(File source, File destination) {
+    public CsvParser(File source, File destination) {
         try {
-            this.csvInterpreter = new CSVInterpreter(source);
-            this.rows = csvInterpreter.getRows();
+            this.csvReader = new CsvReader(source);
+            this.rows = csvReader.getRows();
             this.writer = new CSVWriter(new FileWriter(destination.getAbsolutePath()));
         } catch (IOException e) {
             throw new Error(e);
@@ -53,7 +53,7 @@ public class CSVParser {
 
     public List<Student> getStudents() {
         List<Student> result = new ArrayList<>();
-        List<List<String>> rows = csvInterpreter.getRows();
+        List<List<String>> rows = csvReader.getRows();
         for (List<String> row : rows) {
             String studentName = row.get(0);
             String studentId = row.get(1);
@@ -73,7 +73,7 @@ public class CSVParser {
 
     private List<String[]> standardize() {
         List<String[]> result = new ArrayList<>();
-        for (List<String> column : csvInterpreter.getRows()) {
+        for (List<String> column : csvReader.getRows()) {
             result.add(column.toArray(new String[0]));
         }
         return result;

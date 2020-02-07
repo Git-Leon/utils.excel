@@ -14,10 +14,10 @@ import java.util.List;
  * @author leonhunter
  * @created 02/07/2020 - 1:24 PM
  */
-public class CSVInterpreter {
+public class CsvReader {
     private final List<List<String>> rows;
 
-    public CSVInterpreter(File source) {
+    public CsvReader(File source) {
         try {
             CSVReader reader = new CSVReader(new FileReader(source.getAbsolutePath()));
             this.rows = Transposer.normalize(reader.readAll());

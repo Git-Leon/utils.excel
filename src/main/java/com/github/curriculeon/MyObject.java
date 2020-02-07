@@ -1,6 +1,6 @@
 package com.github.curriculeon;
 
-import com.github.curriculeon.engine.CSVToExcelGradesConverter;
+import com.github.curriculeon.engine.CsvToExcelGradesConverter;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
@@ -24,7 +24,7 @@ public class MyObject implements Runnable {
         File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
         File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
 
-        CSVToExcelGradesConverter csvToExcelGradesConverter = new CSVToExcelGradesConverter(source, destination);
+        CsvToExcelGradesConverter csvToExcelGradesConverter = new CsvToExcelGradesConverter(source, destination);
         ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();

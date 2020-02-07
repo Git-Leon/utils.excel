@@ -1,6 +1,6 @@
 package com.github.curriculeon.engine;
 
-import com.github.curriculeon.engine.csv.CSVParser;
+import com.github.curriculeon.engine.csv.CsvParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.io.DirectoryReference;
@@ -12,10 +12,10 @@ import org.apache.poi.ss.usermodel.Sheet;
  */
 public class GradeParser {
     private ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
-    private final CSVParser csvParser;
+    private final CsvParser csvParser;
     private final ExcelSpreadSheetWorkBookFile excelSource;
 
-    public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CSVParser csvParser) {
+    public GradeParser(ExcelSpreadSheetWorkBookFile excelSource, CsvParser csvParser) {
         this.csvParser = csvParser;
         this.excelSource = excelSource;
     }
