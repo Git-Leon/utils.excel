@@ -38,4 +38,9 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookFil
     public Workbook getWorkBook() {
         return workbook;
     }
+
+    @Override
+    public void finalize() {
+        close();
+    }
 }
