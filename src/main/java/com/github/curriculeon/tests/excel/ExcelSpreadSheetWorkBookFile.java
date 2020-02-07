@@ -13,14 +13,13 @@ import java.io.*;
  * @created 01/31/2020 - 5:32 PM
  */
 public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheetWorkBookInterface {
-    private final FileInputStream inputStream;
     private final Workbook workbook;
     private final File file;
 
     public ExcelSpreadSheetWorkBookFile(File file) {
         try {
             this.file = file;
-            this.inputStream = new FileInputStream(file);
+            FileInputStream inputStream = new FileInputStream(file);
             this.workbook = new XSSFWorkbook(inputStream);
         } catch (IOException e) {
             throw new Error(e);
@@ -52,7 +51,11 @@ public class ExcelSpreadSheetWorkBookFile implements Closeable, ExcelSpreadSheet
      */
     @Override
     public void close() {
-        IOUtils.closeQuietly(inputStream);
+        try {
+            IOUtils.closeQuietly(new FileInputStream(getFile()));
+        } catch (FileNotFoundException e) {
+            throw new Error(e);
+        }
     }
 
 
