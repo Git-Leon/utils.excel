@@ -5,11 +5,11 @@ import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import java.io.File;
 
 
-public class CSVToExcelConverter {
+public class CSVToExcelGradesConverter {
     private File source;
     private File destination;
 
-    public CSVToExcelConverter(File csvSource, File csvDestination) {
+    public CSVToExcelGradesConverter(File csvSource, File csvDestination) {
         this.source = csvSource;
         this.destination = csvDestination;
     }
