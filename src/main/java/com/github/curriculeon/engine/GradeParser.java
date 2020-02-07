@@ -1,11 +1,10 @@
 package com.github.curriculeon.engine;
 
+import com.github.curriculeon.engine.csv.CSVSanitizer;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import org.apache.poi.ss.usermodel.Sheet;
-
-import java.io.File;
 
 /**
  * @author leonhunter

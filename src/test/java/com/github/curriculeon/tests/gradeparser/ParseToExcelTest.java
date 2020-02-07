@@ -1,6 +1,6 @@
 package com.github.curriculeon.tests.gradeparser;
 
-import com.github.curriculeon.engine.CSVSanitizer;
+import com.github.curriculeon.engine.csv.CSVSanitizer;
 import com.github.curriculeon.engine.GradeParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.io.DirectoryReference;

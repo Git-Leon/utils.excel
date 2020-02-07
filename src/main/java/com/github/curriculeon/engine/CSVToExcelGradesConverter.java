@@ -1,5 +1,6 @@
 package com.github.curriculeon.engine;
 
+import com.github.curriculeon.engine.csv.CSVSanitizer;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 
 import java.io.File;
