@@ -17,11 +17,7 @@ public class GetRowTest {
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(spreadSheetFile);
         for (ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
             ExcelSpreadSheetRow row = spreadSheet.getRow(0);
-            Iterator<Cell> iterator = row.iterator();
-            for (int i = 0; iterator.hasNext(); i++) {
-                Cell cell = iterator.next();
-                System.out.println(cell.getStringCellValue());
-            }
+            System.out.println(row);
         }
         excelSpreadSheetWorkBook.close();
     }

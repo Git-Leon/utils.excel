@@ -39,4 +39,16 @@ public class ExcelSpreadSheetRow extends ExcelSpreadSheetTableDataArray {
     public Integer getNumberOfColumns() {
         return sheet.getRow(getDimensionIndex()).getPhysicalNumberOfCells();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Cell cell : this) {
+            sb.append(String.format("[ %s ]", CellTypeAdapter.getCellValue(cell)));
+        }
+        return sb
+                .toString()
+                .replaceAll("\n", "")
+                .concat("\n");
+    }
 }

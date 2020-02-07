@@ -25,13 +25,14 @@ import java.util.List;
  */
 public class CSVSanitizer {
     private final CSVWriter writer;
+    private final CSVInterpreter csvInterpreter;
     private List<List<String>> rows;
 
     public CSVSanitizer(File source, File destination) {
         try {
-            CSVReader reader = new CSVReader(new FileReader(source.getAbsolutePath()));
+            this.csvInterpreter = new CSVInterpreter(source);
+            this.rows = csvInterpreter.getRows();
             this.writer = new CSVWriter(new FileWriter(destination.getAbsolutePath()));
-            this.rows = normalize(reader.readAll());
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -43,39 +44,16 @@ public class CSVSanitizer {
         return rows;
     }
 
-
-
-    public List<String> getRow(Integer columnNumber) {
-        return rows.get(columnNumber);
-    }
-
-    public List<String> getColumn(Integer columnNumber) {
-        return transpose(rows).get(columnNumber);
-    }
-
     public void write() {
         writer.writeAll(standardize());
     }
 
-    private List<List<String>> normalize(List<String[]> rows) {
-        return Transposer.normalize(rows);
-    }
-
     private List<String[]> standardize() {
         List<String[]> result = new ArrayList<>();
-        for (List<String> column : rows) {
+        for (List<String> column : csvInterpreter.getRows()) {
             result.add(column.toArray(new String[0]));
         }
         return result;
-    }
-
-    private <T> List<List<T>> transpose(List<List<T>> table) {
-        Transposer transposer = new Transposer<>(table);
-        return transposer.transpose();
-    }
-
-    public List<List<String>> getRows() {
-        return rows;
     }
 
     public List<List<Cell>> parseToSheet(Sheet newSheet) {

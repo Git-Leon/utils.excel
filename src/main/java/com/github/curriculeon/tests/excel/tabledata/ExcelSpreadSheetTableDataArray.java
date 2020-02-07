@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheetTableData {
     protected final Sheet sheet;
@@ -32,7 +33,10 @@ abstract public class ExcelSpreadSheetTableDataArray implements ExcelSpreadSheet
 
     @Override
     public Iterator<Cell> iterator() {
-        return getData().iterator();
+        return getData()
+                .stream()
+                .filter(Objects::nonNull)
+                .iterator();
     }
 
     @Override

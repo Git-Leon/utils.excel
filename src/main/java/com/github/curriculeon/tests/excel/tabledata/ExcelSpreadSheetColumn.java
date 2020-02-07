@@ -42,4 +42,13 @@ public class ExcelSpreadSheetColumn extends ExcelSpreadSheetTableDataArray {
                 .findFirst()
                 .get();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Cell cell : this) {
+            sb.append(String.format("\n[ %s ]", CellTypeAdapter.getCellValue(cell)));
+        }
+        return sb.toString();
+    }
 }
