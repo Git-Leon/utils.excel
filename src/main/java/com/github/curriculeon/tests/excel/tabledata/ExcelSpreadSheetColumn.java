@@ -1,10 +1,14 @@
 package com.github.curriculeon.tests.excel.tabledata;
 
+import com.aspose.cells.ChartCollection;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,6 +19,21 @@ public class ExcelSpreadSheetColumn extends AbstractExcelSpreadSheetTableDataArr
 
     public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
         super(sheet, columnNumber, data);
+    }
+
+    @Override
+    public List<Cell> getData() {
+        List<Cell> list = new ArrayList<>();
+        for (int rowIndex = 0; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+            Row row = sheet.getRow(rowIndex);
+            if (row != null) {
+                Cell cell = row.getCell(getDimensionIndex());
+                if (cell != null) {
+                    list.add(cell);
+                }
+            }
+        }
+        return list;
     }
 
     /**

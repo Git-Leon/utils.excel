@@ -21,7 +21,7 @@ public class ExcelSpreadSheet implements ExcelSpreadSheetInterface {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        getRows().forEach(r -> sb.append(r.toString()));
+        getRows().forEach(row -> sb.append(row.toString()));
         return sb.toString();
     }
 }

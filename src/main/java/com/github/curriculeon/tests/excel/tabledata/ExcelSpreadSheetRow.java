@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,6 +17,15 @@ import java.util.List;
 public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray {
     public ExcelSpreadSheetRow(Sheet sheet, Integer rowNumber, List<Cell> data) {
         super(sheet, rowNumber, data);
+    }
+
+
+    @Override
+    public List<Cell> getData() {
+        final Iterator<Cell> iterator = getRow().cellIterator();
+        final List<Cell> list = new ArrayList<>();
+        iterator.forEachRemaining(list::add);
+        return list;
     }
 
     public Row getRow() {
@@ -30,7 +41,7 @@ public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray 
      * @return the cell at this position, otherwise create a new cell at this position
      */
     public Cell getCell(int columnNumber) {
-        return find(cell -> cell.getRowIndex() == columnNumber).orElse(sheet
+        return find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
                 .getRow(getDimensionIndex())
                 .createCell(columnNumber));
     }

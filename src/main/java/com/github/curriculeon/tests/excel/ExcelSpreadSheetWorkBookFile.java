@@ -46,4 +46,9 @@ public class ExcelSpreadSheetWorkBookFile implements ExcelSpreadSheetWorkBookFil
     public void finalize() {
         close();
     }
+
+    @Override
+    public String toString() {
+        return getExcelSpreadSheets().toString();
+    }
 }

@@ -193,7 +193,13 @@ public interface ExcelSpreadSheetInterface {
     }
 
     default void addRows(List<List<String>> rows) {
-        // TODO
+        Sheet sheet = getSheet();
+        for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
+            List<String> row = rows.get(rowNumber);
+            List<Cell> cellData = CellTypeAdapter.toCellList(sheet, row);
+            ExcelSpreadSheetRow excelSpreadSheetRow = new ExcelSpreadSheetRow(sheet, rowNumber, cellData);
+            addRow(excelSpreadSheetRow, rowNumber);
+        }
     }
 
     default void addColumns(List<String>... columns) {
@@ -201,9 +207,12 @@ public interface ExcelSpreadSheetInterface {
     }
 
     default void addColumns(List<List<String>> columns) {
-        for (int i = 0; i < columns.size(); i++) {
-            List<String> column = columns.get(i);
-            addColumn(new ExcelSpreadSheetColumn(getSheet(), i, CellTypeAdapter.toCellList(getSheet(), column)), i);
+        Sheet sheet = getSheet();
+        for (int columnNumber = 0; columnNumber < columns.size(); columnNumber++) {
+            List<String> column = columns.get(columnNumber);
+            List<Cell> cellData = CellTypeAdapter.toCellList(sheet, column);
+            ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnNumber, cellData);
+            addColumn(excelSpreadSheetColumn, columnNumber);
         }
     }
 
@@ -215,7 +224,6 @@ public interface ExcelSpreadSheetInterface {
         }
     }
 
-
     default void addColumn(ExcelSpreadSheetColumn column, int destinationColumnNumber) {
         for (Cell cell : column) {
             addCell(cell, cell.getRowIndex(), destinationColumnNumber);
@@ -225,7 +233,7 @@ public interface ExcelSpreadSheetInterface {
 
     default void addCell(Cell cellToClone, int row, int column) {
         ExcelSpreadSheetRow excelSpreadSheetRow = getRow(row);
-        String dataToClone = cellToClone.getStringCellValue();
+        String dataToClone = CellTypeAdapter.getCellValue(cellToClone);
         Cell cellToPopulate = excelSpreadSheetRow.getCell(column);
         cellToPopulate.setCellValue(dataToClone);
     }

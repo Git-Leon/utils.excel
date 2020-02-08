@@ -19,7 +19,7 @@ public class CreateRows {
         // given
         File file = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(new StringBuilder()
                 .append("test")
-                .append(Long.toHexString(System.nanoTime()))
+                .append(System.nanoTime())
                 .append(".xlsx")
                 .toString());
         if (!file.exists()) {
@@ -33,10 +33,11 @@ public class CreateRows {
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
         sheet.addRows(
                 Arrays.asList("ID", "Age"),
-                Arrays.asList("0", "4"),
-                Arrays.asList("1", "5"),
-                Arrays.asList("2", "6"),
-                Arrays.asList("3", "7"));
+                Arrays.asList("a", "4"),
+                Arrays.asList("b", "5"),
+                Arrays.asList("c", "6"),
+                Arrays.asList("d", "7"));
+        System.out.println(workBookFile);
         workBookFile.flush();
     }
 }
