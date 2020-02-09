@@ -25,7 +25,7 @@ public class CreateRows {
                 Arrays.asList("ID", "Age"),
                 Arrays.asList("a", "4"),
                 Arrays.asList("b", "5"),
-                Arrays.asList("c", "6"),z
+                Arrays.asList("c", "6"),
                 Arrays.asList("d", "7"));
         workBookFile.flush();
 
@@ -53,10 +53,11 @@ public class CreateRows {
 
 
         // compare second column data
-        Assert.assertEquals("Age", actualRow0Column0);
-        Assert.assertEquals("4", actualRow1Column0);
-        Assert.assertEquals("5", actualRow2Column0);
-        Assert.assertEquals("6", actualRow3Column0);
-        Assert.assertEquals("7", actualRow4Column0);
+        Assert.assertEquals("Age", actualRow0Column1);
+        Assert.assertEquals("4", actualRow1Column1);
+        Assert.assertEquals("5", actualRow2Column1);
+        Assert.assertEquals("6", actualRow3Column1);
+        Assert.assertEquals("7", actualRow4Column1);
     }
 }
+z
