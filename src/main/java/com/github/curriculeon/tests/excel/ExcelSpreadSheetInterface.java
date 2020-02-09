@@ -99,7 +99,7 @@ public interface ExcelSpreadSheetInterface {
             sheetRow = getSheet().createRow(rowNumber);
         }
         sheetRow.forEach(list::add);
-        return new ExcelSpreadSheetRow(getSheet(), rowNumber, list);
+        return new ExcelSpreadSheetRow(getSheet(), rowNumber);
     }
 
 
@@ -141,7 +141,7 @@ public interface ExcelSpreadSheetInterface {
                 Cell cell = row.getCell(colIndex);
                 columnData.add(cell);
             }
-            result.add(new ExcelSpreadSheetColumn(getSheet(), colIndex, columnData));
+            result.add(new ExcelSpreadSheetColumn(getSheet(), colIndex));
         }
         return result;
     }
@@ -195,9 +195,7 @@ public interface ExcelSpreadSheetInterface {
     default void addRows(List<List<String>> rows) {
         Sheet sheet = getSheet();
         for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
-            List<String> row = rows.get(rowNumber);
-            List<Cell> cellData = CellTypeAdapter.toCellList(sheet, row);
-            ExcelSpreadSheetRow excelSpreadSheetRow = new ExcelSpreadSheetRow(sheet, rowNumber, cellData);
+            ExcelSpreadSheetRow excelSpreadSheetRow = new ExcelSpreadSheetRow(sheet, rowNumber);
             addRow(excelSpreadSheetRow, rowNumber);
         }
     }
@@ -211,7 +209,7 @@ public interface ExcelSpreadSheetInterface {
         for (int columnNumber = 0; columnNumber < columns.size(); columnNumber++) {
             List<String> column = columns.get(columnNumber);
             List<Cell> cellData = CellTypeAdapter.toCellList(sheet, column);
-            ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnNumber, cellData);
+            ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnNumber);
             addColumn(excelSpreadSheetColumn, columnNumber);
         }
     }

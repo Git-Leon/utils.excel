@@ -2,11 +2,7 @@ package com.github.curriculeon.tests.excel.excelspreadsheetworkbook.createworkbo
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import com.github.curriculeon.utils.io.DirectoryReference;
-import org.apache.commons.lang3.builder.ToStringExclude;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Test;
 
 import java.io.File;

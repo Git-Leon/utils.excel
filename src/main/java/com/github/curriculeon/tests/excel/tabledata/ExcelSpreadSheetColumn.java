@@ -1,6 +1,5 @@
 package com.github.curriculeon.tests.excel.tabledata;
 
-import com.aspose.cells.ChartCollection;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
@@ -8,7 +7,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,8 +15,8 @@ import java.util.List;
  */
 public class ExcelSpreadSheetColumn extends AbstractExcelSpreadSheetTableDataArray {
 
-    public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber, List<Cell> data) {
-        super(sheet, columnNumber, data);
+    public ExcelSpreadSheetColumn(Sheet sheet, Integer columnNumber) {
+        super(sheet, columnNumber);
     }
 
     @Override

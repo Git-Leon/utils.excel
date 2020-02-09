@@ -3,14 +3,13 @@ package com.github.curriculeon.tests.excel.excelspreadsheetworkbook;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetFileFactory;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
-        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
         Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
 
         // when

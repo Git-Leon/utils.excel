@@ -12,7 +12,7 @@ import org.junit.Test;
 public class GetExcelSpreadSheetByNameTest {
     private void test(String sheetName) {
         // given
-        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
         Sheet expected = workBook.createExcelSpreadSheetByName(sheetName).getSheet();
 
         // when

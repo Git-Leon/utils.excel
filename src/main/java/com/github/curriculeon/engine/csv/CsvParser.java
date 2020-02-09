@@ -2,7 +2,6 @@ package com.github.curriculeon.engine.csv;
 
 import com.github.curriculeon.engine.csv.student.Student;
 import com.github.curriculeon.engine.csv.student.StudentParser;
-import com.github.curriculeon.engine.csv.student.StudentValidator;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
 import com.opencsv.CSVWriter;
@@ -81,7 +80,7 @@ public class CsvParser {
                 cell.setCellValue(cellValue);
                 cellListData.add(cell);
             }
-            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber, cellListData);
+            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber);
             newExcelSpreadSheet.addRow(row, row.getDimensionIndex());
         }
     }

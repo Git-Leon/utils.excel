@@ -15,10 +15,9 @@ import java.util.List;
  * @created 01/25/2020 - 2:00 AM
  */
 public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray {
-    public ExcelSpreadSheetRow(Sheet sheet, Integer rowNumber, List<Cell> data) {
-        super(sheet, rowNumber, data);
+    public ExcelSpreadSheetRow(Sheet sheet, Integer rowNumber) {
+        super(sheet, rowNumber);
     }
-
 
     @Override
     public List<Cell> getData() {
@@ -57,7 +56,7 @@ public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray 
     }
 
     public Integer getNumberOfColumns() {
-        return sheet.getRow(getDimensionIndex()).getPhysicalNumberOfCells();
+        return getRow().getPhysicalNumberOfCells();
     }
 
     @Override
