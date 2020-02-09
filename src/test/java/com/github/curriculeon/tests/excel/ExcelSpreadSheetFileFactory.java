@@ -24,7 +24,7 @@ public class ExcelSpreadSheetFileFactory {
                         .toString()));
     }
 
-    public ExcelSpreadSheetWorkBookFile getNewExcelWorkBookFile() {
+    public static ExcelSpreadSheetWorkBookFile getNewExcelWorkBookFile() {
         // given
         File file = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(new StringBuilder()
                 .append("test")
