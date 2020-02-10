@@ -1,15 +1,14 @@
-package com.github.curriculeon.engine;
+package com.github.curriculeon.engine.csv;
 
+import com.github.curriculeon.engine.csv.student.Student;
+import com.github.curriculeon.engine.csv.student.StudentParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.utils.Transposer;
-import com.opencsv.CSVReader;
+import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.opencsv.CSVWriter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,65 +22,55 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
-public class CSVSanitizer {
+public class CsvParser {
     private final CSVWriter writer;
+    private final CsvReader csvReader;
     private List<List<String>> rows;
 
-    public CSVSanitizer(File source, File destination) {
+    public CsvParser(File source, File destination) {
         try {
-            CSVReader reader = new CSVReader(new FileReader(source.getAbsolutePath()));
+            this.csvReader = new CsvReader(source);
+            this.rows = csvReader.getRows();
             this.writer = new CSVWriter(new FileWriter(destination.getAbsolutePath()));
-            this.rows = normalize(reader.readAll());
         } catch (IOException e) {
             throw new Error(e);
         }
     }
 
     // TODO
+    // (Column1: `Student`).delete()
+    // (Column2: `ID`).shiftToColumn(1)
+    // (Column3: `SIS User ID`).delete()
+    // (Column4: `SIS Login ID`).shiftToColumn(2)
+    // (Column5: `Section`).delete()
+    // (Column6:
     public List<List<String>> parseRows() {
+        System.out.println(getStudents());
         write();
         return rows;
     }
 
 
-
-    public List<String> getRow(Integer columnNumber) {
-        return rows.get(columnNumber);
+    public List<Student> getStudents() {
+        return new StudentParser(csvReader.getRows()).getStudents();
     }
 
-    public List<String> getColumn(Integer columnNumber) {
-        return transpose(rows).get(columnNumber);
-    }
 
     public void write() {
         writer.writeAll(standardize());
     }
 
-    private List<List<String>> normalize(List<String[]> rows) {
-        return Transposer.normalize(rows);
-    }
-
     private List<String[]> standardize() {
         List<String[]> result = new ArrayList<>();
-        for (List<String> column : rows) {
+        for (List<String> column : csvReader.getRows()) {
             result.add(column.toArray(new String[0]));
         }
         return result;
     }
 
-    private <T> List<List<T>> transpose(List<List<T>> table) {
-        Transposer transposer = new Transposer<>(table);
-        return transposer.transpose();
-    }
-
-    public List<List<String>> getRows() {
-        return rows;
-    }
-
-    public List<List<Cell>> parseToSheet(Sheet newSheet) {
+    public void parseToSheet(Sheet newSheet) {
         ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(newSheet);
         List<List<String>> rows = this.parseRows();
-        List<List<Cell>> cellList = new ArrayList<>();
         for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
             List<String> stringListData = rows.get(rowNumber);
             List<Cell> cellListData = new ArrayList<>();
@@ -91,10 +80,9 @@ public class CSVSanitizer {
                 cell.setCellValue(cellValue);
                 cellListData.add(cell);
             }
-            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber, cellListData);
+            ExcelSpreadSheetRow row = new ExcelSpreadSheetRow(newSheet, rowNumber);
             newExcelSpreadSheet.addRow(row, row.getDimensionIndex());
         }
-        return cellList;
     }
 }
 

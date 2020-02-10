@@ -9,7 +9,7 @@ import org.junit.Test;
 public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
-        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getMockData();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
         Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
 
         // when
@@ -23,9 +23,20 @@ public class CreateNewSheetTest {
     }
 
 
+    private void test(int stringLength) {
+        test(new String(new char[stringLength]).replaceAll("\0", "_"));
+    }
+
     @Test
-    public void test1() {
+    public void testLiteral() {
         test("The quick brown fox jumps over the lazy dog");
+    }
+
+    @Test
+    public void testVariable() {
+        for (int i = 1; i < 32; i++) {
+            test(i);
+        }
     }
 
 

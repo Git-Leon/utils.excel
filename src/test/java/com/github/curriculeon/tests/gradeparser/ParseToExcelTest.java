@@ -1,6 +1,6 @@
 package com.github.curriculeon.tests.gradeparser;
 
-import com.github.curriculeon.engine.CSVSanitizer;
+import com.github.curriculeon.engine.csv.CsvParser;
 import com.github.curriculeon.engine.GradeParser;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.utils.io.DirectoryReference;
@@ -36,10 +36,10 @@ public class ParseToExcelTest {
     public void test() {
         FileWrapper csvSource = getCsvSource();
         File csvDestination = getCsvDestination();
-        CSVSanitizer csvSanitizer = new CSVSanitizer(csvSource.getFile(), csvDestination);
+        CsvParser csvParser = new CsvParser(csvSource.getFile(), csvDestination);
         File spreadSheetFileSource = resourceDir.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
         ExcelSpreadSheetWorkBookFile excelSource = new ExcelSpreadSheetWorkBookFile(spreadSheetFileSource);
-        GradeParser gradeParser = new GradeParser(excelSource, csvSanitizer);
+        GradeParser gradeParser = new GradeParser(excelSource, csvParser);
         gradeParser.parseToExcel();
         ExcelSpreadSheetWorkBookFile excelDestination = gradeParser.getExcelSpreadSheetWorkBookDestination();
     }

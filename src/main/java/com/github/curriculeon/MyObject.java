@@ -1,13 +1,12 @@
 package com.github.curriculeon;
 
-import com.github.curriculeon.engine.CSVToExcelConverter;
+import com.github.curriculeon.engine.CsvToExcelGradesConverter;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
-import com.github.git_leon.collectionutils.maps.DescriptiveMap;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
@@ -25,8 +24,8 @@ public class MyObject implements Runnable {
         File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
         File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
 
-        CSVToExcelConverter csvToExcelConverter = new CSVToExcelConverter(source, destination);
-        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelConverter.parseToExcel(excelFileToClone);
+        CsvToExcelGradesConverter csvToExcelGradesConverter = new CsvToExcelGradesConverter(source, destination);
+        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();
@@ -44,6 +43,8 @@ public class MyObject implements Runnable {
             mostLikelyExcelSpreadSheet.addColumn(mostLikelyColumn, lastColumnIndex);
         }
         destinationWorkbook.flush();
-        System.out.println(new DescriptiveMap<>(csvHeaderToExcelSpreadSheetMap));
+        System.out.println(csvHeaderToExcelSpreadSheetMap
+        .toString()
+        .replaceAll("\n\n\n", ""));
     }
 }
