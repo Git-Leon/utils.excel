@@ -1,5 +1,6 @@
 package com.github.curriculeon.tests.excel;
 
+import com.github.curriculeon.tests.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
 import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
@@ -28,16 +29,16 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-    default Cell getCell(Integer row, Integer column) {
+    default ExcelSpreadSheetCell getCell(Integer row, Integer column) {
         return getCell(row, getColumnName(column));
     }
 
 
-    default Cell getCell(Integer row, String column) {
+    default ExcelSpreadSheetCell getCell(Integer row, String column) {
         ExcelSpreadSheetRow sheetRow = getRow(row);
         int columnNumber = getColumnNumber(column);
         Cell cell = sheetRow.getCell(columnNumber);
-        return cell;
+        return new ExcelSpreadSheetCell(cell);
     }
 
 
@@ -201,8 +202,6 @@ public interface ExcelSpreadSheetInterface {
     default void addColumns(List<List<String>> columns) {
         Sheet sheet = getSheet();
         for (int columnNumber = 0; columnNumber < columns.size(); columnNumber++) {
-            List<String> column = columns.get(columnNumber);
-            List<Cell> cellData = CellTypeAdapter.toCellList(sheet, column);
             ExcelSpreadSheetColumn excelSpreadSheetColumn = new ExcelSpreadSheetColumn(sheet, columnNumber);
             addColumn(excelSpreadSheetColumn, columnNumber);
         }
