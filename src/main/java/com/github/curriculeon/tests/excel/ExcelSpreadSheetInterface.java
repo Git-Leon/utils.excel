@@ -93,7 +93,8 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-    default ExcelSpreadSheetRow getRow(Integer rowNumber) { ;
+    default ExcelSpreadSheetRow getRow(Integer rowNumber) {
+        ;
         return new ExcelSpreadSheetRow(getSheet(), rowNumber);
     }
 
@@ -191,6 +192,11 @@ public interface ExcelSpreadSheetInterface {
         Sheet sheet = getSheet();
         for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
             ExcelSpreadSheetRow excelSpreadSheetRow = new ExcelSpreadSheetRow(sheet, rowNumber);
+            List<String> row = rows.get(rowNumber);
+            for (int columnNumber = 0; columnNumber < row.size(); columnNumber++) {
+                String cellData = row.get(columnNumber);
+                excelSpreadSheetRow.setValue(cellData, columnNumber);
+            }
             addRow(excelSpreadSheetRow, rowNumber);
         }
     }
@@ -225,8 +231,7 @@ public interface ExcelSpreadSheetInterface {
     default void addCell(Cell cellToClone, int row, int column) {
         ExcelSpreadSheetRow excelSpreadSheetRow = getRow(row);
         String dataToClone = CellTypeAdapter.getCellValue(cellToClone);
-        Cell cellToPopulate = excelSpreadSheetRow.getCell(column);
-        cellToPopulate.setCellValue(dataToClone);
+        excelSpreadSheetRow.getCell(column).setCellValue(dataToClone);
     }
 
 
