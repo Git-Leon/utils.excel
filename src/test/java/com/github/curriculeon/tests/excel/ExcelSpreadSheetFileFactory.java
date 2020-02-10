@@ -38,6 +38,7 @@ public class ExcelSpreadSheetFileFactory {
                 throw new Error(e);
             }
         }
+        System.err.printf("Creating workbook [ %s ]\n", file.getName());
         ExcelSpreadSheetWorkBookFile workBookFile = new ExcelSpreadSheetWorkBookFile(file);
         return workBookFile;
     }

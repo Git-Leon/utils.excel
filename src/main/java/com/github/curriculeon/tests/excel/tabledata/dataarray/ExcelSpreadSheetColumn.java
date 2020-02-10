@@ -1,6 +1,7 @@
 package com.github.curriculeon.tests.excel.tabledata.dataarray;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -39,10 +40,11 @@ public class ExcelSpreadSheetColumn extends AbstractExcelSpreadSheetTableDataArr
      * @return the cell at this position, otherwise create a new cell at this position
      */
     @Override
-    public Cell getCell(int rowNumber) {
-        return find(cell -> cell.getRowIndex() == rowNumber).orElse(sheet
-                .getRow(getDimensionIndex())
-                .createCell(rowNumber));
+    public ExcelSpreadSheetCell getCell(int rowNumber) {
+        return new ExcelSpreadSheetCell(
+                find(cell -> cell.getRowIndex() == rowNumber).orElse(sheet
+                        .getRow(getDimensionIndex())
+                        .createCell(rowNumber)));
     }
 
 

@@ -1,6 +1,7 @@
 package com.github.curriculeon.tests.excel.tabledata.dataarray;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
+import com.github.curriculeon.tests.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -28,8 +29,8 @@ public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray 
     }
 
     public Row getRow() {
-        Row row =  sheet.getRow(getDimensionIndex());
-        if(row == null) {
+        Row row = sheet.getRow(getDimensionIndex());
+        if (row == null) {
             row = sheet.createRow(getDimensionIndex());
         }
         return row;
@@ -39,10 +40,17 @@ public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray 
      * @param columnNumber - the column of this row that you would like to fetch data from
      * @return the cell at this position, otherwise create a new cell at this position
      */
-    public Cell getCell(int columnNumber) {
-        return find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
-                .getRow(getDimensionIndex())
-                .createCell(columnNumber));
+    @Override
+    public ExcelSpreadSheetCell getCell(int columnNumber) {
+        return new ExcelSpreadSheetCell(
+                find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
+                        .getRow(getDimensionIndex())
+                        .createCell(columnNumber)));
+    }
+
+    @Override
+    public void setValue(String value, Integer column) {
+        this.getCell(column).setValue(value);
     }
 
     public Cell getCellByColumnHeader(String columnHeader) {

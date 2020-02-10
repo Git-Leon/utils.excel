@@ -1,5 +1,6 @@
 package com.github.curriculeon.tests.excel.tabledata.dataarray;
 
+import com.github.curriculeon.tests.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.*;
 
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public interface ExcelSpreadSheetTableDataArrayInterface extends Iterable<Cell> {
     List<Cell> getData();
 
-    Cell getCell(int columnNumber);
+    ExcelSpreadSheetCell getCell(int columnNumber);
 
     default Optional<Cell> find(Predicate<Cell> filterClause) {
         return getData()
@@ -36,6 +37,10 @@ public interface ExcelSpreadSheetTableDataArrayInterface extends Iterable<Cell> 
 
     default String getHeader() {
         return getCellData(0);
+    }
+
+    default void setValue(String value, Integer dimension) {
+        getCell(dimension).setValue(value);
     }
 
     default void setValue(double var1) {
