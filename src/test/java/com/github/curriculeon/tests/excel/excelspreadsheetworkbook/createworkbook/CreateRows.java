@@ -68,7 +68,7 @@ public class CreateRows {
         String actualRow2Column0 = sheet.getCell(2, 0).getCellValue();
         Assert.assertEquals("1", actualRow2Column0);
 
-        String actualRow3Column0 = sheet.getCell(2, 0).getCellValue();
+        String actualRow3Column0 = sheet.getCell(3, 0).getCellValue();
         Assert.assertEquals("2", actualRow3Column0);
 
         // Then :
@@ -82,23 +82,23 @@ public class CreateRows {
         String actualRow2Column1 = sheet.getCell(2, 1).getCellValue();
         Assert.assertEquals("98", actualRow2Column1);
 
-        String actualRow3Column1 = sheet.getCell(2, 1).getCellValue();
+        String actualRow3Column1 = sheet.getCell(3, 1).getCellValue();
         Assert.assertEquals("97", actualRow3Column1);
 
 
         // Then :
         // fetch third column data
         String actualRow0Column2 = sheet.getCell(0, 2).getCellValue();
-        Assert.assertEquals("Name", actualRow0Column1);
+        Assert.assertEquals("Name", actualRow0Column2);
 
         String actualRow1Column2 = sheet.getCell(1, 2).getCellValue();
-        Assert.assertEquals("Leon", actualRow1Column1);
+        Assert.assertEquals("Leon", actualRow1Column2);
 
         String actualRow2Column2 = sheet.getCell(2, 2).getCellValue();
-        Assert.assertEquals("Christopher", actualRow2Column1);
+        Assert.assertEquals("Christopher", actualRow2Column2);
 
-        String actualRow3Column2 = sheet.getCell(2, 2).getCellValue();
-        Assert.assertEquals("Hunter", actualRow3Column1);
+        String actualRow3Column2 = sheet.getCell(3, 2).getCellValue();
+        Assert.assertEquals("Hunter", actualRow3Column2);
     }
 
 
