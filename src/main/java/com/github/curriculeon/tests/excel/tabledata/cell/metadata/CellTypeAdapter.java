@@ -1,4 +1,4 @@
-package com.github.curriculeon.tests.excel.tabledata.metadata;
+package com.github.curriculeon.tests.excel.tabledata.cell.metadata;
 
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import org.apache.poi.ss.usermodel.*;

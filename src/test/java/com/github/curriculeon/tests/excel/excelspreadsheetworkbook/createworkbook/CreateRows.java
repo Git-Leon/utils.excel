@@ -3,7 +3,7 @@ package com.github.curriculeon.tests.excel.excelspreadsheetworkbook.createworkbo
 import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetFileFactory;
 import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
+import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
 import org.junit.Assert;
 import org.junit.Test;
 

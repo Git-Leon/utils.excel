@@ -1,8 +1,8 @@
 package com.github.curriculeon.tests.excel;
 
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
+import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
+import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetRow;
+import com.github.curriculeon.tests.excel.tabledata.cell.metadata.CellTypeAdapter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;

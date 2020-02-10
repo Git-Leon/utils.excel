@@ -1,4 +1,4 @@
-package com.github.curriculeon.tests.excel.tabledata;
+package com.github.curriculeon.tests.excel.tabledata.dataarray;
 
 import org.apache.poi.ss.usermodel.Sheet;
 

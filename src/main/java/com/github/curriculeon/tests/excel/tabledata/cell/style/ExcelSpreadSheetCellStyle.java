@@ -1,4 +1,4 @@
-package com.github.curriculeon.tests.excel.tabledata.style;
+package com.github.curriculeon.tests.excel.tabledata.cell.style;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
