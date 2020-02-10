@@ -92,13 +92,7 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-    default ExcelSpreadSheetRow getRow(Integer rowNumber) {
-        List<Cell> list = new ArrayList<>();
-        Row sheetRow = getSheet().getRow(rowNumber);
-        if (sheetRow == null) {
-            sheetRow = getSheet().createRow(rowNumber);
-        }
-        sheetRow.forEach(list::add);
+    default ExcelSpreadSheetRow getRow(Integer rowNumber) { ;
         return new ExcelSpreadSheetRow(getSheet(), rowNumber);
     }
 
