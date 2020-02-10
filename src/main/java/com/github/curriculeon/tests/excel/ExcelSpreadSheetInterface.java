@@ -33,7 +33,7 @@ public interface ExcelSpreadSheetInterface {
         for (Row row : getSheet()) {
             for (Cell cell : row) {
                 Boolean isCorrectRow = rowNumber.equals(cell.getRowIndex());
-                Boolean isCorrectColumn = rowNumber.equals(cell.getColumnIndex());
+                Boolean isCorrectColumn = columnNumber.equals(cell.getColumnIndex());
                 Boolean isCorrectCell = isCorrectRow && isCorrectColumn;
                 if (isCorrectCell) {
                     return new ExcelSpreadSheetCell(cell);
