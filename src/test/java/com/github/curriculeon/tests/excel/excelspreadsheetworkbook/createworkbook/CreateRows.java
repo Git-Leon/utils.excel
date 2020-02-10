@@ -39,7 +39,7 @@ public class CreateRows {
         String actualRow2Column0 = sheet.getCell(2, 0).getCellValue();
         Assert.assertEquals("1", actualRow2Column0);
 
-        String actualRow3Column0 = sheet.getCell(2, 0).getCellValue();
+        String actualRow3Column0 = sheet.getCell(3, 0).getCellValue();
         Assert.assertEquals("2", actualRow3Column0);
     }
 

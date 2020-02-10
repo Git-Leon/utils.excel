@@ -94,7 +94,6 @@ public interface ExcelSpreadSheetInterface {
 
 
     default ExcelSpreadSheetRow getRow(Integer rowNumber) {
-        ;
         return new ExcelSpreadSheetRow(getSheet(), rowNumber);
     }
 
@@ -106,7 +105,6 @@ public interface ExcelSpreadSheetInterface {
             res.append((char) (index + 'A'));
             columnNumber = (columnNumber - 1) / 26;
         }
-
         return res.reverse().toString();
     }
 
