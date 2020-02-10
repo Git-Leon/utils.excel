@@ -29,16 +29,20 @@ public interface ExcelSpreadSheetInterface {
     }
 
 
-    default ExcelSpreadSheetCell getCell(Integer row, Integer column) {
-        return getCell(row, getColumnName(column));
-    }
-
-
-    default ExcelSpreadSheetCell getCell(Integer row, String column) {
-        ExcelSpreadSheetRow sheetRow = getRow(row);
-        int columnNumber = getColumnNumber(column);
-        Cell cell = sheetRow.getCell(columnNumber);
-        return new ExcelSpreadSheetCell(cell);
+    default ExcelSpreadSheetCell getCell(Integer rowNumber, Integer columnNumber) {
+        for (Row row : getSheet()) {
+            for (Cell cell : row) {
+                Boolean isCorrectRow = rowNumber.equals(cell.getRowIndex());
+                Boolean isCorrectColumn = rowNumber.equals(cell.getColumnIndex());
+                Boolean isCorrectCell = isCorrectRow && isCorrectColumn;
+                if (isCorrectCell) {
+                    return new ExcelSpreadSheetCell(cell);
+                }
+            }
+        }
+        return new ExcelSpreadSheetCell(getSheet()
+                .createRow(rowNumber)
+                .createCell(columnNumber));
     }
 
 
