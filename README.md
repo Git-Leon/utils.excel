@@ -20,6 +20,9 @@
     * For example, if the application receives the grades as a `json`, it will have to convert the `json` to `csv`. The rest of the pipeline should remain untouched and still stable. 
 
 ## How to use
+* This application can be used by ...
 
 
 ### Future work
+* In the future, this application should use Canvas's API to make restful calls to pull data. This will better prepare the application for web integration.
+* The application should also have a front end web application that is easily accessible to internal staff who may need to report grades to clients.
