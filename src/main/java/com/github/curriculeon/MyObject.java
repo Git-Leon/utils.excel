@@ -8,33 +8,31 @@ import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.student.League;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MyObject implements Runnable {
     public void run() {
+        System.out.println(extractLeague("men-league.xlsx"));
     }
 
-    private void extractLeague(String fileName) {
+    private List<League> extractLeague(String fileName) {
+        List<League> result = new ArrayList<>();
         File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory(fileName);
         ExcelSpreadSheetWorkBookFile sourceWorkBookFile = new ExcelSpreadSheetWorkBookFile(source);
         ExcelSpreadSheet firstSheet = sourceWorkBookFile.getExcelSpreadSheetByIndex(0).get();
         for (ExcelSpreadSheetRow row : firstSheet.getRows()) {
-            League league = new League();
-            for (ExcelSpreadSheetCell cell : row
-                .getData()
-                .stream()
-                .map(ExcelSpreadSheetCell::new)
-                .collect(Collectors.toList())) {
-            }
+            ExcelSpreadSheetCell countryName  = row.getCell(0);
+            ExcelSpreadSheetCell leagueName  = row.getCell(1);
+            League league = new League(countryName.getCellValue(), leagueName.getCellValue(), System.nanoTime());
+            result.add(league);
         }
+        return result;
     }
 
     private void tryLater() {

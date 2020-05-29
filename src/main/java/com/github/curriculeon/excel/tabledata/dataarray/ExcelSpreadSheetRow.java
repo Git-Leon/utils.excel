@@ -42,10 +42,7 @@ public class ExcelSpreadSheetRow extends AbstractExcelSpreadSheetTableDataArray 
      */
     @Override
     public ExcelSpreadSheetCell getCell(int columnNumber) {
-        return new ExcelSpreadSheetCell(
-                find(cell -> cell.getColumnIndex() == columnNumber).orElse(sheet
-                        .getRow(getDimensionIndex())
-                        .createCell(columnNumber)));
+        return new ExcelSpreadSheetCell(getData().get(columnNumber));
     }
 
     @Override

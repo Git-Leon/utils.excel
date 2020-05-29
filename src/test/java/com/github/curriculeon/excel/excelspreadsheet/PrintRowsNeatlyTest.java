@@ -1,14 +1,9 @@
 package com.github.curriculeon.excel.excelspreadsheet;
 
-import com.github.curriculeon.excel.tabledata.cell.metadata.CellTypeAdapter;
-import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-<<<<<<< HEAD
-import com.github.curriculeon.tests.excel.tabledata.ExcelSpreadSheetRow;
-import com.github.curriculeon.tests.excel.tabledata.metadata.CellTypeAdapter;
-=======
->>>>>>> feat/dev
+import com.github.curriculeon.excel.tabledata.cell.metadata.CellTypeAdapter;
+import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
@@ -27,7 +22,7 @@ public class PrintRowsNeatlyTest {
         StringBuilder sb = new StringBuilder();
         for (ExcelSpreadSheet spreadSheet : excelSpreadSheetWorkBook) {
             for (ExcelSpreadSheetRow row : spreadSheet.getRows()) {
-                for(Cell cell : row) {
+                for (Cell cell : row) {
                     sb.append(String.format("[ %s ]", CellTypeAdapter.getCellValue(cell)));
                 }
                 sb.append("\n");
