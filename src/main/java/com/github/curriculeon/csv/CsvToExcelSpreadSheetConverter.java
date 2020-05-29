@@ -12,12 +12,10 @@ import java.io.File;
  */
 public class CsvToExcelSpreadSheetConverter {
     private final CsvParser csvParser;
-    private final ExcelSpreadSheetWorkBookFile excelSource;
-    private ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
+    private final ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
 
     public CsvToExcelSpreadSheetConverter(ExcelSpreadSheetWorkBookFile excelSource, File excelFileDestination, CsvParser csvParser) {
         this.csvParser = csvParser;
-        this.excelSource = excelSource;
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(excelFileDestination);
     }
 
