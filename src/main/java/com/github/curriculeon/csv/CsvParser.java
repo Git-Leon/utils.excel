@@ -1,7 +1,7 @@
-package com.github.curriculeon.engine.csv;
+package com.github.curriculeon.csv;
 
-import com.github.curriculeon.engine.csv.student.Student;
-import com.github.curriculeon.engine.csv.student.StudentParser;
+import com.github.curriculeon.csv.student.Student;
+import com.github.curriculeon.csv.student.StudentParser;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.opencsv.CSVWriter;

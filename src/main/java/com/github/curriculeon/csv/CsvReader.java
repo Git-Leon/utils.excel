@@ -1,4 +1,4 @@
-package com.github.curriculeon.engine.csv;
+package com.github.curriculeon.csv;
 
 import com.github.curriculeon.utils.Transposer;
 import com.opencsv.CSVReader;

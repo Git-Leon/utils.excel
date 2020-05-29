@@ -1,6 +1,5 @@
-package com.github.curriculeon.engine.csv;
+package com.github.curriculeon.csv;
 
-import com.github.curriculeon.engine.csv.CsvParser;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import org.apache.poi.ss.usermodel.Sheet;

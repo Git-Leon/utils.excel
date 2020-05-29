@@ -1,6 +1,5 @@
 package com.github.curriculeon;
 
-import com.github.curriculeon.engine.CsvToExcelGradesConverter;
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
