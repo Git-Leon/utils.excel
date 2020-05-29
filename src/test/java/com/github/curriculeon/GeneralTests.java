@@ -2,42 +2,22 @@ package com.github.curriculeon;
 
 import com.github.curriculeon.excel.ExcelSpreadSheet;
 import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
-import com.github.curriculeon.student.League;
-import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
-import org.apache.poi.ss.usermodel.Cell;
+import com.github.curriculeon.utils.io.DirectoryReference;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class MyObject implements Runnable {
-    public void run() {
-    }
-
-    private void extractLeague(String fileName) {
-        File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory(fileName);
-        ExcelSpreadSheetWorkBookFile sourceWorkBookFile = new ExcelSpreadSheetWorkBookFile(source);
-        ExcelSpreadSheet firstSheet = sourceWorkBookFile.getExcelSpreadSheetByIndex(0).get();
-        for (ExcelSpreadSheetRow row : firstSheet.getRows()) {
-            League league = new League();
-            for (ExcelSpreadSheetCell cell : row
-                .getData()
-                .stream()
-                .map(ExcelSpreadSheetCell::new)
-                .collect(Collectors.toList())) {
-            }
-        }
-    }
-
-    private void tryLater() {
+public class GeneralTests {
+    @Test
+    public void testRun() { // TODO
         File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("grades.csv");
         File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
         File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
