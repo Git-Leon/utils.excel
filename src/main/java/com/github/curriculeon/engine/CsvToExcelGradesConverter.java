@@ -1,7 +1,7 @@
 package com.github.curriculeon.engine;
 
 import com.github.curriculeon.engine.csv.CsvParser;
-import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 
 import java.io.File;
 

@@ -1,10 +1,10 @@
 package com.github.curriculeon;
 
 import com.github.curriculeon.engine.CsvToExcelGradesConverter;
-import com.github.curriculeon.tests.excel.ExcelSpreadSheet;
-import com.github.curriculeon.tests.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
-import com.github.curriculeon.tests.excel.tabledata.dataarray.ExcelSpreadSheetRow;
+import com.github.curriculeon.excel.ExcelSpreadSheet;
+import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
+import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
+import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
 import org.apache.poi.ss.usermodel.Sheet;
