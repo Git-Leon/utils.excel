@@ -1,4 +1,4 @@
-package com.github.curriculeon.csv.student;
+package com.github.curriculeon.student;
 
 /**
  * @author leonhunter

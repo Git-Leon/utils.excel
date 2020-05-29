@@ -1,4 +1,4 @@
-package com.github.curriculeon.csv.student;
+package com.github.curriculeon.student;
 
 import java.util.ArrayList;
 import java.util.List;
