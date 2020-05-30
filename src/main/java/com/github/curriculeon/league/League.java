@@ -57,9 +57,9 @@ public class League {
 
     public String getInsertionStatement() {
         return new StringBuilder()
-            .append("INSERT INTO obc.league(id, country, name) VALUES('")
+            .append("INSERT INTO obc.league(id, country, name, gender) VALUES(")
             .append(getId())
-            .append("','")
+            .append(",'")
             .append(getCountryName())
             .append("','")
             .append(getLeagueName())

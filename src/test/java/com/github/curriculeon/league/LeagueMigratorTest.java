@@ -9,7 +9,9 @@ import org.junit.Test;
 public class LeagueMigratorTest {
     @Test
     public void test() {
-        LeagueMigrator migrator = new LeagueMigrator("men-league.xlsx", "male");
-        System.out.println(migrator.getSqlQuery());
+        LeagueMigrator maleMigrator = new LeagueMigrator("men-league.xlsx", "male");
+        LeagueMigrator femaleMigrator = new LeagueMigrator("women-league.xlsx", "female");
+        System.out.println(maleMigrator.getSqlQuery());
+        System.out.println(femaleMigrator.getSqlQuery());
     }
 }
