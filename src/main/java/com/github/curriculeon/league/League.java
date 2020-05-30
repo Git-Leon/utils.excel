@@ -5,14 +5,17 @@ package com.github.curriculeon.league;
  * @created 05/29/2020 - 6:51 PM
  */
 public class League {
+    private static Long numberOfLeagues = 0L;
+    private final Long id;
     private String countryName;
     private String leagueName;
-    private Long id;
+    private String gender;
 
-    public League(String countryName, String leagueName, Long id) {
+    public League(String countryName, String leagueName, String gender) {
         this.countryName = countryName;
         this.leagueName = leagueName;
-        this.id = id;
+        this.id = numberOfLeagues++;
+        this.gender = gender;
     }
 
     public String getCountryName() {
@@ -27,16 +30,20 @@ public class League {
         return leagueName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public void setLeagueName(String leagueName) {
         this.leagueName = leagueName;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -50,13 +57,15 @@ public class League {
 
     public String getInsertionStatement() {
         return new StringBuilder()
-            .append("INSERT INTO obc.league(id, country, name) VALUES(")
+            .append("INSERT INTO obc.league(id, country, name) VALUES('")
             .append(getId())
-            .append(",")
+            .append("','")
             .append(getCountryName())
-            .append(",")
+            .append("','")
             .append(getLeagueName())
-            .append(");")
+            .append("','")
+            .append(getGender())
+            .append("');")
 
             .toString();
     }

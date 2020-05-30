@@ -9,7 +9,7 @@ import org.junit.Test;
 public class LeagueMigratorTest {
     @Test
     public void test() {
-        LeagueMigrator migrator = new LeagueMigrator("men-league.xlsx");
+        LeagueMigrator migrator = new LeagueMigrator("men-league.xlsx", "male");
         System.out.println(migrator.getSqlQuery());
     }
 }

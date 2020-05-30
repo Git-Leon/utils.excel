@@ -19,19 +19,8 @@ public class MyObject implements Runnable {
     }
 
 
-
     private List<League> extractLeague(String fileName) {
-        List<League> result = new ArrayList<>();
-        File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory(fileName);
-        ExcelSpreadSheetWorkBookFile sourceWorkBookFile = new ExcelSpreadSheetWorkBookFile(source);
-        ExcelSpreadSheet firstSheet = sourceWorkBookFile.getExcelSpreadSheetByIndex(0).get();
-        for (ExcelSpreadSheetRow row : firstSheet.getRows()) {
-            ExcelSpreadSheetCell countryName  = row.getCell(0);
-            ExcelSpreadSheetCell leagueName  = row.getCell(1);
-            League league = new League(countryName.getCellValue(), leagueName.getCellValue(), System.nanoTime());
-            result.add(league);
-        }
-        return result;
+        return null;
     }
 
     private void tryLater() {

@@ -16,9 +16,11 @@ import java.util.List;
  */
 public class LeagueMigrator {
     private final String excelSourceFileName;
+    private final String gender;
 
-    public LeagueMigrator(String excelSourceFileName) {
+    public LeagueMigrator(String excelSourceFileName, String gender) {
         this.excelSourceFileName = excelSourceFileName;
+        this.gender = gender;
     }
 
     public String getSqlQuery() {
@@ -39,7 +41,7 @@ public class LeagueMigrator {
         for (ExcelSpreadSheetRow row : firstSheet.getRows()) {
             ExcelSpreadSheetCell countryName = row.getCell(0);
             ExcelSpreadSheetCell leagueName = row.getCell(1);
-            League league = new League(countryName.getCellValue(), leagueName.getCellValue(), System.nanoTime());
+            League league = new League(leagueName.getCellValue(), countryName.getCellValue(), gender);
             result.add(league);
         }
         return result;
