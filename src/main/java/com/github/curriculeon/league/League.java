@@ -1,13 +1,13 @@
-package com.github.curriculeon.student;
+package com.github.curriculeon.league;
 
 /**
  * @author leonhunter
  * @created 05/29/2020 - 6:51 PM
  */
 public class League {
-    String countryName;
-    String leagueName;
-    Long id;
+    private String countryName;
+    private String leagueName;
+    private Long id;
 
     public League(String countryName, String leagueName, Long id) {
         this.countryName = countryName;
@@ -46,5 +46,22 @@ public class League {
             ", leagueName='" + leagueName + '\'' +
             ", id=" + id +
             '}';
+    }
+
+    public String getInsertionStatement() {
+        return new StringBuilder()
+            .append("INSERT INTO obc.league(id, country, name) VALUES(")
+            .append(getId())
+            .append(",")
+            .append(getCountryName())
+            .append(",")
+            .append(getLeagueName())
+            .append(");")
+
+            .toString();
+    }
+
+    public static String getCreationStatement() {
+        return "CREATE TABLE IF NOT EXISTS obc.league(id INT PRIMARY KEY, country TEXT NOT NULL, name TEXT NOT NULL);";
     }
 }

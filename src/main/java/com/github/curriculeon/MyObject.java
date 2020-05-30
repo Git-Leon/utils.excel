@@ -5,21 +5,20 @@ import com.github.curriculeon.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.curriculeon.excel.tabledata.cell.ExcelSpreadSheetCell;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
 import com.github.curriculeon.excel.tabledata.dataarray.ExcelSpreadSheetRow;
-import com.github.curriculeon.student.League;
+import com.github.curriculeon.league.League;
 import com.github.curriculeon.utils.io.DirectoryReference;
 import com.github.curriculeon.utils.StringEvaluator;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MyObject implements Runnable {
     public void run() {
         System.out.println(extractLeague("men-league.xlsx"));
     }
+
+
 
     private List<League> extractLeague(String fileName) {
         List<League> result = new ArrayList<>();
